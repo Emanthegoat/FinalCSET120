@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Directory</title>
+    <style>
+        
+        .managerDirect
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .MenuEdit, .Incoming-Orders
+        {
+            max-width: 300px;
+            margin: auto;
+        }
+        .menu-edit-image, .incoming-orders-image
+        {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="managerDirect">
+        <div class="MenuEdit">
+            <h2 class="menu-edit-text-click" onclick="location.href = 'Menu_Editor.html'">Click Here To Be Directed To The Menu Editor</h2>
+            <img src="https://th.bing.com/th/id/R.b7656582b65c084f855cba5ee0d38390?rik=kZKvGk%2fqNEa%2fAQ&riu=http%3a%2f%2fwww.mapcentia.com%2fimages%2ficons%2ffrontpage%2fedit.png&ehk=yoAGEUt7VRc4yPh9FECyTI75Evdv1n44d0ZZzgxk9xI%3d&risl=&pid=ImgRaw&r=0" class="menu-edit-image">
+        </div>
+        <div class="Incoming-Orders">
+            <h2 class="incoming-orders-image" onclick="location.href = 'Incoming_Orders.html'">Click Here To Be Directed To View Incoming Orders</h2>
+            <img src="https://th.bing.com/th/id/OIP.IPusDSO11JeGtNqxDT4TqgHaFj?pid=ImgDet&rs=1" class="incoming-orders-image">
+        </div>
+
+    </div>
+    <script src="store.js"></script>
+</body>
+</html>
