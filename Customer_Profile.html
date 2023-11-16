@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .Previous-Orders
+        {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .Prev-Ord-text
+        {
+            margin: 20px auto;
+            text-align: center;
+            border-top: 3px ridge black;
+            border-bottom: 3px ridge black;
+            width: 70vw;
+            transition: 400ms;
+            margin: auto;
+        }
+        @media (max-width: 850px)
+        {
+            .Prev-Ord-text
+            {
+                transition: 400ms;
+                width: 100%;
+            }
+        }
+    </style>
+    <style>
+        .receipt
+        {
+            width: 300px;
+            border: 2px solid black;
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+        .receipt h2
+        {
+            text-align: center;
+            width: fit-content;
+            margin: 20px auto;
+
+        }
+        .receipt-section
+        {
+            border-top: 1px solid black;
+            margin: 10px;
+        }
+        .receipt-section-title
+        {
+            font-size: 1.2em;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .customer-name-text
+        {
+            font-size: 12pt;
+            text-indent: 35px;
+        }
+        .receipt-date-heading
+        {
+            text-decoration: underline;
+            margin: 5px;
+            padding: 0;
+        }
+        .receipt-date-text
+        {
+            color: rgb(123, 123, 123);
+            font-weight: 600;
+            margin-left: 20px;
+        }
+        .receipt-item
+        {
+            display: grid;
+            grid-template-columns: 220px 50px;
+            margin: 0px 10px;
+        }
+        .receipt-item-left p
+        {
+            padding: 0px;
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+        .receipt-item-item p
+        {
+            display: inline;
+            font-weight: 600;
+            margin-left: -10px;
+        }
+        .receipt-item-info
+        {
+            font-size: 10pt;
+            color: rgb(123, 123, 123);
+            margin: 10px 100px;
+            width: 170px;
+        }
+        .receipt-item-price
+        {
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
+        }
+        .receipt-total-items table
+        {
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="Previous-Orders">
+        <h1 class="Prev-Ord-text">Your Previous Orders</h1>
+        <div class="receipt">
+            <h2>Receipt</h2>
+            <div class="customer-name receipt-section">
+                <p class="receipt-section-title">Customer Name</p>
+                <p class="customer-name-text">John Doe</p>
+            </div>
+            <div class="receipt-date receipt-section"> 
+                <p class="receipt-date-title receipt-section-title">Time and Date</p>
+                <p class="receipt-date-heading">Pickup/Delivery Date:</p>
+                <p class="receipt-date-text">Wednesday Nov 4</p>
+                <p class="receipt-date-heading">Pickup/Delivery Time:</p>
+                <p class="receipt-date-text">5:45 pm</p>
+            </div>
+            <div class="receipt-item-div receipt-section">
+                <p class="receipt-section-title">Items</p>
+                <div class="receipt-items">
+                    <div class="receipt-item">
+                        <div class="receipt-item-left">
+                            <div class="receipt-item-item">
+                                <p class="receipt-item-quantity receipt-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="receipt-item-name receipt-item-name-1">Cake</p>
+                            </div>
+                            <p class="receipt-item-info receipt-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                        </div>
+                        <div class="receipt-item-right">
+                            <p class="receipt-item-price receipt-item-price-1">$9.99</p>
+                        </div>
+                    </div>
+                    <div class="receipt-item">
+                        <div class="receipt-item-left">
+                            <div class="receipt-item-item">
+                                <p class="receipt-item-quantity receipt-item-quantity-2">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="receipt-item-name receipt-item-name-2">Cake</p>
+                            </div>
+                            <p class="receipt-item-info receipt-item-info-2">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                        </div>
+                        <div class="receipt-item-right">
+                            <p class="receipt-item-price receipt-item-price-2">$9.99</p>
+                        </div>
+                    </div>
+                    <div class="receipt-item">
+                        <div class="receipt-item-left">
+                            <div class="receipt-item-item">
+                                <p class="receipt-item-quantity receipt-item-quantity-3">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="receipt-item-name receipt-item-name-3">Cake</p>
+                            </div>
+                            <p class="receipt-item-info receipt-item-info-3">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                        </div>
+                        <div class="receipt-item-right">
+                            <p class="receipt-item-price receipt-item-price-3">$9.99</p>
+                        </div>
+                    </div>
+                    <div class="receipt-item">
+                        <div class="receipt-item-left">
+                            <div class="receipt-item-item">
+                                <p class="receipt-item-quantity receipt-item-quantity-4">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p class="receipt-item-name receipt-item-name-4">Cake</p>
+                            </div>
+                            <p class="receipt-item-info receipt-item-info-4">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                        </div>
+                        <div class="receipt-item-right">
+                            <p class="receipt-item-price receipt-item-price-4">$9.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="receipt-total-div receipt-section">
+            <p class="receipt-total receipt-section-title">Total</p>
+            <div class="receipt-total-items">
+                
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

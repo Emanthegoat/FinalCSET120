@@ -4,74 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager Directory</title>
-    <style>
-        .Manager-Directory
-        {
-            overflow: visible;
-        }
-        .MANDIR
-        {
-            text-align: center;
-            border-top: 3px ridge black;
-            border-bottom: 3px ridge black;
-            width: 70vw;
-            transition: 750ms;
-            margin: auto;
-        }
-        .managerDirect
-        {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .MenuEdit, .Incoming-Orders
-        {
-            width: 200px;
-            margin: 10px 10vw;
-            border: 3px outset rgb(87, 87, 87);
-            overflow: hidden;
-            height: 355px;
-        }
-        .menu-edit-image
-        {
-            border-top: 3px solid black;
-        }
-        .incoming-orders-image
-        {
-            margin-top: 40px;
-        }
-        .menu-edit-image, .incoming-orders-image, .menu-edit-text, .incoming-orders-text
-        {
-            width: 200px;
-            transition: 1000ms;
-        }
-        .menu-edit-image:hover, .incoming-orders-image:hover
-        {
-            transform: scale(1.2);
-            transition: 1000ms;
-            opacity: .5;
-            position: relative;
-        }
-        @media (max-width: 850px)
-        {
-            .MANDIR
-            {
-                transition: 750ms;
-                width: 100%;
-            }
-            .MenuEdit, .Incoming-Orders
-            {
-                margin: 10px 5vw;
-            }
-        }
-        @media(max-width:555px)
-        {
-            .MenuEdit, .Incoming-Orders
-            {
-                min-width: 200px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="Manager-Directory">
     <h1 class="MANDIR">MANAGER DIRECTORY</h1>
