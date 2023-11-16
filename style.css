@@ -1,3 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: block;
+}
+h1{
+    text-align: center;
+}
+#option-bar{
+    text-align: center;
+    margin-top: 20px;
+}
+input{
+    display: flex;
+    text-align:center;
+}
+button{
+    border-style: none;
+}
+
 
 /* MANAGER DIRECTORY */
 .Manager-Directory

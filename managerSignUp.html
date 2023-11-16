@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Manager Sign Up</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Sugar Soiree</h1>
+    <h1>Sugar Soiree - Manager Sign up</h1>
     <nav id="option-bar">
         <div>
             <button><a href="SignUp.html">Sign Up</a></button>
@@ -16,7 +16,13 @@
             <button><a href="index.html">Home Page</a></button>
         </div>
     </nav>
-    <h1>Welcome to the home page!</h1>
+
+    <section id="credentials">
+        Email: <input type="text" id="email"> 
+        Manager Pin: <input type="password" id="pin">
+        <button onclick="managerSign()">Sign Up</button>
+        <button onclick="managerlog()">Log In</button>
+    </section>
 
     <script src="store.js"></script>
 </body>
