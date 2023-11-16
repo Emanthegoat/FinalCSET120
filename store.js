@@ -1,3 +1,4 @@
+
 // customer sign up and log in functions
 function signUp(){
     let email = document.getElementById('email').value
@@ -44,5 +45,14 @@ function managerlog(){
     }
     else{
         alert('Invalid username')
+    }
+}
+function myPassword(){
+var x = document.getElementById("input");
+if (x.type === "password") {
+    x.type = "text" ;
+}
+    else {
+        x.type = "password";
     }
 }
