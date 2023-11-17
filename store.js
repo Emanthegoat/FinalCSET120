@@ -22,8 +22,9 @@ function login(){
     else{
         alert('Invalid username')
     }
+    managerlog()
 }
-// manager sign up and login  functions
+// manager sign up and login functions
 function managerSign(){
     let email = document.getElementById('email').value
     let pin = document.getElementById('pin').value
@@ -37,7 +38,7 @@ function managerlog(){
     if(localStorage.getItem(email)){
         if(pin = localStorage.getItem('pin')){
             alert('Log in success.')
-            location.replace('managerDirectory.html')
+            location.replace('Manager_Directory.html')
         }
         else{
             alert('Invalid Manager Pin')
@@ -47,12 +48,12 @@ function managerlog(){
         alert('Invalid username')
     }
 }
-function myPassword(){
-    var x = document.getElementById("input");
-    if (x.type === "password") {
-        x.type = "text" ;
-    }
-        else {
-            x.type = "password";
-        }
-    }
+// function myPassword(){
+//     var x = document.getElementById("input");
+//     if (x.type === "password") {
+//         x.type = "text" ;
+//     }
+//         else {
+//             x.type = "password";
+//         }
+//     }
