@@ -214,3 +214,23 @@ button{
       font-weight: bold;
   }
 /* RECEIPT CSS END */
+
+
+/* Navbar */
+li {
+   display: inline;
+   float: right;
+   padding: 20px ;
+max-width: 200px;
+font-size: 35px;
+
+
+
+
+
+}
+
+
+
+
+

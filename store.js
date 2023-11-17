@@ -56,3 +56,4 @@ function myPassword(){
             x.type = "password";
         }
     }
+    //shows password visibly when clicked
