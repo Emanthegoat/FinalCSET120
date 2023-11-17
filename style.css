@@ -1,8 +1,8 @@
-/* *{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+}
 body{
     display: block;
 }
@@ -129,24 +129,30 @@ button{
       border: 2px solid black;
       border-collapse: collapse;
       margin: 50px auto;
+      padding: 10px;
+  }
+  .receipt hr
+  { 
+    width: 280px;
+    margin: 0 auto;
+    padding: 0 auto;
   }
   .receipt h2
   {
       text-align: center;
       width: fit-content;
       margin: 20px auto;
-
   }
   .receipt-section
   {
-      border-top: 1px solid black;
-      margin: 10px;
+      margin: 20px 10px;
   }
   .receipt-section-title
   {
       font-size: 1.2em;
       text-decoration: underline;
       font-weight: bold;
+      margin: 10px -10px;
   }
   .customer-name-text
   {
@@ -168,7 +174,7 @@ button{
   .receipt-item, .receipt-total-items
   {
       display: grid;
-      grid-template-columns: 220px 50px;
+      grid-template-columns: 200px 55px;
       margin: 0px 10px;
       padding: 0;
   }
@@ -178,7 +184,7 @@ button{
       margin: 0px;
       margin-bottom: 10px;
   }
-  .receipt-item-item p
+  .receipt-item-left .receipt-item-quantity, .receipt-item-left .receipt-item-name
   {
       display: inline;
       font-weight: 600;
@@ -197,13 +203,9 @@ button{
       padding: 0;
       margin: 0;
   }
-  .receipt-total-items table
+  .receipt-total-items p,  .total-separator
   {
-      width: auto;
-  }
-  .receipt-total-items p
-  {
-      margin: 0;
+    margin: 0px -10px;
   }
   .receipt-total-items-item
   {
@@ -212,5 +214,9 @@ button{
   .receipt-total-item-total
   {
       font-weight: bold;
+  }
+  .total-separator
+  {
+    width: 1px;
   }
 /* RECEIPT CSS END */
