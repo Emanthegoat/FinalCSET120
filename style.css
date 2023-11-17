@@ -1,4 +1,7 @@
 *{
+.list{
+    display: inline;
+    list-style: none;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -220,3 +223,14 @@ button{
     width: 1px;
   }
 /* RECEIPT CSS END */
+    padding: 8px;
+    float: left;
+}
+.menu{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0 ;
+    
+
+}
