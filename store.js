@@ -48,12 +48,12 @@ function managerlog(){
         alert('Invalid username')
     }
 }
-// function myPassword(){
-//     var x = document.getElementById("input");
-//     if (x.type === "password") {
-//         x.type = "text" ;
-//     }
-//         else {
-//             x.type = "password";
-//         }
-//     }
+function myPassword(){
+    var x = document.getElementById("input");
+    if (x.type === "password") {
+        x.type = "text" ;
+    }
+        else {
+            x.type = "password";
+        }
+    }
