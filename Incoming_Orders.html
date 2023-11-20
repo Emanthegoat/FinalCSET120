@@ -4,169 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incoming Orders</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="store.js" async></script>
 </head>
-<style>
-    .Incoming
-        {
-            text-align: center;
-            border-top: 3px ridge black;
-            border-bottom: 3px ridge black;
-            width: 70vw;
-            transition: 400ms;
-            margin: auto;
-        }
-        @media (max-width: 850px)
-        {
-            .Incoming
-            {
-                transition: 400ms;
-                width: 100%;
-            }
-        }
-</style>
-<style>
-    .incoming-order
-    {
-        width: 300px;
-        margin: 20px auto;
-        padding: 10px;
-        border: 0.5px ridge black;
-    }
-    .incoming-order hr
-    { 
-        width: 280px;
-        margin: 0 auto;
-        padding: 0 auto;
-    }
-    .incoming-order-title
-    {
-        text-decoration: underline;
-        text-align: center;
-    }
-    .incoming-order-info
-    {
-        width: fit-content;
-        margin: auto;
-    }
-    .incoming-order-name, .incoming-order-time
-    {
-        display: inline;
-        font-size: 12pt;
-        text-align: center;
-        opacity: .6;
-        color: #000080;
-        text-decoration-line: underline;
-        font-weight: 600;
-        margin: auto;
-    }
-    .order-item, .order-total-items
-    {
-        display: grid;
-        grid-template-columns: 220px 50px;
-        margin: 0px 15px;
-        padding: 0px 0px;
-    }
-    .order-item-left p
-    {
-        padding: 0px;
-        margin: 0px;
-        margin-bottom: 10px;
-    }
-    .order-item-left .order-item-quantity, .order-item-left .order-item-name
-    {
-        display: inline;
-        font-weight: 600;
-        margin-left: -10px;
-    }
-    .order-item-info
-    {
-        font-size: 10pt;
-        color: rgb(123, 123, 123);
-        margin: 10px 100px;
-        width: 170px;
-    }
-    .order-item-price
-    {
-        font-weight: 600;
-        padding: 0;
-        margin: 0;
-    }
-    .order-total-title
-    {
-        font-size: 1.2em;
-        text-decoration: underline;
-        font-weight: bold;
-    }
-    .order-total-items p
-    {
-        margin: 0;
-    }
-    .order-total-items-item
-    {
-        color: rgb(123, 123, 123);
-    }
-    .order-total-item-total
-    {
-        font-weight: bold;
-    }
-    .order-total-items p
-    {
-        margin: 0;
-    }
-    .order-total-items-item
-    {
-        color: rgb(123, 123, 123);
-    }
-    .order-total-item-total
-    {
-        font-weight: bold;
-    }
-    
-</style>
 <body>
-    <h1 class="Incoming">Incoming Orders</h1>
 
+    <h1 class="Incoming">Incoming Orders</h1>
+<div class="incoming-orders-grid orders-grid">
     <div class="incoming-order">
         <h2 class="incoming-order-title">Order by:</h2>
         <div class="incoming-order-info"><p class="incoming-order-name">John Doe </p> at <p class="incoming-order-time">4:15pm</p></div>
         <hr>
-        <div class="order-item">
-            <div class="order-item-left">
-                    <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p class="order-item-name order-item-name-1">Cake</p>
-                <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+        <div class="order-items-section">
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
             </div>
-            <div class="order-item-right">
-                <p class="order-item-price order-item-price-1">$9.99</p>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
             </div>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <hr>
+
         </div>
-        <div class="order-item">
-            <div class="order-item-left">
-                    <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p class="order-item-name order-item-name-1">Cake</p>
-                <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
-            </div>
-            <div class="order-item-right">
-                <p class="order-item-price order-item-price-1">$9.99</p>
-            </div>
-        </div>
-        <div class="order-item">
-            <div class="order-item-left">
-                    <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p class="order-item-name order-item-name-1">Cake</p>
-                <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
-            </div>
-            <div class="order-item-right">
-                <p class="order-item-price order-item-price-1">$9.99</p>
-            </div>
-        </div>
-        <hr>
         <div class="order-total-div order-section">
             <p class="order-total-title">Totals</p>
             <div class="order-total-items">
                 <div class="order-total-items-left">
                    <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
                    <p class="order-total-tax order-total-items-item">Tax:</p>
+                   <hr>
                    <p class="order-total-text order-total-item-total">Total:</p>
                 </div>
                 <div class="order-total-items-right">
@@ -176,6 +65,148 @@
                  </div>
             </div>
         </div>
+        <br>
+        <hr>
+        <div class="order-buttons-section">
+            <button class="accept-order">Accept Order</button>
+            <button class="mark-as-complete">Mark As Complete</button>
         </div>
+    </div>
+    
+
+    <div class="incoming-order">
+        <h2 class="incoming-order-title">Order by:</h2>
+        <div class="incoming-order-info"><p class="incoming-order-name">John Doe </p> at <p class="incoming-order-time">4:15pm</p></div>
+        <hr>
+        <div class="order-items-section">
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+        <div class="order-total-div order-section">
+            <p class="order-total-title">Totals</p>
+            <div class="order-total-items">
+                <div class="order-total-items-left">
+                   <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
+                   <p class="order-total-tax order-total-items-item">Tax:</p>
+                   <hr>
+                   <p class="order-total-text order-total-item-total">Total:</p>
+                </div>
+                <div class="order-total-items-right">
+                    <p class="order-total-subtotal-price order-total-items-item">$69.69</p>
+                    <p class="order-total-tax-price order-total-items-item">$6.99</p>
+                    <p class="order-total-price order-total-item-total">$420.69</p>
+                 </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="order-buttons-section">
+            <button class="accept-order">Accept Order</button>
+            <button class="mark-as-complete">Mark As Complete</button>
+        </div>
+    </div>
+
+
+    <div class="incoming-order">
+        <h2 class="incoming-order-title">Order by:</h2>
+        <div class="incoming-order-info"><p class="incoming-order-name">John Doe </p> at <p class="incoming-order-time">4:15pm</p></div>
+        <hr>
+        <div class="order-items-section">
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <div class="order-item">
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">5&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">Cake</p>
+                    <p class="order-item-info order-item-info-1">Chocolate cake with rainbow sprinkles and peanut butter icing</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">$9.99</p>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+        <div class="order-total-div order-section">
+            <p class="order-total-title">Totals</p>
+            <div class="order-total-items">
+                <div class="order-total-items-left">
+                   <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
+                   <p class="order-total-tax order-total-items-item">Tax:</p>
+                   <hr>
+                   <p class="order-total-text order-total-item-total">Total:</p>
+                </div>
+                <div class="order-total-items-right">
+                    <p class="order-total-subtotal-price order-total-items-item">$69.69</p>
+                    <p class="order-total-tax-price order-total-items-item">$6.99</p>
+                    <p class="order-total-price order-total-item-total">$420.69</p>
+                 </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="order-buttons-section">
+            <button class="accept-order">Accept Order</button>
+            <button class="mark-as-complete">Mark As Complete</button>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br>
+<h1 class="Accepted-Orders">Accepted Orders</h1>
+<div class="accepted-orders-grid orders-grid">
+</div>
+<br><br><br><br><br><br>
+<h1 class="Completed-Orders">Completed Orders</h1>
+<div class="completed-orders-grid orders-grid">
+</div>
+
 </body>
 </html>
