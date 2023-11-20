@@ -8,6 +8,7 @@ function signUp(){
     alert('Account created successfully')
 }
 function login(){
+    let pin = document.getElementById('pin').value
     let email = document.getElementById('email').value
     let pass = document.getElementById('pass').value
     if(localStorage.getItem(email)){
@@ -19,10 +20,12 @@ function login(){
             alert('Invalid password')
         }
     }
+    else if (localStorage.getItem(email)){
+        if(){}
+    }
     else{
         alert('Invalid username')
     }
-    managerlog()
 }
 // manager sign up and login functions
 function managerSign(){
@@ -33,8 +36,7 @@ function managerSign(){
     alert('Account created successfully')
 }
 function managerlog(){
-    let email = document.getElementById('email').value
-    let pin = document.getElementById('pin').value
+    
     if(localStorage.getItem(email)){
         if(pin = localStorage.getItem('pin')){
             alert('Log in success.')
