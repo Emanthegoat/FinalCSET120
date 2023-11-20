@@ -415,11 +415,111 @@ button{
     }
  /* INCOMING ORDER RECEIPT CSS END */
 
+.list{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    float: left;
+}
 .menu{
     display: inline;
     list-style: none;
     margin: 0;
     padding: 0 ;
-    
+}
+    }
+  .receipt-section
+  {
+      border-top: 1px solid ;
+      margin: 10px;
+  }
+  .receipt-section-title
+  {
+      font-size: 1.2em;
+      text-decoration: underline;
+      font-weight: bold;
+  }
+  .customer-name-text
+  {
+      font-size: 12pt;
+      text-indent: 35px;
+  }
+  .receipt-date-heading
+  {
+      text-decoration: underline;
+      margin: 5px;
+      padding: 0;
+  }
+  .receipt-date-text
+  {
+      color: rgb(123, 123, 123);
+      font-weight: 600;
+      margin-left: 20px;
+  }
+  .receipt-item, .receipt-total-items
+  {
+      display: grid;
+      grid-template-columns: 220px 50px;
+      margin: 0px 10px;
+      padding: 0;
+  }
+  .receipt-item-left p
+  {
+      padding: 0px;
+      margin: 0px;
+      margin-bottom: 10px;
+  }
+  .receipt-item-item p
+  {
+      display: inline;
+      font-weight: 600;
+      margin-left: -10px;
+  }
+  .receipt-item-info
+  {
+      font-size: 10pt;
+      color: rgb(123, 123, 123);
+      margin: 10px 100px;
+      width: 170px;
+  }
+  .receipt-item-price
+  {
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+  }
+  .receipt-total-items table
+  {
+      width: auto;
+  }
+  .receipt-total-items p
+  {
+      margin: 0;
+  }
+  .receipt-total-items-item
+  {
+      color: rgb(123, 123, 123);
+  }
+  .receipt-total-item-total
+  {
+      font-weight: bold;
+  }
+/* RECEIPT CSS END */
+
+
+/* Menu page begin */
+li {
+   display: inline;
+   text-align: center;
+   padding: 20px ;
+max-width: 200px;
+font-size: 70px;
 
 }
+.company{
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 75px;
+}
+/* Menu page end */
