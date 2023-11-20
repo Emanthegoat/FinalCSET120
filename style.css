@@ -216,20 +216,25 @@ button{
 /* RECEIPT CSS END */
 
 
-/* Navbar */
+/* Menu page begin */
 li {
    display: inline;
-   float: right;
+   text-align: center;
    padding: 20px ;
 max-width: 200px;
-font-size: 35px;
-
-
-
-
+font-size: 70px;
 
 }
+.company{
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 75px;
+}
+/* Menu page end */
 
+  
+  
+  
 
 
 
