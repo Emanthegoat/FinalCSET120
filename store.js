@@ -57,8 +57,10 @@ function myPassword(){
             x.type = "password";
         }
     }
+ HEAD
+    //shows password visibly when clicked
 
 
 var CustomerLogin = {email: "123@t.com", password: "12345"}
 var ManagerLogin= {email: "123@t.com", password: "12345"}
-var SignupInfo = {email: "", password: ""}
+var SignupInfo = {email: "", password: ""} 

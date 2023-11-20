@@ -3,38 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Guest Sign Up</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-</html>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head> -->
 <body>
-    <h1>Sugar Soiree</h1>
-    <div class="signup">
-        <h1>Sign up</h1>
-        <p>Please create an account</p>
-        <hr>
-        <label for="email"> <b>Email</b></label>
-        
-        <input type="Email" placeholder="Enter your email" required>
-        <br>
-        <label for="pass"> <b>Password</b></label>
-       
-        <input type="password" placeholder="create Password" id="input" required>
-        <br>
-        <input type="checkbox" onclick="myPassword()">show password
-        <br>
-        <br>
-        
-        <label for="repeat"> <b>Repeat password</b></label>
-        
-        <input type="Repeat" placeholder=" type here" required>
-    </div>
-     
+    <h1>Sugar Soiree - Guest Sign up</h1>
+    <nav id="option-bar">
+        <div>
+            <button><a href="SignUp.html">Sign Up</a></button>
+            <button><a href="menu.html">View Menu</a></button>
+            <button><a href="menu.html">Continue as guest</a></button>
+            <button><a href="index.html">Home Page</a></button>
+        </div>
+    </nav>
+    <section id="credentials">
+        Email: <input type="text" id="email">
+        Password: <input type="password" id="pass">
+        <button onclick="signUp()">Sign Up</button>
+        <button onclick="login()"><a>Log in</a></button> <br><br>
+        If you are a Manager,<a href="managerSignUp.html">Click here</a>.
+    </section>
+
+<script src="store.js"></script>
 </body>
 </html>
