@@ -10,18 +10,22 @@
 <body>
     <h1>Sugar Soiree</h1>
     <div class="signup">
-        <h1>Sign up</h1>
-        <p>Please create an account</p>
+        <h1 class="signUp">Sign up</h1>
+        <!-- algins the sign up title to the left -->
+        <style>
+            .signUp{
+                text-align: left;
+            }
+        </style>
+        <p>Please create an account here.</p><br>
         <hr>
         <div id="creds">
-            <label for="name">Full Name:</label> <input type="text" name="" id="">
-            <label for="email"> <b>Email:</b></label>  <input type="Email" placeholder="Enter your email" required> <br>
-            <label for="pass"> <b>Password:</b></label>  <input type="password" placeholder="create Password" id="input" required> <br>
-            <!-- <input type="checkbox" onclick="myPassword()">show password -->
-            <!-- <br>
-            <br> -->
-            <label for="repeat"> <b>Repeat password</b></label>  <input type="Repeat" placeholder=" type here" required>
-            <button onclick="">Sign up</button>
+            <label id="name"><b>Full Name:</b></label> <input type="text" placeholder="Enter Full Name" required><br>
+            <label id="email"> <b>Email:</b></label>  <input type="Email" placeholder="Enter your email" required> <br>
+            <label id="user"><b>Username</b></label> <input type="text" placeholder="Choose a username" required> <br>
+            <label id="pass"> <b>Password (Must be at least 3 characters):</b></label>  <input type="password" placeholder="create a Password" id="input" required> <br>
+            <label id="repeat"> <b>Confirm password</b></label>  <input type="password" placeholder="Re-enter password" required>
+            <button id="signupbtn" onclick="takeInfo()"><a href="">Sign Up</a></button>
         </div>
     </div>
      
