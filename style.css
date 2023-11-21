@@ -11,15 +11,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
+/* body{
     display: block;
-}
+} */
 h1{
     text-align: center;
-}
-#option-bar{
-    text-align: center;
-    margin-top: 20px;
 }
 input{
     display: flex;
@@ -29,6 +25,110 @@ button{
     border-style: none;
 }
 
+
+/* NAV BAR STYLES */
+.NavBackground
+{
+    background-color: bisque;
+}
+.option-bar
+{
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 20px;
+    
+}
+.Navimage
+{
+    
+}
+.Navimage img
+{
+    max-height: 150px;
+    box-shadow: 5px 5px 5px grey;
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+.links
+{
+    margin: auto;
+}
+.links li
+{
+    width: fit-content;
+    font-size: 1.5em;
+    font-family: Curlz MT;
+    font-style: oblique;
+    display: inline-block;
+}
+.links a
+{
+    
+    padding: 5px;
+}
+.links a:link
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:hover
+{
+    text-decoration:underline overline wavy rgb(255, 100, 100);
+}
+.links a:active
+{
+    text-decoration: none;
+    color: rgb(36, 35, 35);
+}
+
+@media (max-width:1250px)
+{
+    .option-bar
+    {
+        grid-template-columns: 25vw 75vw;
+
+    }
+    .Navimage img
+    {
+    margin-left: 3vw;
+    margin-top: 2vh;
+    }
+    .links
+    {
+        margin: auto 10px;
+        justify-self: right;
+    }
+}
+
+@media (max-width:860px)
+{
+    .option-bar
+    {
+        display: block;
+        margin: auto;
+
+    }
+    .Navimage
+    {
+        margin: auto;
+        width: fit-content;
+        margin-bottom: 20px;
+    }
+    .links
+    {
+        margin: auto;
+        width: fit-content;
+        margin-top: 30px;
+    } 
+}
+/* NAV BAR STYLES END */
 
 /* MANAGER DIRECTORY */
 .Manager-Directory
