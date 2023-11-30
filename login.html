@@ -5,25 +5,20 @@
     <title>Log in</title>
     <link rel="stylesheet" href="store.js">
 </head>
-<div class="signup">
-    <h1>Sugar Soiree</h1>
-    <h1> Log in</h1>
-    <p>Enter your account information below</p>
-    <hr>
-    <label for="email"> <b>Email</b></label>
-    <input type="Email" placeholder="Enter your email" required>
-    <br>
-    <label for="pass"> <b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="input" required>
-    <button onclick="">Log in</button>
-    
-    <!-- <input type="checkbox" onclick="myPassword()">Show password -->
-        <br>
-        <br>
-    
-</div>
 <body>
-
+    <div class="signup">
+        <h1 class="header">Sugar Soiree</h1>
+        <h1> Log in</h1>
+        <h4>Enter your account information below</h4>
+        <hr>
+    <!-- username and password boxes -->
+        <label for="email"> <b>Username</b></label>
+        <input type="text" id="Username" placeholder="Enter Your Username" required><br>
     
+        <label for="pass"> <b>Password</b></label>
+        <input type="password" id="Password" placeholder="Enter Your Password" required>
+
+        <button onclick="login()">Log in</button>    
+    </div>
 </body>
 </html>

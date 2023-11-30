@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Sugar Soiree</h1>
-    <div class="signup">
+    <div class="title-signup">
         <h1 class="signUp">Sign up</h1>
         <!-- algins the sign up title to the left -->
         <style>
@@ -19,17 +19,27 @@
         </style>
         <p>Please create an account here.</p><br>
         <hr>
-        <div id="creds">
-            <label id="name"><b>Full Name:</b></label> <input type="text" placeholder="Enter Full Name" required><br>
-            <label id="email"> <b>Email:</b></label>  <input type="Email" placeholder="Enter your email" required> <br>
-            <label id="user"><b>Username</b></label> <input type="text" placeholder="Choose a username" required> <br>
-            <label id="pass"> <b>Password (Must be at least 3 characters):</b></label>  <input type="password" placeholder="create a Password" id="input" required> <br>
-            <label id="repeat"> <b>Confirm password</b></label>  <input type="password" placeholder="Re-enter password" required>
-            <button id="signupbtn" onclick="takeInfo()"><a href="">Sign Up</a></button>
+        <div id="signUp-container">
+            <label id="name"><b>Full Name:</b></label> 
+                <input type="text" placeholder="Enter Your Full Name" required><br>
+
+            <label id="email"><b>Email:</b></label>  
+                <input type="Email" placeholder="Enter Your Email" required><br>
+
+            <label id="user"><b>Username</b></label> 
+                <input type="text" id="username" placeholder="Create A Username" required><br>
+
+            <label id="pass"><b>Password (Must be at least 3 characters):</b></label>  
+                <input type="password" placeholder="Create a Password" id="input" required><br>
+
+            <label id="repeat"><b>Confirm password</b></label>  
+                <input type="password" id="password" placeholder="Re-enter password" required><br>
+
+            <button id="signupbtn" onclick="registerCustomer()"><a href="">Register</a></button>
         </div>
     </div>
      
-
+<div class="title-login"></div>
 
 <script src="store.js"></script>
 

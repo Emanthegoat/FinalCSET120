@@ -1,67 +1,32 @@
-// variables for functions
-// let pass = document.getElementById('pass').value
-// let user = document.getElementById('user').value
-// var CustomerLogin = {email: "123@t.com", password: "12345"}
-// var ManagerLogin= {email: "123@t.com", password: "12345"}
-// var SignupInfo = {email: "", password: ""}
-// var creds = {user: "", pass: ""} 
 // Customer sign up function
+function registerCustomer(){
+    const user = document.getElementById('username').value 
+    const pass = document.getElementById('password').value
+    console.log(user,pass)
+    localStorage.setItem(user,pass)
+    location.replace('#login.html')
+}
 
-function signUp(){
-    localStorage.setItem('email', CustomerLogin.email)
-    localStorage.setItem('pass', ManagerLogin.email)
-    let pin = document.getElementById('pin').value
-    let email = document.getElementById('email').value
-    let pass = document.getElementById('pass').value
-    if(localStorage.getItem(email)){
-        if(pass === localStorage.getItem(email)){
-            alert('Log in success.')
-            location.replace('menu.html')
+// // log in function for customer and manager - manager part needs to be added
+function login(){
+    const user = document.getElementById('username').value 
+    const pass = document.getElementById('password').value
+    if(localStorage.getItem(user) == user){
+        if(pass == localStorage.getItem(pass)){
+            alert('Successful Log-in!')
+            location.replace('#menu.html')
         }
         else{
-            alert('Invalid password')
+            alert('Invalid password entered')
         }
     }
-    else if (localStorage.getItem(email)){}
     else{
-        alert('Invalid username')
+        alert('Invalid username entered')
     }
 }
 
-// // log in function for customer and manager
-// function login(){
-//     localStorage.setItem('email', CustomerLogin.email)
-//     localStorage.setItem('pass', ManagerLogin.email)
-//     let pin = document.getElementById('pin').value
-//     let email = document.getElementById('email').value
-//     let pass = document.getElementById('pass').value
-//     if(localStorage.getItem(email)){
-//         if(pass === localStorage.getItem(email)){
-//             alert('Log in success.')
-//             location.replace('menu.html')
-//         }
-//         else{
-//             alert('Invalid password')
-//         }
-//     }
-//     else if (localStorage.getItem(email)){}
-//     else{
-//         alert('Invalid username')
-//     }
-// }
 
-
-
-
-
-
-
-
-
-
-
-
-//Checks and makes sure that the document it loaded before we access the different parts of it
+//Checks and makes sure that the document is loaded before we access the different parts of it
 // if(document.readyState == "loading") 
 // {
 //     document.addEventListener("DOMContentLoaded", ready)
