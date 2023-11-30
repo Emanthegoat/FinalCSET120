@@ -511,7 +511,8 @@ button{
         box-shadow: 5px 5px 5px lightgray ;
     }
  /* INCOMING ORDER RECEIPT CSS END */
-
+ 
+ /* RECEIPT CSS Start */
 .list{
     display: inline;
     list-style: none;
@@ -525,6 +526,7 @@ button{
     margin: 0;
     padding: 0 ;
 }
+
   .receipt-section
   {
       border-top: 1px solid ;
