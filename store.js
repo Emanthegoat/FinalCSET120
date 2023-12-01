@@ -27,46 +27,46 @@ function login(){
 
 
 //Checks and makes sure that the document is loaded before we access the different parts of it
-// if(document.readyState == "loading") 
-// {
-//     document.addEventListener("DOMContentLoaded", ready)
-// }
-// else{
-//     ready()
-// }
-// // accepts orders that are ready
-// function ready()
-// {
-//     var acceptButtons = document.getElementsByClassName("accept-order")
-//     for(let i = 0; i < acceptButtons.length; i++)
-//     {
-//         let button = acceptButtons[i]
-//         button.addEventListener('click', accept)
-//     }
-//     var completeButtons = document.getElementsByClassName('mark-as-complete')
-//     for(let i = 0; i < completeButtons.length; i++)
-//     {
-//         let button = completeButtons[i]
-//         button.addEventListener('click', completedOrder)
-//     }
-// }
-// // accept button
-// function accept(event)
-// {
-//     console.log(event.srcElement)
-//     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
-//     let clickedButton = event.target.parentNode
-//     let clickedButtonParent = clickedButton.parentNode
-//     acceptedOrdersDiv.appendChild(clickedButtonParent)
-//     console.log(clickedButtonParent)
-//     event.srcElement.remove()
-// }
-// // completed order button
-// function completedOrder(event)
-// {
-//     let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]
-//     let clickedButton = event.target.parentNode
-//     let clickedButtonParent = clickedButton.parentNode
-//     completedOrdersDiv.appendChild(clickedButtonParent)
-//     event.srcElement.remove()
-// }
+if(document.readyState == "loading") 
+{
+    document.addEventListener("DOMContentLoaded", ready)
+}
+else{
+    ready()
+}
+// accepts orders that are ready
+function ready()
+{
+    var acceptButtons = document.getElementsByClassName("accept-order")
+    for(let i = 0; i < acceptButtons.length; i++)
+    {
+        let button = acceptButtons[i]
+        button.addEventListener('click', accept)
+    }
+    var completeButtons = document.getElementsByClassName('mark-as-complete')
+    for(let i = 0; i < completeButtons.length; i++)
+    {
+        let button = completeButtons[i]
+        button.addEventListener('click', completedOrder)
+    }
+}
+// accept button
+function accept(event)
+{
+    console.log(event.srcElement)
+    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
+    let clickedButton = event.target.parentNode
+    let clickedButtonParent = clickedButton.parentNode
+    acceptedOrdersDiv.appendChild(clickedButtonParent)
+    console.log(clickedButtonParent)
+    event.srcElement.remove()
+}
+// completed order button
+function completedOrder(event)
+{
+    let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]
+    let clickedButton = event.target.parentNode
+    let clickedButtonParent = clickedButton.parentNode
+    completedOrdersDiv.appendChild(clickedButtonParent)
+    event.srcElement.remove()
+}

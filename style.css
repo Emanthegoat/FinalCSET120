@@ -3,33 +3,10 @@
     margin: 0;
     padding: 0;
 }
-.list
-{
-    display: inline;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    display: block;
-}
-h1{
-    text-align: center;
-}
-#option-bar{
-    text-align: center;
-    margin-top: 20px;
-}
 input{
     display: flex;
     text-align:center;
 }
-button{
-    border-style: none;
-}
-
-
 /* MANAGER DIRECTORY */
 .Manager-Directory
         {
@@ -524,6 +501,40 @@ font-size: 70px;
 }
 /* Menu page end */
 
-/* Home Page start */
 
+/* Home Page start */
+.list
+{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.home-body{
+    display: block;
+    text-align: center;
+}
+#option-bar{
+    text-align: center;
+    margin-top: 20px;
+    width: fit-content;
+    float: left;
+}
+button{
+    border-style: none;
+}
+.business-title{
+    font-size: xx-large;
+}
+.sugar-img{
+    text-align: center;
+    width: fit-content;
+    float: left;
+    font-style: none;
+    margin-left: 20px;
+}
+a{
+    text-decoration: none;
+}
 /* Home Page end */
