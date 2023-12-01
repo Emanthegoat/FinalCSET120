@@ -1,3 +1,4 @@
+var NumberOfUsers = 0;
 //all the login info for the manager
 localStorage.setItem("ManagerUser", 'Manager')
 localStorage.setItem("ManagerEmail", 'Manager@sugarsoiree.yummy')
@@ -6,10 +7,9 @@ localStorage.setItem("ManagerPin", '7791')
 //user: manager  email:Manager@sugarsoiree.yummy  password: qwerty1234  pin: 7791
 
 //all the login info for the already existing customer
-localStorage.setItem("ExistCustomerUser", 'foodCustomer1234')
-localStorage.setItem("ExistCustomerEmail", 'Manager@sugarsoiree.yummy')
-localStorage.setItem("ExistCustomerPassword", 'Qwerty1234')
-localStorage.setItem("ExistCustomerPin", '7791')
+localStorage.setItem("ExistCustomerUser", '')
+localStorage.setItem("ExistCustomerEmail", '')
+localStorage.setItem("ExistCustomerPassword", '')
 
 
 
@@ -79,13 +79,27 @@ function registerCustomer()
     }
     else
     {
-        localStorage.setItem("RegisteredUsername", user);
-        localStorage.setItem("RegisteredPassword", pass);
-        localStorage.setItem("RegisteredEmail", email);
-        localStorage.setItem("RegisteredName", name)
+        NumberOfUsers++;
+        localStorage.setItem(`Customer${NumberOfUsers}  Username`, user);
+        localStorage.setItem(`Customer${NumberOfUsers}  Password`, pass);
+        localStorage.setItem(`Customer${NumberOfUsers}  Email`, email);
+        localStorage.setItem(`Customer${NumberOfUsers}  Name`, name)
         localStorage.setItem("CurrentLogin", "customer")
         location.replace('index.html');
     }
+
+    localStorage.setItem("Number Of Users", NumberOfUsers)
+        if(NumberOfUsers === 0)
+        {
+            if(localStorage.getItem("Number Of Users") !== 0)
+            {
+                NumberOfUsers = 0;
+            }
+        }
+        if(NumberOfUsers !== 0)
+        {
+            localStorage.setItem("Number Of Users", NumberOfUsers)
+        }
 }
 
 // // log in function for customer and manager - manager part needs to be added
@@ -108,7 +122,6 @@ function login(){
     const loginPass = document.getElementById('Login-Password').value
 
 }
-
 //Checks and makes sure that the document is loaded before we access the different parts of it
 if(document.readyState == "loading") 
 {
