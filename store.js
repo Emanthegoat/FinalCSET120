@@ -1,3 +1,24 @@
+//all the login info for the manager
+localStorage.setItem("ManagerUser", 'Manager')
+localStorage.setItem("ManagerEmail", 'Manager@sugarsoiree.yummy')
+localStorage.setItem("ManagerPassword", 'Qwerty1234')
+localStorage.setItem("ManagerPin", '7791')
+//user: manager  email:Manager@sugarsoiree.yummy  password: qwerty1234  pin: 7791
+
+//all the login info for the already existing customer
+localStorage.setItem("ExistCustomerUser", 'foodCustomer1234')
+localStorage.setItem("ExistCustomerEmail", 'Manager@sugarsoiree.yummy')
+localStorage.setItem("ExistCustomerPassword", 'Qwerty1234')
+localStorage.setItem("ExistCustomerPin", '7791')
+
+
+
+
+//make it so that multiple users can be created and are saved differently
+
+
+
+
 // Customer sign up function
 function registerCustomer()
 {
@@ -69,22 +90,24 @@ function registerCustomer()
 
 // // log in function for customer and manager - manager part needs to be added
 function login(){
-    const user = document.getElementById('username').value 
-    const pass = document.getElementById('password').value
-    if(localStorage.getItem(user) == user){
-        if(pass == localStorage.getItem(pass)){
-            alert('Successful Log-in!')
-            location.replace('menu.html')
-        }
-        else{
-            alert('Invalid password entered')
-        }
-    }
-    else{
-        alert('Invalid username entered')
-    }
-}
+    // const user = document.getElementById('username').value 
+    // const pass = document.getElementById('password').value
+    // if(localStorage.getItem(user) == user){
+    //     if(pass == localStorage.getItem(pass)){
+    //         alert('Successful Log-in!')
+    //         location.replace('menu.html')
+    //     }
+    //     else{
+    //         alert('Invalid password entered')
+    //     }
+    // }
+    // else{
+    //     alert('Invalid username entered')
+    // }
+    const userOrEmail = document.getElementById('Username-Or-Email').value
+    const loginPass = document.getElementById('Login-Password').value
 
+}
 
 //Checks and makes sure that the document is loaded before we access the different parts of it
 if(document.readyState == "loading") 
@@ -94,16 +117,24 @@ if(document.readyState == "loading")
 else{
     ready()
 }
-// accepts orders that are ready
+//when the page is loaded this function runs
 function ready()
 {
-    var acceptButtons = document.getElementsByClassName("accept-order")
+   var WhereAmI = window.location.pathname
+    if(WhereAmI == "/Incoming_Orders.html")
+    {
+        IncomingOrdersReady()
+    }
+}
+function IncomingOrdersReady()
+{
+    var acceptButtons = document.getElementsByName("acceptOrder")
     for(let i = 0; i < acceptButtons.length; i++)
     {
         let button = acceptButtons[i]
         button.addEventListener('click', accept)
     }
-    var completeButtons = document.getElementsByClassName('mark-as-complete')
+    var completeButtons = document.getElementsByName('markAsComplete')
     for(let i = 0; i < completeButtons.length; i++)
     {
         let button = completeButtons[i]
@@ -113,13 +144,14 @@ function ready()
 // accept button
 function accept(event)
 {
-    console.log(event.srcElement)
-    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
+    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
+    localStorage.setItem('This is a test', acceptedOrdersDiv)
     acceptedOrdersDiv.appendChild(clickedButtonParent)
-    console.log(clickedButtonParent)
-    event.srcElement.remove()
+    button.setAttribute("name", "markAsComplete")
+    button.innerText = "Mark As Complete"
+    IncomingOrdersReady()
 }
 // completed order button
 function completedOrder(event)
@@ -128,5 +160,7 @@ function completedOrder(event)
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
     completedOrdersDiv.appendChild(clickedButtonParent)
-    event.srcElement.remove()
+    let button = event.srcElement
+    button.setAttribute("name", "markedAsComplete")
+    button.innerText = "Order Completed"
 }
