@@ -21,9 +21,7 @@ input{
     display: flex;
     text-align:center;
 }
-button{
-    border-style: none;
-}
+
 
 
 /* NAV BAR STYLES */
@@ -499,7 +497,7 @@ button{
         justify-content: space-around;
         margin: 10px auto;
     }
-    .accept-order, .mark-as-complete
+    .order-button
     {
         border: 1px solid black;
         border-radius: 10px;
