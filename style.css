@@ -503,38 +503,40 @@ font-size: 70px;
 
 
 /* Home Page start */
-.list
-{
-    display: inline;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+#home-body{
+    background-color: peachpuff;
+
 }
-.home-body{
-    display: block;
+.about-header{
+    margin-bottom: 3%;
+    margin-top: 3%;
     text-align: center;
 }
-#option-bar{
-    text-align: center;
-    margin-top: 20px;
-    width: fit-content;
+#about-section{
+    background-color: rgba(255, 0, 0, 0.185);
+    position: relative;
+    margin: 3% 15% 0% 5%;
+}
+#about-container{
+    background-color: rgba(127, 255, 212, 0.464);
+    width: 60%;
+    border-radius: 5%;
+}
+#about-photo-container{
     float: left;
-}
-button{
-    border-style: none;
-}
-.business-title{
-    font-size: xx-large;
-}
-.sugar-img{
-    text-align: center;
+    /* width: fit-content; */
+    height: 250px;
+    text-align: bottom;
     width: fit-content;
-    float: left;
-    font-style: none;
-    margin-left: 20px;
+    margin: 3%;
+    border-radius: 4%;
+    shape-outside: circle(60%);
 }
-a{
-    text-decoration: none;
+.icing-cake{
+    border-radius: 7%;
+}
+#about-text{
+    /* float: none; */
+    font-size: x-large;
 }
 /* Home Page end */
