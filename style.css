@@ -3,10 +3,28 @@
     margin: 0;
     padding: 0;
 }
+.list
+{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body{
+    display: block;
+} */
+h1{
+    text-align: center;
+}
 input{
     display: flex;
     text-align:center;
 }
+button{
+    border-style: none;
+}
+
 /* MANAGER DIRECTORY */
 .Manager-Directory
         {
@@ -406,7 +424,7 @@ input{
     margin: 0;
     padding: 0 ;
 }
-    
+
   .receipt-section
   {
       border-top: 1px solid ;
