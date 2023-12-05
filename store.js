@@ -69,13 +69,13 @@ function registerCustomer()
     {
         document.getElementsByName("Pass")[0].style.backgroundColor="red";
         document.getElementsByName("ConfirmPass")[0].style.backgroundColor="red";
-        alert('Passwords Do Not Match');
+        return alert('Passwords Do Not Match');
     }
 
     //checks if the message isn't empty which means that there is an error
     if(message != "")
     {
-        alert(message);
+        return alert(message);
     }
     else //if the message is empty procedes
     {
@@ -106,7 +106,7 @@ var attempts = 0
 function login()
 {
     //grabs the info neccessary from the html input tags
-    const userOrEmail = document.getElementById('Username-Or-Email').value
+    const userOrEmail = document.getElementById('Username-Or-Email').value.toLowerCase()
     const loginPass = document.getElementById('Login-Password').value
     userOrEmail.toLowerCase()//converts the user or email to lowercase to avoid later conflicts
     //check for manager email match
@@ -116,8 +116,9 @@ function login()
         {
             alert('Login Successful')//if the if statement outputs true then the login is successful
             localStorage.setItem("CurrentLogin", "Manager")//sets the current user to manager
-            let inputPin = alert(Number(prompt('Please Input The Manager Pin')))//prompts the user for the manager pin
-            if(inputPin === localStorage.getItem('ManagerPin'))//checks if the inputed pin matches the stored pin and if so it moves the user to manager directory and if not says incorrect pin and ends the function
+            let inputPin = Number(prompt('Please Input The Manager Pin'))//prompts the user for the manager pin
+            console.log(localStorage.getItem('ManagerPin'), inputPin)
+            if(inputPin == localStorage.getItem('ManagerPin'))//checks if the inputed pin matches the stored pin and if so it moves the user to manager directory and if not says incorrect pin and ends the function
             {
                 return location.href = 'Manager_Directory.html';
             }
@@ -127,24 +128,40 @@ function login()
                 return;
             }
         }
+        else
+        {
+            alert('Incorrect Password')
+            document.getElementById('Login-Password').value = "";
+            attempts++
+        }
     }
     else if(userOrEmail == localStorage.getItem('ExistCustomerUser') || userOrEmail == localStorage.getItem('ExistCustomerEmail'))//check existing cutomer email and user
     {
+        console.log('else if exist starts')
+        console.log(localStorage.getItem('ExistCustomerUser'))
         if(loginPass === localStorage.getItem('ExistCustomerPassword'))
         {
+            console.log('password passed')
             alert('Login Successful')
             localStorage.setItem("CurrentLogin", "customer")
             return location.href = 'index.html';
+        }
+        else
+        {
+            alert('Incorrect Password')
+            document.getElementById('Login-Password').value = "";
+            attempts++
         }
     }
     else if(userOrEmail !== localStorage.getItem('ManagerUser') || userOrEmail !== localStorage.getItem('ManagerEmail') || userOrEmail !== localStorage.getItem('ExistCustomerUser') || userOrEmail !== localStorage.getItem('ExistCustomerEmail'))
     {
         //check stored emails
-        for(let i = 0;i < NumberOfUsers.length; i++)
+        for(let i = 1; i <= localStorage.getItem("Number Of Users").length; i++)
         {
-            if(userOrEmail == localStorage.getItem(`Customer${i} Username`) || userOrEmail == localStorage.getItem(`Customer${i} Email`))
+            console.log(localStorage.getItem(`Customer${i}Password`))
+            if(userOrEmail === localStorage.getItem(`Customer${i}Username`) || userOrEmail == localStorage.getItem(`Customer${i}Email`))
             {
-                if(loginPass === localStorage.getItem(`Customer${i} Password`))
+                if(loginPass == localStorage.getItem(`Customer${i}Password`))
                 {
                     alert('Login Successful')
                     localStorage.setItem("CurrentLogin", "customer")
@@ -152,16 +169,16 @@ function login()
                 }
                 else
                 {
-                    continue;
+                    alert('Incorrect Password')
+                    document.getElementById('Login-Password').value = "";
+                    attempts++
+                    return;
                 }
             }
         }
-    }
-    else
-    {
         alert("Incorrect Username or Password")
-        document.getElementById('Login-Password').innerText = "";
-        document.getElementById('Username-Or-Email').innerText = "";
+        document.getElementById('Login-Password').value = "";
+        document.getElementById('Username-Or-Email').value = "";
         attempts++
         if(attempts > 5)
         {
@@ -170,7 +187,7 @@ function login()
                 location.href = "signUp.html";
             }
         }
-        if(attempt == 5)
+        if(attempts == 5)
         {
             if(confirm("Forgot Username Or Password? Would you like to attempt to recover it?"))
             {
