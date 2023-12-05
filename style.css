@@ -32,7 +32,7 @@ input{
 .option-bar
 {
     display: grid;
-    grid-template-columns: 50vw 50vw;
+    grid-template-columns: 45vw 55vw;
     margin: auto;
     justify-content: center;
     padding-bottom: 20px;
@@ -52,7 +52,7 @@ input{
 }
 .links li
 {
-    width: fit-content;
+    width: auto;
     font-size: 1.5em;
     font-family: Curlz MT;
     font-style: oblique;

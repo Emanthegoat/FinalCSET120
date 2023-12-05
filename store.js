@@ -11,7 +11,7 @@ localStorage.setItem("ExistCustomerUser", 'johndoe!!')
 localStorage.setItem("ExistCustomerEmail", 'johndoe!@fak3.nam3')
 localStorage.setItem("ExistCustomerPassword", 'IWantYummyFood123')
 localStorage.setItem("ExistCustomerRecoverPin", "5288")
-
+localStorage.setItem("ExistCustomerName", "John Doe")
 
 
 // Customer sign up function
@@ -94,7 +94,8 @@ function registerCustomer()
         localStorage.setItem(`Customer${NumberOfUsers}Email`, email);
         localStorage.setItem(`Customer${NumberOfUsers}Name`, name)
         //sets who the current person logged in is to customer
-        localStorage.setItem("CurrentLogin", "customer")
+        localStorage.setItem("CurrentLoginType", "customer")
+        localStorage.setItem("CurrentLoginName", name)
         //sends the custoemr to the index
         location.replace('index.html');
     }
@@ -120,78 +121,78 @@ function login()
             console.log(localStorage.getItem('ManagerPin'), inputPin)
             if(inputPin == localStorage.getItem('ManagerPin'))//checks if the inputed pin matches the stored pin and if so it moves the user to manager directory and if not says incorrect pin and ends the function
             {
-                return location.href = 'Manager_Directory.html';
+                return location.href = 'Manager_Directory.html'; //directs the user to the manager directory page
             }
-            else
+            else//if the pin is incorrect
             {
                 alert("Incorrect Pin")
                 return;
             }
         }
-        else
+        else//if the password does not match
         {
             alert('Incorrect Password')
-            document.getElementById('Login-Password').value = "";
-            attempts++
+            document.getElementById('Login-Password').value = "";//clears the input login tag
+            attempts++ //increases the number of attempts
         }
     }
     else if(userOrEmail == localStorage.getItem('ExistCustomerUser') || userOrEmail == localStorage.getItem('ExistCustomerEmail'))//check existing cutomer email and user
     {
-        console.log('else if exist starts')
-        console.log(localStorage.getItem('ExistCustomerUser'))
-        if(loginPass === localStorage.getItem('ExistCustomerPassword'))
+        if(loginPass === localStorage.getItem('ExistCustomerPassword')) //checks if what is in the password input tag matches what is stored
         {
-            console.log('password passed')
             alert('Login Successful')
-            localStorage.setItem("CurrentLogin", "customer")
-            return location.href = 'index.html';
+            localStorage.setItem("CurrentLogin", "customer")//sets the current person using the site to customer
+            localStorage.setItem("CurrentLoginName", localStorage.getItem('ExistCustomerName'))//sets the current name of the user to the existing customers name for later use
+            return location.href = 'index.html'; //takes user to home page
         }
-        else
+        else//if the password does not match
         {
             alert('Incorrect Password')
             document.getElementById('Login-Password').value = "";
             attempts++
         }
     }
-    else if(userOrEmail !== localStorage.getItem('ManagerUser') || userOrEmail !== localStorage.getItem('ManagerEmail') || userOrEmail !== localStorage.getItem('ExistCustomerUser') || userOrEmail !== localStorage.getItem('ExistCustomerEmail'))
+    else if(userOrEmail !== localStorage.getItem('ManagerUser') || userOrEmail !== localStorage.getItem('ManagerEmail') || userOrEmail !== localStorage.getItem('ExistCustomerUser') || userOrEmail !== localStorage.getItem('ExistCustomerEmail')) //if what is in the email/user input tag does not match either pre-set logins
     {
         //check stored emails
         for(let i = 1; i <= localStorage.getItem("Number Of Users").length; i++)
         {
-            console.log(localStorage.getItem(`Customer${i}Password`))
-            if(userOrEmail === localStorage.getItem(`Customer${i}Username`) || userOrEmail == localStorage.getItem(`Customer${i}Email`))
+            if(userOrEmail === localStorage.getItem(`Customer${i}Username`) || userOrEmail == localStorage.getItem(`Customer${i}Email`))//checks if what is in the email/user input tag matches any of the stored items
             {
-                if(loginPass == localStorage.getItem(`Customer${i}Password`))
+                if(loginPass == localStorage.getItem(`Customer${i}Password`))//if the email/user passes it checks the password of the login
                 {
                     alert('Login Successful')
-                    localStorage.setItem("CurrentLogin", "customer")
-                    return location.href = 'index.html';
+                    localStorage.setItem("CurrentLogin", "customer")//sets the current person logged in as customr
+                    localStorage.setItem("CurrentLoginName", localStorage.getItem(`Customer${i}Name`))//sets the current users name to who ever has logged in
+                    return location.href = 'index.html';//takes the user to the home page
                 }
-                else
+                else//if the password is incorrect
                 {
                     alert('Incorrect Password')
-                    document.getElementById('Login-Password').value = "";
-                    attempts++
+                    document.getElementById('Login-Password').value = "";//removes whatever is in the password input tag
+                    attempts++//increases the number of attempts
                     return;
                 }
             }
         }
+        //if it does not pass any of the previous conditions this runs
         alert("Incorrect Username or Password")
+        //clears both input tags
         document.getElementById('Login-Password').value = "";
         document.getElementById('Username-Or-Email').value = "";
-        attempts++
-        if(attempts > 5)
+        attempts++ //increases number of attempts
+        if(attempts > 5)//if the user attempts to login more than 5 times
         {
-            if(confirm("Account does not exist. Please Consider Registering"))
+            if(confirm("Account does not exist. Please Consider Registering")) //the confirm is an alert the the user can either click ok or cancel
             {
-                location.href = "signUp.html";
+                location.href = "signUp.html";//if the user clicks okay this is run. which takes them to the sign up page
             }
         }
-        if(attempts == 5)
+        if(attempts == 5)//on the 5 attempt logging in unsuccessfully 
         {
-            if(confirm("Forgot Username Or Password? Would you like to attempt to recover it?"))
+            if(confirm("Forgot Username Or Password? Would you like to attempt to recover it?"))//the confirm is an alert the the user can either click ok or cancel
             {
-                RecoverInfo();
+                RecoverInfo();//if they click okay this function is run
             }
         }
     }
@@ -200,55 +201,56 @@ function login()
 
 function RecoverInfo()
 {
-    let recoverEmail = prompt("Please Enter your email")
-    recoverEmail = recoverEmail.toLowerCase()
-    if(recoverEmail === localStorage.getItem("ExistCustomerEmail"))
+    
+    let recoverEmail = prompt("Please Enter your email")//prompt the user to enter their email
+    recoverEmail = recoverEmail.toLowerCase()//converts whatever the user enters to lower case
+    if(recoverEmail === localStorage.getItem("ExistCustomerEmail"))//checks if the email matches with the existing customer email
     {
-        console.log("match exist")
-        let enterRecovPin = prompt("Please Enter Your Recovery Pin")
-        console.log(enterRecovPin)
-        console.log(localStorage.getItem("ExistCustomerRecoverPin"))
-        if(enterRecovPin == localStorage.getItem("ExistCustomerRecoverPin"))
+        let enterRecovPin = prompt("Please Enter Your Recovery Pin")//prompts the user to enter their pin
+        if(enterRecovPin == localStorage.getItem("ExistCustomerRecoverPin"))//if the stored pin matches the entered pin continue
         {
-            console.log("correctPin")
-            return alert(`Your Username is ${localStorage.getItem('ExistCustomerUser')} and your password is ${localStorage.getItem('ExistCustomerPassword')}`);
+            return alert(`Your Username is ${localStorage.getItem('ExistCustomerUser')} and your password is ${localStorage.getItem('ExistCustomerPassword')}`); //this alerts the user what their info is
         }
-        else{alert("Incorrect Pin")}
+        else{alert("Incorrect Pin")}//if the pin does not match
     }
-    else
+    else //if inputed email does not match the existing customer
     {
-        console.log("else starts")
-        for(let i = 1; i <= localStorage.getItem("Number Of Users").length; i++)
+        for(let i = 1; i <= localStorage.getItem("Number Of Users").length; i++)//runs through all of the stored users
         {
-            console.log("for starts")
-            console.log(i, (`Customer${i} Email`))
-            console.log(localStorage.getItem(`Customer${1}Email`))
-            console.log(localStorage.getItem('Customer1Email'))
-            console.log(recoverEmail)
-            if(recoverEmail == localStorage.getItem(`Customer${i}Email`))
+            if(recoverEmail == localStorage.getItem(`Customer${i}Email`))//if the inputed email matches a stored email
             {
-
-                console.log("match stored")
-                let enterRecovPin = prompt('Please Enter Your Recovery Pin')
-                if(enterRecovPin = localStorage.getItem(`Customer${i}RecoveryPin`))
+                if(localStorage.getItem(`Customer${i}RecoveryPin`) == "")
                 {
-                    return alert(`Your Username is ${localStorage.getItem(`Customer${i}Username`)} and your password is ${localStorage.getItem(`Customer${i}Password`)}`)
+                    return alert("You did not set up a pin")
                 }
-                else{alert("Incorrect Pin")}
+                let enterRecovPin = prompt('Please Enter Your Recovery Pin')//prompts them to enter their pin
+                if(enterRecovPin == localStorage.getItem(`Customer${i}RecoveryPin`))//if the inputed pin matches the stored pin
+                {
+                    return alert(`Your Username is ${localStorage.getItem(`Customer${i}Username`)} and your password is ${localStorage.getItem(`Customer${i}Password`)}`)//alerts the user to what their info is
+                }
+                else{alert("Incorrect Pin")}//if the pin is incorrect
             } 
-            alert("This Email Does Not Exist In Our Database")
+            alert("This Email Does Not Exist In Our Database")//if it does not match and previous conditions it does not exist in our storage
         }
-        console.log('for ends')
     }
 }
+
+
+function SignOut()//sign out function
+{
+    localStorage.setItem("CurrentLoginType", "")//clears the current login type
+    localStorage.setItem("CurrentLoginName", "")//clears the current logged in users' name
+    location.replace('login.html');//takes the user to the login page
+}   
 
 
 //Checks and makes sure that the document is loaded before we access the different parts of it
-if(document.readyState == "loading") 
+if(document.readyState == "loading") //if it isn't ready
 {
     document.addEventListener("DOMContentLoaded", ready)
 }
-else{
+else//if it is loaded calls the ready function
+{
     ready()
 }
 
@@ -258,12 +260,22 @@ else{
 //when the page is loaded this function runs
 function ready()
 {
-   var WhereAmI = window.location.pathname
-    if(WhereAmI == "/Incoming_Orders.html")
+    if(localStorage.getItem('CurrentLogin') == 'Manager')//checks if the current person logged in is the manager
+    {
+        let navBarLinks = document.getElementsByClassName('links')[0];//gets the position of the nav bar
+        let ManDirLi = document.createElement('li')//creates an li element
+        let ManDirAlink = document.createElement('a')//creates an a link element
+        ManDirAlink.setAttribute('href', 'Manager_Directory.html')//sets the link href to the manager directory page
+        ManDirAlink.innerText = "Manager Directory";//changes what the text of the a link displays
+        navBarLinks.appendChild(ManDirLi)//appends the li to the nav bar
+        ManDirLi.appendChild(ManDirAlink)//appends the a link to the li appened to the nav bar
+    }
+   var WhereAmI = window.location.pathname//gets the url of what page the user is on
+    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
     {
         IncomingOrdersReady()
     }
-    if(WhereAmI == '/login.html')
+    if(WhereAmI == '/login.html')//if on the login page
     {
         updateNumOfUsers()
     }
@@ -274,9 +286,9 @@ function updateNumOfUsers()
     //updates the number of users
         if(NumberOfUsers === 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
-            if(localStorage.getItem("Number Of Users") !== 0)
+            if(localStorage.getItem("Number Of Users") !== 0)//if the local storage number of users is not 0
             {
-                NumberOfUsers = Number(localStorage.getItem("Number Of Users"))
+                NumberOfUsers = Number(localStorage.getItem("Number Of Users"))//updates the variable number of users
             }
         }
         else if(NumberOfUsers !== 0)//updates the local storage number when the number of users variable gets updated
@@ -287,13 +299,13 @@ function updateNumOfUsers()
 
 function IncomingOrdersReady()
 {
-    var acceptButtons = document.getElementsByName("acceptOrder")
+    var acceptButtons = document.getElementsByName("acceptOrder")//gets the accept buttons to add the accept function to them
     for(let i = 0; i < acceptButtons.length; i++)
     {
         let button = acceptButtons[i]
         button.addEventListener('click', accept)
     }
-    var completeButtons = document.getElementsByName('markAsComplete')
+    var completeButtons = document.getElementsByName('markAsComplete')//gets the mark as complete buttons to add the complete order function to them
     for(let i = 0; i < completeButtons.length; i++)
     {
         let button = completeButtons[i]
@@ -303,23 +315,24 @@ function IncomingOrdersReady()
 // accept button
 function accept(event)
 {
+    //gets the div of the clicked button
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
-    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
-    localStorage.setItem('This is a test', acceptedOrdersDiv)
-    acceptedOrdersDiv.appendChild(clickedButtonParent)
-    button.setAttribute("name", "markAsComplete")
+    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
+    acceptedOrdersDiv.appendChild(clickedButtonParent)//moves the clicked button parent to the accepted orders div
+    button.setAttribute("name", "markAsComplete")//changes the button on the bottom of the clicked div to marked as complete
     button.innerText = "Mark As Complete"
-    IncomingOrdersReady()
+    IncomingOrdersReady()//calls the incoming orders ready to resets the onclick attribute
 }
 // completed order button
 function completedOrder(event)
 {
-    let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]
+    let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]//gets the completed orders div
+    //gets the button and the div the button is in
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
-    completedOrdersDiv.appendChild(clickedButtonParent)
-    let button = event.srcElement
-    button.setAttribute("name", "markedAsComplete")
-    button.innerText = "Order Completed"
+    completedOrdersDiv.appendChild(clickedButtonParent)//appends the div the button is in to the completed orders div
+    let button = event.srcElement //gets the button source
+    button.setAttribute("name", "markedAsComplete")//changes the name attribute of the button
+    button.innerText = "Order Completed"//changes the text of the button 
 }
