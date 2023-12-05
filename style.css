@@ -636,295 +636,67 @@ font-size: 70px;
 
 /* Menu page end */
 
-.shop-item{
-    font-size: 25px;
-    text-align: right;
-    
 
-align-items: center;
-align-content: space-evenly;
-
-
-}
 
 /*Cake menu begins*/
 
-.shop-item1{
-    display: inline-block;
-
-
-}
-
-.image1{
+.shop-item-image{
     width: 300px;
     height: 200px;
-
+    font-size: 25px;
 }
 
-.shop-item2{
+.shop-item{
     display: inline-block;
-    
-
+}
+.cart-bold
+{
+    font-size: 2.2em;
+}
+#cart
+{
+    width: 80vw;
+    margin:0 auto;
+    padding:0 10vw;
+}
+.cart-titles, .cart-item
+{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 40vw 15vw 30vw;
+}
+.cart-item-title, .cart-price-title, .cart-quantity-title
+{
+    border-bottom: 1px solid black;
+    margin: 0 10px;
+}
+.cart-item-title h4, .cart-price-title h4, .cart-quantity-title h4
+{
+    font-size: 1.3em;
+}
+.cart-item-desc
+{
 
 }
-
-.image2{
-    width: 300px;
-    height: 200px;
-
-
+.cart-item-desc img, .cart-item-desc p
+{
+    display: inline;
+    vertical-align: middle;
+    font-weight: 600;
 }
-
-.shop-item3{
-    display: inline-block;
-
-
+.cart-item-image
+{
+    height: 100px;
 }
-
-.image3{
-    width: 300px;
-    height: 200px ;
-
-
+.cart-item-price
+{
+    display: inline;
 }
-.shop-item4{
-    display: inline-block;
-
-
+.cart-item-price p
+{
+    width: fit-content;
+    margin: auto 0;
+    padding: auto 0;
+    vertical-align: middle;
 }
-.image4{
-    width: 300px;
-    height: 200px;
-
-
-}
-
-.shop-item5{
-    display: inline-block;
-
-
-}
-
-.image5{
-width: 300px;
-height: 200px;
-}
-
-/* Cookies & Brownies Menu begins*/
-
-.shop-item6{
-
-display: inline-block;
-}
-
-.image6{
-width: 300px;
-height: 200px;
-
-}
-
-.shop-item7{
-    display: inline-block;
-
-
-}
-
-.image7{
-width: 300px;
-height: 200px;
-}
-
-.shop-item8{
-display: inline-block;
-
-}
-
-.image8{
-    width: 300px;
-    height: 200px;
-
-
-}
-
-.shop-item9{
-    display: inline-block;
-
-
-}
-
-.image9{
-width: 300px;
-height: 200px;
-
-}
-
-.shop-item10{
-display: inline-block;
-
-}
-
-.image10{
-    width: 300px;
-    height: 200px;
-
-
-}
-
-/*Icecream menu begins */ 
-
-.shop-item11{
-display: inline-block;
-
-}
-.image11{
-width: 300px;
-height: 200px;
-
-}
-
-.shop-item12{
-    display: inline-block;
-
-
-}
-
-.image12{
-width: 300px;
-height: 200px;
-
-}
-
-.shop-item13{
-display: inline-block;
-
-}
-
-.image13{
-width: 300px;
-height: 200px;
-}
-
-.shop-item14{
-    display: inline-block;
-
-
-}
-
-.image14{
-width: 300px;
-height: 200px;
-}
-
-.shop-item15{
-    display: inline-block;
-
-
-}
-
-.image15{
-    width: 300px;
-    height: 200px;
-
-
-}
-
-
-/* Pie Menu begins */
-
-.shop-item16{
-display: inline-block;
-
-}
-
-.image16{
-width: 300px;
-height: 200px;
-}
-
-
-.shop-item17{
-display: inline-block;
-
-}
-
-.image17{
-width: 300px;
-height: 200px;
-}
-
-.shop-item18{
-display: inline-block;
-
-}
-
-.image18{
-width: 300px;
-height: 200px;
-}
-
-.shop-item19{
-display: inline-block;
-
-}
-
-.image19{
-width: 300px;
-height: 200px;
-}
-
-.shop-item20{
-display: inline-block;
-
-}
-
-.image20{
-height: 200px;
-width:300px;
-}
-
-/* Pastries menu begins */
-
-.shop-item21{
-display: inline-block;
-
-}
-
-.image21{
-width: 300px;
-height: 200px;
-}
-
-.shop-item22{
-display: inline-block;
-
-}
-
-.image22{
-width: 300px;
-height: 200px;
-
-}
-
-.shop-item23{
-display: inline-block;
-
-}
-
-.image23{
-width: 200px;
-height: 200px;
-}
-
-.shop-item24{
-display: inline-block;
-
-}
-
-.image24{
-width: 300px;
-height: 200px;
-}
-
-
-
 /* Menu page end */
