@@ -91,6 +91,21 @@
 
 
 /* Menu page begin */
+
+.shop-item-details{
+    text-align: right;
+}
+
+.shop-item-button{
+
+    background-color: pink;
+}
+
+.section-header{
+    font-size: 30px;
+
+
+}
 li {
    display: inline;
    text-align: center;
@@ -105,3 +120,294 @@ font-size: 70px;
     margin-bottom: 75px;
 }
 /* Menu page end */
+
+.shop-item{
+    font-size: 25px;
+    text-align: right;
+    
+
+align-items: center;
+align-content: space-evenly;
+
+
+}
+
+/*Cake menu begins*/
+
+.shop-item1{
+    display: inline-block;
+
+
+}
+
+.image1{
+    width: 300px;
+    height: 200px;
+
+}
+
+.shop-item2{
+    display: inline-block;
+    
+
+
+}
+
+.image2{
+    width: 300px;
+    height: 200px;
+
+
+}
+
+.shop-item3{
+    display: inline-block;
+
+
+}
+
+.image3{
+    width: 300px;
+    height: 200px ;
+
+
+}
+.shop-item4{
+    display: inline-block;
+
+
+}
+.image4{
+    width: 300px;
+    height: 200px;
+
+
+}
+
+.shop-item5{
+    display: inline-block;
+
+
+}
+
+.image5{
+width: 300px;
+height: 200px;
+}
+
+/* Cookies & Brownies Menu begins*/
+
+.shop-item6{
+
+display: inline-block;
+}
+
+.image6{
+width: 300px;
+height: 200px;
+
+}
+
+.shop-item7{
+    display: inline-block;
+
+
+}
+
+.image7{
+width: 300px;
+height: 200px;
+}
+
+.shop-item8{
+display: inline-block;
+
+}
+
+.image8{
+    width: 300px;
+    height: 200px;
+
+
+}
+
+.shop-item9{
+    display: inline-block;
+
+
+}
+
+.image9{
+width: 300px;
+height: 200px;
+
+}
+
+.shop-item10{
+display: inline-block;
+
+}
+
+.image10{
+    width: 300px;
+    height: 200px;
+
+
+}
+
+/*Icecream menu begins */ 
+
+.shop-item11{
+display: inline-block;
+
+}
+.image11{
+width: 300px;
+height: 200px;
+
+}
+
+.shop-item12{
+    display: inline-block;
+
+
+}
+
+.image12{
+width: 300px;
+height: 200px;
+
+}
+
+.shop-item13{
+display: inline-block;
+
+}
+
+.image13{
+width: 300px;
+height: 200px;
+}
+
+.shop-item14{
+    display: inline-block;
+
+
+}
+
+.image14{
+width: 300px;
+height: 200px;
+}
+
+.shop-item15{
+    display: inline-block;
+
+
+}
+
+.image15{
+    width: 300px;
+    height: 200px;
+
+
+}
+
+
+/* Pie Menu begins */
+
+.shop-item16{
+display: inline-block;
+
+}
+
+.image16{
+width: 300px;
+height: 200px;
+}
+
+
+.shop-item17{
+display: inline-block;
+
+}
+
+.image17{
+width: 300px;
+height: 200px;
+}
+
+.shop-item18{
+display: inline-block;
+
+}
+
+.image18{
+width: 300px;
+height: 200px;
+}
+
+.shop-item19{
+display: inline-block;
+
+}
+
+.image19{
+width: 300px;
+height: 200px;
+}
+
+.shop-item20{
+display: inline-block;
+
+}
+
+.image20{
+height: 200px;
+width:300px;
+}
+
+/* Pastries menu begins */
+
+.shop-item21{
+display: inline-block;
+
+}
+
+.image21{
+width: 300px;
+height: 200px;
+}
+
+.shop-item22{
+display: inline-block;
+
+}
+
+.image22{
+width: 300px;
+height: 200px;
+
+}
+
+.shop-item23{
+display: inline-block;
+
+}
+
+.image23{
+width: 200px;
+height: 200px;
+}
+
+.shop-item24{
+display: inline-block;
+
+}
+
+.image24{
+width: 300px;
+height: 200px;
+}
+
+
