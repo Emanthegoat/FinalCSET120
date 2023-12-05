@@ -4,26 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest Sign Up</title>
+    <link rel="shortcut icon" href="shortcake.jpg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script src="store.js" async></script> 
 </head>
 <body>
-    <h1>Sugar Soiree - Guest Sign up</h1>
-    <nav id="option-bar">
-        <div>
-            <button><a href="SignUp.html">Sign Up</a></button>
-            <button><a href="menu.html">View Menu</a></button>
-            <button><a href="menu.html">Continue as guest</a></button>
-            <button><a href="index.html">Home Page</a></button>
-        </div>
-    </nav>
-    <section id="credentials">
-        Email: <input type="text" id="email">
-        Password: <input type="password" id="pass">
-        <button onclick="signUp()">Sign Up</button>
-        <button onclick="login()"><a>Log in</a></button> <br><br>
-        If you are a Manager,<a href="managerSignUp.html">Click here</a>.
-    </section>
+    <div class="NavBackground">
+        <nav class="option-bar">
+            <div class="Navimage">
+                <img src="SugarSoiree.jpg" alt="Sugar Soiree">
+            </div>
+            <menu class="links">
+                <li><a href="signUp.html">Sign Up</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="menu.html">Continue as guest</a></li>
+                <li><a href="index.html">Home Page</a></li>
+            </menu>
+        </nav>
+    </div>
+    <h1>Sugar Soiree</h1>
+    <div class="title-signup">
+        <h1 class="signUp">Sign up</h1>
+        <!-- algins the sign up title to the left -->
+        <style>
+            .signUp{
+                text-align: left;
+            }
+        </style>
+        <p>Please create an account here.</p><br>
+        <hr>
+        <div id="signUp-container">
+            <form onsubmit="registerCustomer()" method="dialog"> 
+            <label id="name"><b>Full Name:</b></label> 
+                <input type="text" placeholder="Enter Your Full Name" name="Name" id="Name"><br>
 
-<script src="store.js"></script>
+            <label id="emailL"><b>Email:</b></label>  
+                <input type="email" placeholder="Enter Your Email" name="Email" id="email"><br>
+
+            <label id="user"><b>Username</b></label> 
+                <input type="text" id="username" placeholder="Create A Username" name="User"><br>
+
+            <label id="pass"><b>Password (Must be at least 3 characters):</b></label>  
+                <input type="password" placeholder="Create a Password" id="password" name="Pass"><br>
+
+            <label id="repeat"><b>Confirm password</b></label>  
+                <input type="password" id="confirm-password" placeholder="Re-enter password" name="ConfirmPass" minlength="3"><br>
+            <input type="submit" value="Register" id="signupbtn">
+        </form>
+        </div>
+    </div>
+     
+<div class="title-login"></div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<button onclick="NumberOfUsers++; console.log(NumberOfUsers);">Click Me</button>
 </body>
 </html>

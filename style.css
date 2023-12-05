@@ -1,3 +1,516 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+.list
+{
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body{
+    display: block;
+} */
+h1{
+    text-align: center;
+}
+input{
+    display: flex;
+    text-align:center;
+}
+
+
+
+/* NAV BAR STYLES */
+.NavBackground
+{
+    background-color: bisque;
+}
+.option-bar
+{
+    display: grid;
+    grid-template-columns: 45vw 55vw;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 20px;
+    
+}
+
+.Navimage img
+{
+    max-height: 150px;
+    box-shadow: 5px 5px 5px grey;
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+.links
+{
+    margin: auto;
+}
+.links li
+{
+    width: auto;
+    font-size: 1.5em;
+    font-family: Curlz MT;
+    font-style: oblique;
+    display: inline-block;
+}
+.links a
+{
+    
+    padding: 5px;
+}
+.links a:link
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:hover
+{
+    text-decoration:underline overline wavy rgb(255, 100, 100);
+}
+.links a:active
+{
+    text-decoration: none;
+    color: rgb(36, 35, 35);
+}
+
+@media (max-width:1250px)
+{
+    .option-bar
+    {
+        grid-template-columns: 25vw 75vw;
+
+    }
+    .Navimage img
+    {
+    margin-left: 3vw;
+    margin-top: 2vh;
+    }
+    .links
+    {
+        margin: auto 10px;
+        justify-self: right;
+    }
+}
+
+@media (max-width:860px)
+{
+    .option-bar
+    {
+        display: block;
+        margin: auto;
+
+    }
+    .Navimage
+    {
+        margin: auto;
+        width: fit-content;
+        margin-bottom: 20px;
+    }
+    .links
+    {
+        margin: auto;
+        width: fit-content;
+        margin-top: 30px;
+    } 
+}
+/* NAV BAR STYLES END */
+
+/* MANAGER DIRECTORY */
+.Manager-Directory
+        {
+            overflow: visible;
+        }
+        .MANDIR
+        {
+            text-align: center;
+            border-top: 3px ridge black;
+            border-bottom: 3px ridge black;
+            width: 70vw;
+            transition: 750ms;
+            margin: auto;
+        }
+        .managerDirect
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .MenuEdit, .Incoming-Orders
+        {
+            width: 200px;
+            margin: 10px 10vw;
+            border: 3px outset rgb(87, 87, 87);
+            overflow: hidden;
+            height: 355px;
+        }
+        .menu-edit-image
+        {
+            border-top: 3px solid black;
+        }
+        .incoming-orders-image
+        {
+            margin-top: 40px;
+        }
+        .menu-edit-image, .incoming-orders-image, .menu-edit-text, .incoming-orders-text
+        {
+            width: 200px;
+            transition: 1000ms;
+        }
+        .menu-edit-image:hover, .incoming-orders-image:hover
+        {
+            transform: scale(1.2);
+            transition: 1000ms;
+            opacity: .5;
+            position: relative;
+        }
+        @media (max-width: 850px)
+        {
+            .MANDIR
+            {
+                transition: 750ms;
+                width: 100%;
+            }
+            .MenuEdit, .Incoming-Orders
+            {
+                margin: 10px 5vw;
+            }
+        }
+        @media(max-width:555px)
+        {
+            .MenuEdit, .Incoming-Orders
+            {
+                min-width: 200px;
+            }
+        }
+/* MANAGER DIRECTORY END */
+
+
+    /* PREVIOUS ORDERS */
+    .Prev-Ord-text
+    {
+        text-align: center;
+        border-top: 3px ridge black;
+        border-bottom: 3px ridge black;
+        width: 70vw;
+        transition: 400ms;
+        margin: auto;
+    }
+    @media (max-width: 850px)
+    {
+        .Prev-Ord-text
+        {
+            transition: 400ms;
+            width: 100%;
+        }
+    }
+    /* PREVIOUS ORDERS CSS END */
+        /* RECEIPT CSS */
+        .receipts-grid
+        {
+            display: grid;
+            grid-template-columns: 400px 400px 400px;
+            margin: auto;
+            width: fit-content;
+        }
+        @media (max-width: 1200px)
+        {
+            .receipts-grid
+            {
+                display: grid;
+                grid-template-columns: 400px 400px;
+                margin: auto;
+                width: fit-content;
+            }
+        }
+        @media (max-width:820px)
+        {
+            .receipts-grid
+            {
+                display: grid;
+                grid-template-columns: 400px;
+                margin: auto;
+                width: fit-content;
+            }
+        }
+     .receipt
+     {
+         width: 300px;
+         border: 2px solid black;
+         border-collapse: collapse;
+         margin: 50px auto;
+         padding: 10px;
+     }
+     .receipt hr
+     { 
+       width: 280px;
+       margin: 0 auto;
+       padding: 0 auto;
+     }
+     .receipt h2
+     {
+         text-align: center;
+         width: fit-content;
+         margin: 20px auto;
+     }
+     .receipt-section
+     {
+         margin: 20px 10px;
+     }
+     .receipt-section-title
+     {
+         font-size: 1.2em;
+         text-decoration: underline;
+         font-weight: bold;
+         margin: 10px -10px;
+     }
+     .customer-name-text
+     {
+         font-size: 12pt;
+         text-indent: 35px;
+     }
+     .receipt-date-heading
+     {
+         text-decoration: underline;
+         margin: 5px;
+         padding: 0;
+     }
+     .receipt-date-text
+     {
+         color: rgb(123, 123, 123);
+         font-weight: 600;
+         margin-left: 20px;
+     }
+     .receipt-item, .receipt-total-items
+     {
+         display: grid;
+         grid-template-columns: 200px 55px;
+         margin: 0px 10px;
+         padding: 0;
+     }
+     .receipt-item-left p
+     {
+         padding: 0px;
+         margin: 0px;
+         margin-bottom: 10px;
+     }
+     .receipt-item-left .receipt-item-quantity, .receipt-item-left .receipt-item-name
+     {
+         display: inline;
+         font-weight: 600;
+         margin-left: -10px;
+     }
+     .receipt-item-info
+     {
+         font-size: 10pt;
+         color: rgb(123, 123, 123);
+         margin: 10px 100px;
+         width: 170px;
+     }
+     .receipt-item-price
+     {
+         font-weight: 600;
+         padding: 0;
+         margin: 0;
+     }
+     .receipt-total-items p,  .total-separator
+     {
+       margin: 0px 0px;
+     }
+     .receipt-total-items-item
+     {
+         color: rgb(123, 123, 123);
+     }
+     .receipt-total-item-total
+     {
+         font-weight: bold;
+     }
+     .receipt-total-text, .receipt-total-price
+     {
+       border-top: 1px solid rgb(179, 179, 179);
+     }
+   /* RECEIPT CSS END */
+
+     /* INCOMING ORDERS CSS */
+    .Incoming, .Accepted-Orders, .Completed-Orders
+    {
+        text-align: center;
+        border-top: 3px ridge black;
+        border-bottom: 3px ridge black;
+        width: 70vw;
+        transition: 400ms;
+        margin: auto;
+    }
+    @media (max-width: 850px)
+    {
+        .Incoming, .Accepted-Orders, .Completed-Orders
+        {
+            transition: 400ms;
+            width: 100%;
+        }
+    }
+
+/* INCOMING ORDERS CSS END */
+
+/* INCOMING ORDER RECEIPT CSS */
+.orders-grid
+    {
+        display: grid;
+        grid-template-columns: 400px 400px 400px;
+        margin: auto;
+        width: fit-content;
+    }
+    @media (max-width: 1200px)
+    {
+        .orders-grid
+        {
+            display: grid;
+            grid-template-columns: 400px 400px;
+            margin: auto;
+            width: fit-content;
+        }
+    }
+    @media (max-width:820px)
+    {
+        .orders-grid
+        {
+            display: grid;
+            grid-template-columns: 400px;
+            margin: auto;
+            width: fit-content;
+        }
+    }
+.incoming-order
+{
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 0.5px ridge black;
+}
+.incoming-order hr
+{ 
+    width: 280px;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+.incoming-order-title
+{
+    text-decoration: underline;
+    text-align: center;
+}
+.incoming-order-info
+{
+    width: fit-content;
+    margin: 10px auto;
+}
+.incoming-order-name, .incoming-order-time
+{
+    display: inline;
+    font-size: 12pt;
+    text-align: center;
+    opacity: .6;
+    color: #000080;
+    text-decoration-line: underline;
+    font-weight: 600;
+    margin: auto;
+}
+.order-items-section
+{
+    margin-top: 15px;
+}
+.order-item, .order-total-items
+{
+    display: grid;
+    grid-template-columns: 220px 50px;
+    margin: 0px 15px;
+    padding: 0px 0px;
+}
+.order-item-left p
+{
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+.order-item-left .order-item-quantity, .order-item-left .order-item-name
+{
+    display: inline;
+    font-weight: 600;
+    margin-left: -10px;
+}
+.order-item-info
+{
+    font-size: 10pt;
+    color: rgb(123, 123, 123);
+    margin: 20px 100px;
+    width: 170px;
+}
+.order-item-price
+{
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+.order-total-title
+{
+    font-size: 1.2em;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.order-total-items p
+{
+    margin: 0;
+}
+.order-total-items-item
+{
+    color: rgb(123, 123, 123);
+}
+.order-total-item-total
+{
+    font-weight: bold;
+}
+.order-total-items p
+{
+    margin: 0;
+}
+.order-total-items-item
+{
+    color: rgb(123, 123, 123);
+}
+.order-total-item-total
+{
+    font-weight: bold;
+    padding-top: 3px;
+}
+.order-buttons-section
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 10px auto;
+    }
+    .order-button
+    {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .accept-order:hover, .mark-as-complete:hover
+    {
+        background-color: lightgrey;
+        box-shadow: 5px 5px 5px lightgray ;
+    }
+ /* INCOMING ORDER RECEIPT CSS END */
+ 
+ /* RECEIPT CSS Start */
 .list{
     display: inline;
     list-style: none;
@@ -10,7 +523,8 @@
     list-style: none;
     margin: 0;
     padding: 0 ;
-    }
+}
+
   .receipt-section
   {
       border-top: 1px solid ;
@@ -119,6 +633,7 @@ font-size: 70px;
     text-align: center;
     margin-bottom: 75px;
 }
+
 /* Menu page end */
 
 .shop-item{
@@ -411,3 +926,5 @@ height: 200px;
 }
 
 
+
+/* Menu page end */
