@@ -529,7 +529,7 @@ font-size: 70px;
     url(/sweets_background_image.jpg),
     background-size: cover; */
 body{
-    background-color: linear-gradient(rgba(0, 0, 0, 0.099), rgba(0, 0, 0, 0.86)), url(/Images/sweets_background_image.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.099), rgba(0, 0, 0, 0.86)), url(/Images/sweets_background_image.jpg);
     height: 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -537,20 +537,25 @@ body{
 }
 .about-header{
     margin-bottom: 3%;
-    margin-top: 3%;
+    margin-top: 2%;
     text-align: center;
     font-size: xx-large;
 }
 #about-section{
     /* background-color: rgba(255, 0, 0, 0.185); */
     position: relative;
-    margin: 0% 5% 0% 2%;
-}
+    margin-left: 1%;
+} 
 #about-container{
-    /* background-color: rgba(127, 255, 212, 0.464); */
-    width: 70%;
-    border-radius: 5%;
-    margin: 3% 15% 0% 0%;
+    background-color: rgba(127, 255, 212, 0.671);
+    width: 85%;
+    height: fit-content;
+    border-radius: 2%;
+    margin: 3% 0% 0% 0%;
+}
+#about-text{
+    padding-left: 3px;
+    margin: 0% 0% ;
 }
 #about-photo-container{
     float: left;
@@ -558,7 +563,7 @@ body{
     height: 300px;
     text-align: bottom;
     width: fit-content;
-    margin: 3%;
+    margin-left: 3%;
     border-radius: 4%;
     shape-outside: circle(55%);
     padding-right: 15px;
@@ -593,13 +598,13 @@ body{
     font-size: xx-large;
 }
 #purpose-section{
-    background-color: rgba(255, 0, 0, 0.185);
+    /* background-color: rgba(255, 0, 0, 0.185); */
     position: relative;
     margin-top: 10%;
     width: 100%;
 }
 #purpose-container{
-    background-color: rgba(127, 255, 212, 0.464);
+    background-color: rgba(127, 255, 212, 0.673);
     width: 100%;
     border-radius: 5%;
     padding-top: 5px;
