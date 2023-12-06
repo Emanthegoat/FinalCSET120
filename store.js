@@ -245,46 +245,94 @@ function SignOut()//sign out function
 
 
 //Checks and makes sure that the document is loaded before we access the different parts of it
-// if(document.readyState == "loading") 
-// {
-//     document.addEventListener("DOMContentLoaded", ready)
-// }
-// else{
-//     ready()
-// }
-// // accepts orders that are ready
-// function ready()
-// {
-//     var acceptButtons = document.getElementsByClassName("accept-order")
-//     for(let i = 0; i < acceptButtons.length; i++)
-//     {
-//         let button = acceptButtons[i]
-//         button.addEventListener('click', accept)
-//     }
-//     var completeButtons = document.getElementsByClassName('mark-as-complete')
-//     for(let i = 0; i < completeButtons.length; i++)
-//     {
-//         let button = completeButtons[i]
-//         button.addEventListener('click', completedOrder)
-//     }
-// }
-// // accept button
-// function accept(event)
-// {
-//     console.log(event.srcElement)
-//     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]
-//     let clickedButton = event.target.parentNode
-//     let clickedButtonParent = clickedButton.parentNode
-//     acceptedOrdersDiv.appendChild(clickedButtonParent)
-//     console.log(clickedButtonParent)
-//     event.srcElement.remove()
-// }
-// // completed order button
-// function completedOrder(event)
-// {
-//     let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]
-//     let clickedButton = event.target.parentNode
-//     let clickedButtonParent = clickedButton.parentNode
-//     completedOrdersDiv.appendChild(clickedButtonParent)
-//     event.srcElement.remove()
-// }
+if(document.readyState == "loading") //if it isn't ready
+{
+    document.addEventListener("DOMContentLoaded", ready)
+}
+else//if it is loaded calls the ready function
+{
+    ready()
+}
+
+
+
+
+//when the page is loaded this function runs
+function ready()
+{
+    if(localStorage.getItem('CurrentLogin') == 'Manager')//checks if the current person logged in is the manager
+    {
+        let navBarLinks = document.getElementsByClassName('links')[0];//gets the position of the nav bar
+        let ManDirLi = document.createElement('li')//creates an li element
+        let ManDirAlink = document.createElement('a')//creates an a link element
+        ManDirAlink.setAttribute('href', 'Manager_Directory.html')//sets the link href to the manager directory page
+        ManDirAlink.innerText = "Manager Directory";//changes what the text of the a link displays
+        navBarLinks.appendChild(ManDirLi)//appends the li to the nav bar
+        ManDirLi.appendChild(ManDirAlink)//appends the a link to the li appened to the nav bar
+    }
+   var WhereAmI = window.location.pathname//gets the url of what page the user is on
+    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
+    {
+        IncomingOrdersReady()
+    }
+    if(WhereAmI == '/login.html')//if on the login page
+    {
+        updateNumOfUsers()
+    }
+}
+
+function updateNumOfUsers()
+{
+    //updates the number of users
+        if(NumberOfUsers === 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            if(localStorage.getItem("Number Of Users") !== 0)//if the local storage number of users is not 0
+            {
+                NumberOfUsers = Number(localStorage.getItem("Number Of Users"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfUsers !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            localStorage.setItem("Number Of Users", NumberOfUsers)
+        }
+}
+
+function IncomingOrdersReady()
+{
+    var acceptButtons = document.getElementsByName("acceptOrder")//gets the accept buttons to add the accept function to them
+    for(let i = 0; i < acceptButtons.length; i++)
+    {
+        let button = acceptButtons[i]
+        button.addEventListener('click', accept)
+    }
+    var completeButtons = document.getElementsByName('markAsComplete')//gets the mark as complete buttons to add the complete order function to them
+    for(let i = 0; i < completeButtons.length; i++)
+    {
+        let button = completeButtons[i]
+        button.addEventListener('click', completedOrder)
+    }
+}
+// accept button
+function accept(event)
+{
+    //gets the div of the clicked button
+    let clickedButton = event.target.parentNode
+    let clickedButtonParent = clickedButton.parentNode
+    let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
+    acceptedOrdersDiv.appendChild(clickedButtonParent)//moves the clicked button parent to the accepted orders div
+    button.setAttribute("name", "markAsComplete")//changes the button on the bottom of the clicked div to marked as complete
+    button.innerText = "Mark As Complete"
+    IncomingOrdersReady()//calls the incoming orders ready to resets the onclick attribute
+}
+// completed order button
+function completedOrder(event)
+{
+    let completedOrdersDiv = document.getElementsByClassName('completed-orders-grid')[0]//gets the completed orders div
+    //gets the button and the div the button is in
+    let clickedButton = event.target.parentNode
+    let clickedButtonParent = clickedButton.parentNode
+    completedOrdersDiv.appendChild(clickedButtonParent)//appends the div the button is in to the completed orders div
+    let button = event.srcElement //gets the button source
+    button.setAttribute("name", "markedAsComplete")//changes the name attribute of the button
+    button.innerText = "Order Completed"//changes the text of the button 
+}
