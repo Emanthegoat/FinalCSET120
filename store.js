@@ -4,7 +4,8 @@ localStorage.setItem("ManagerUser", 'manager')
 localStorage.setItem("ManagerEmail", 'manager@sugarsoiree.yummy')
 localStorage.setItem("ManagerPassword", 'Qwerty1234')
 localStorage.setItem("ManagerPin", '7791')
-//user: manager  email:Manager@sugarsoiree.yummy  password: qwerty1234  pin: 7791
+//user: manager  email:Manager@sugarsoiree.yummy  password: qwerty1234  pin: 7791//
+
 
 //all the login info for the already existing customer
 localStorage.setItem("ExistCustomerUser", 'johndoe!!')
@@ -13,6 +14,8 @@ localStorage.setItem("ExistCustomerPassword", 'IWantYummyFood123')
 localStorage.setItem("ExistCustomerRecoverPin", "5288")
 localStorage.setItem("ExistCustomerName", "John Doe")
 
+
+////////////////////SIGN UP AND LOG
 
 // Customer sign up function
 function registerCustomer()
@@ -101,7 +104,6 @@ function registerCustomer()
     }
     updateNumOfUsers();
 }
-
 
 var attempts = 0
 function login()
@@ -198,7 +200,6 @@ function login()
     }
 }
 
-
 function RecoverInfo()
 {
     
@@ -234,7 +235,6 @@ function RecoverInfo()
         }
     }
 }
-
 
 function SignOut()//sign out function
 {
