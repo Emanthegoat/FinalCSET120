@@ -21,9 +21,109 @@ input{
     display: flex;
     text-align:center;
 }
-button{
-    border-style: none;
+
+
+
+/* NAV BAR STYLES */
+.NavBackground
+{
+    background-color: bisque;
 }
+.option-bar
+{
+    display: grid;
+    grid-template-columns: 45vw 55vw;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 20px;
+    
+}
+
+.Navimage img
+{
+    max-height: 150px;
+    box-shadow: 5px 5px 5px grey;
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+.links
+{
+    margin: auto;
+}
+.links li
+{
+    width: auto;
+    font-size: 1.5em;
+    font-family: Curlz MT;
+    font-style: oblique;
+    display: inline-block;
+}
+.links a
+{
+    
+    padding: 5px;
+}
+.links a:link
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+.links a:hover
+{
+    text-decoration:underline overline wavy rgb(255, 100, 100);
+}
+.links a:active
+{
+    text-decoration: none;
+    color: rgb(36, 35, 35);
+}
+
+@media (max-width:1250px)
+{
+    .option-bar
+    {
+        grid-template-columns: 25vw 75vw;
+
+    }
+    .Navimage img
+    {
+    margin-left: 3vw;
+    margin-top: 2vh;
+    }
+    .links
+    {
+        margin: auto 10px;
+        justify-self: right;
+    }
+}
+
+@media (max-width:860px)
+{
+    .option-bar
+    {
+        display: block;
+        margin: auto;
+
+    }
+    .Navimage
+    {
+        margin: auto;
+        width: fit-content;
+        margin-bottom: 20px;
+    }
+    .links
+    {
+        margin: auto;
+        width: fit-content;
+        margin-top: 30px;
+    } 
+}
+/* NAV BAR STYLES END */
 
 /* MANAGER DIRECTORY */
 .Manager-Directory
@@ -397,7 +497,7 @@ button{
         justify-content: space-around;
         margin: 10px auto;
     }
-    .accept-order, .mark-as-complete
+    .order-button
     {
         border: 1px solid black;
         border-radius: 10px;
@@ -504,7 +604,22 @@ button{
 /* RECEIPT CSS END */
 
 
-/* MENU PAGE START */
+/* Menu page begin */
+
+.shop-item-details{
+    text-align: right;
+}
+
+.shop-item-button{
+
+    background-color: pink;
+}
+
+.section-header{
+    font-size: 30px;
+
+
+}
 li {
    display: inline;
    text-align: center;
@@ -516,6 +631,72 @@ font-size: 70px;
     font-size: 60px;
     text-align: center;
     margin-bottom: 75px;
+}
+
+/* Menu page end */
+
+
+
+/*Cake menu begins*/
+
+.shop-item-image{
+    width: 300px;
+    height: 200px;
+    font-size: 25px;
+}
+
+.shop-item{
+    display: inline-block;
+}
+.cart-bold
+{
+    font-size: 2.2em;
+}
+#cart
+{
+    width: 80vw;
+    margin:0 auto;
+    padding:0 10vw;
+}
+.cart-titles, .cart-item
+{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 40vw 15vw 30vw;
+}
+.cart-item-title, .cart-price-title, .cart-quantity-title
+{
+    border-bottom: 1px solid black;
+    margin: 0 10px;
+}
+.cart-item-title h4, .cart-price-title h4, .cart-quantity-title h4
+{
+    font-size: 1.3em;
+}
+.cart-item-desc
+{
+
+}
+.cart-item-desc img, .cart-item-desc p
+{
+    display: inline;
+    vertical-align: middle;
+    font-weight: 600;
+}
+.cart-item-image
+{
+    height: 100px;
+}
+.cart-item-price
+{
+    display: inline;
+}
+.cart-item-price p
+{
+    width: fit-content;
+    margin: auto 0;
+    padding: auto 0;
+    vertical-align: middle;
 }
 /* MENU PAGE END */
 

@@ -6,6 +6,7 @@
     <title>Guest Sign Up</title>
     <link rel="shortcut icon" href="shortcake.jpg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script src="store.js" async></script> 
 </head>
 <body>
     <div class="NavBackground">
@@ -42,28 +43,29 @@
         <p>Please create an account here.</p><br>
         <hr>
         <div id="signUp-container">
+            <form onsubmit="registerCustomer()" method="dialog"> 
             <label id="name"><b>Full Name:</b></label> 
-                <input type="text" placeholder="Enter Your Full Name" required><br>
+                <input type="text" placeholder="Enter Your Full Name" name="Name" id="Name"><br>
 
-            <label id="email"><b>Email:</b></label>  
-                <input type="Email" placeholder="Enter Your Email" required><br>
+            <label id="emailL"><b>Email:</b></label>  
+                <input type="email" placeholder="Enter Your Email" name="Email" id="email"><br>
 
             <label id="user"><b>Username</b></label> 
-                <input type="text" id="username" placeholder="Create A Username" required><br>
+                <input type="text" id="username" placeholder="Create A Username" name="User"><br>
 
             <label id="pass"><b>Password (Must be at least 3 characters):</b></label>  
-                <input type="password" placeholder="Create a Password" id="input" required><br>
+                <input type="password" placeholder="Create a Password" id="password" name="Pass"><br>
 
             <label id="repeat"><b>Confirm password</b></label>  
-                <input type="password" id="password" placeholder="Re-enter password" required><br>
-
-            <button id="signupbtn" onclick="registerCustomer()"><a href="">Register</a></button>
+                <input type="password" id="confirm-password" placeholder="Re-enter password" name="ConfirmPass" minlength="3"><br>
+            <input type="submit" value="Register" id="signupbtn">
+        </form>
         </div>
     </div>
      
 <div class="title-login"></div>
 
-<script src="store.js"></script>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<button onclick="NumberOfUsers++; console.log(NumberOfUsers);">Click Me</button>
 </body>
 </html>
