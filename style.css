@@ -704,14 +704,7 @@ font-size: 70px;
 
 
 /* HOME PAGE START */
-/* #home-body{
-    /* background-image: linear-gradient(rgba(3, 3, 3, 09.6)), rgba(64, 64, 64, 0.96), url(https://www.wallpaperup.com/uploads/wallpapers/2013/01/26/31427/23923d7143d466f4aa7291cc633fcb37.jpg);
-    height: 100dvb;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    url(/sweets_background_image.jpg),
-    background-size: cover; */
-body{
+#home-body{
     background-image: linear-gradient(rgba(0, 0, 0, 0.099), rgba(0, 0, 0, 0.86)), url(/Images/sweets_background_image.jpg);
     height: 100vh;
     background-attachment: fixed;
