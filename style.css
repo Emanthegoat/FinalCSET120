@@ -27,7 +27,7 @@ input{
 /* NAV BAR STYLES */
 .NavBackground
 {
-    background-color: bisque;
+    background-color: rgba(255, 228, 196, 0.826);
 }
 .option-bar
 {
@@ -60,7 +60,6 @@ input{
 }
 .links a
 {
-    
     padding: 5px;
 }
 .links a:link
@@ -604,7 +603,7 @@ input{
 /* RECEIPT CSS END */
 
 
-/* Menu page begin */
+/* MENU PAGE START */
 
 .shop-item-details{
     text-align: right;
@@ -633,13 +632,7 @@ font-size: 70px;
     margin-bottom: 75px;
 }
 
-/* Menu page end */
-
-
-
-
-/*Cake menu begins*/
-
+/*Cake menu begins / MENU ITEMS CSS*/
 
 .shop-item-image{
     width: 300px;
@@ -650,6 +643,8 @@ font-size: 70px;
 .shop-item{
     display: inline-block;
 }
+
+/* CART CSS */
 .cart-bold
 {
     font-size: 2.2em;
@@ -675,10 +670,8 @@ font-size: 70px;
 {
     font-size: 1.3em;
 }
-.cart-item-desc
-{
+.cart-item-desc{}
 
-}
 .cart-item-desc img, .cart-item-desc p
 {
     display: inline;
@@ -703,97 +696,149 @@ font-size: 70px;
 /* MENU PAGE END */
 
 
+
+
 /* HOME PAGE START */
-#home-body{
+#home-body
+{
     background-image: linear-gradient(rgba(0, 0, 0, 0.099), rgba(0, 0, 0, 0.86)), url(/Images/sweets_background_image.jpg);
     height: 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.about-header{
+.about-header
+{
     margin-bottom: 3%;
-    margin-top: 2%;
     text-align: center;
     font-size: xx-large;
 }
-#about-section{
-    /* background-color: rgba(255, 0, 0, 0.185); */
+#about-section
+{
     position: relative;
     margin-left: 1%;
-} 
-#about-container{
-    background-color: rgba(127, 255, 212, 0.671);
-    width: 85%;
     height: fit-content;
+    margin: 1%;
+} 
+#about-container
+{
+    background-color: rgba(127, 232, 255, 0.751);
+    max-width: 70vw;
+    height: 60vh;
     border-radius: 2%;
-    margin: 3% 0% 0% 0%;
 }
-#about-text{
+#about-text
+{
     padding-left: 3px;
-    margin: 0% 0% ;
 }
-#about-photo-container{
+#about-photo-container
+{
     float: left;
-    /* width: fit-content; */
     height: 300px;
-    text-align: bottom;
-    width: fit-content;
+    text-align: top;
+    width: 20vw;
     margin-left: 3%;
     border-radius: 4%;
     shape-outside: circle(55%);
     padding-right: 15px;
 }
-.icing-cake{
+.icing-cake
+{
     border-radius: 7%;
 }
-#about-text{
+#about-text
+{
     float: none;
+    padding: 10px;
     font-size: x-large;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-#about-photo-container2{
-    width: 500px;
-    height: 750px;
+#about-photo-container2
+{
+    min-width: 400px;
+    height: fit-content;
     float: right;
     border-radius: 5%;
-    padding-left: 15px;
-    /* background-color: rgba(240, 248, 255, 0.433); */
-    padding-top: 20px;
 }
-.strawberry-img{
+.strawberry-img
+{
     float: left;
     border-radius: 4%;
-    margin-left: 15px;
-    margin-top: 20px;
 }
-.purpose-header{
+.purpose-header
+{
     margin-bottom: 3%;
     margin-top: 3%;
     text-align: center;
     font-size: xx-large;
 }
-#purpose-section{
-    /* background-color: rgba(255, 0, 0, 0.185); */
+#purpose-section
+{
+    /* position: relative; */
+    width: 100%;
+    background-color: rgba(165, 42, 42, 0.536);
+    height: 70vh;
     position: relative;
-    margin-top: 10%;
-    width: 100%;
+    margin-left: 1%;
+    /* height: fit-content; */
+    margin-right: 1%;
 }
-#purpose-container{
-    background-color: rgba(127, 255, 212, 0.673);
-    width: 100%;
-    border-radius: 5%;
-    padding-top: 5px;
+#purpose-container
+{
+    background-color: rgba(127, 232, 255, 0.751);
+    float: right;
+    max-width: 80vw;
+    height: 60vh;
+    border-radius: 2%;
     height: 20cm;
+    padding-top: 1%;
 }
-.short-cake{
+#purpose-text
+{
+    float: none;
+    padding: 10px;
+    font-size: x-large;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.short-cake
+{
     text-align: center;
     float: right;
-    shape-outside: circle(45%);
+    shape-outside: circle(55%);
     height: 350px;
     text-align: bottom;
     width: fit-content;
     margin: 3%;
     border-radius: 4%;
+}
+footer
+{
+    background-color: rgba(175, 175, 175, 0.821);
+    width: 100%;
+    height: 5cm;
+    font-size: xx-large;
+    display: flex;
+}
+#contact-us
+{
+background-color: rgba(137, 43, 226, 0.292);
+width: fit-content;
+}
+#purpose-photo-container
+{
+    float: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 11.5px;
+
+}
+.p-photo-1
+{
+    border-radius: 3%;
+}
+.p-photo-2
+{
+    border-radius: 5%;
 }
 /* HOME PAGE END */
