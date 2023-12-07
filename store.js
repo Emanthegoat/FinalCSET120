@@ -275,10 +275,12 @@ function ready()
     {
         IncomingOrdersReady()
     }
-    if(WhereAmI == '/login.html')//if on the login page
+    if(WhereAmI == '/menu.html')
     {
-        updateNumOfUsers()
+        MenuReady()
     }
+    updateNumOfUsers()
+    // updateNumOfOrders()
 }
 
 function updateNumOfUsers()
@@ -286,10 +288,14 @@ function updateNumOfUsers()
     //updates the number of users
         if(NumberOfUsers === 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
-            if(localStorage.getItem("Number Of Users") !== 0)//if the local storage number of users is not 0
-            {
-                NumberOfUsers = Number(localStorage.getItem("Number Of Users"))//updates the variable number of users
-            }
+            if(localStorage.getItem("Number Of Users") == null)
+        {
+            localStorage.setItem("Number Of Users", NumberOfUsers)
+        }
+        else if(localStorage.getItem("Number Of Users") !== 0)//if the local storage number of users is not 0
+        {
+            NumberOfUsers = Number(localStorage.getItem("Number Of Users"))//updates the variable number of users
+        }
         }
         else if(NumberOfUsers !== 0)//updates the local storage number when the number of users variable gets updated
         {
@@ -336,3 +342,189 @@ function completedOrder(event)
     button.setAttribute("name", "markedAsComplete")//changes the name attribute of the button
     button.innerText = "Order Completed"//changes the text of the button 
 }
+
+
+function MenuReady()
+{
+    var removeCartItemButtons = document.getElementsByClassName("btn-remove")
+    for(var i = 0; i< removeCartItemButtons.length; i++)
+    {
+        var button = removeCartItemButtons[i]
+        button.addEventListener("click", removeCartItem)
+    }
+
+    var quantityInput = document.getElementsByClassName("cart-quantity-input")
+    for(var i = 0; i< quantityInput.length; i++)
+    {
+        var input = quantityInput[i]
+        input.addEventListener("change", quantityChanged)
+    }
+
+    var addToCartButtons = document.getElementsByClassName("shop-item-button")
+    for(var i = 0; i< addToCartButtons.length; i++)
+    {
+        var button = addToCartButtons[i]
+        button.addEventListener("click", addToCartClicked)
+    }
+    var purchaseButton = document.getElementsByClassName("btn-checkout")[0]
+    purchaseButton.addEventListener('click', checkoutClicked)
+}
+function removeCartItem(event)//when you click remove button for any cart item event listener 
+{
+    var buttonClicked = event.target
+    buttonClicked.parentElement.parentElement.remove()
+    updateCartTotal()
+}
+function quantityChanged(event) //event listener for whenever aa quantity is changed
+{
+    var input = event.target
+    if(isNaN(input.value) || input.value <= 0)
+    {
+        input.value = 1
+    }
+    updateCartTotal()
+}
+function addToCartClicked(event)//event listener for whenever add to cart button is clicked
+{
+    var button = event.target
+    var shopItem = button.parentElement.parentElement
+    var title = shopItem.getElementsByClassName("shop-item-title")[0].innerText
+    var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText
+    var imageSrc = shopItem.getElementsByClassName("shop-item-image")[0].src
+    addItemToCart(title, price, imageSrc)
+    return updateCartTotal();
+}
+function addItemToCart(title, price, imageSrc)//adds item to cart after button is clicked
+{
+    var cartRow = document.createElement('div')
+    cartRow.classList.add("cart-item")
+    var cartItems = document.getElementsByClassName("cart-items")[0]
+    var cartItemNames = document.getElementsByClassName("cart-item-name")
+    for(let i = 0; i < cartItemNames.length; i++)
+    {
+        if(cartItemNames[i].innerText == title)
+        {
+            alert("This item is already added to the cart")
+            return
+        }
+    }
+    var cartRowContents = `
+        <div class="cart-item-desc"><img class="cart-item-image" src="${imageSrc}"><span class="cart-item-name">${title}</span></div>
+        <div class="cart-item-price"><span class="item-price-tag">${price}</span></div>
+        <div class="cart-item-quantity"><input type="number" class="cart-quantity-input" value="1"><button class="btn-remove">Remove</button></div>
+    `
+    cartRow.innerHTML = cartRowContents
+    cartItems.append(cartRow)
+    cartRow.getElementsByClassName("btn-remove")[0].addEventListener("click", removeCartItem)
+    cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
+    }
+    function updateCartTotal()//updates the cart total
+{
+    var cartItemContainer = document.getElementsByClassName("cart-items")[0]
+    var cartRows = cartItemContainer.getElementsByClassName("cart-item")
+    var total = 0
+    for(var i = 0; i< cartRows.length; i++)
+    {
+        var cartRow = cartRows[i]
+        var priceElement = cartRow.getElementsByClassName("item-price-tag")[0]
+        var quantityElement = cartRow.getElementsByClassName("cart-quantity-input")[0]
+        var price = parseFloat(priceElement.innerText.replace("$", ""))
+        var quantity =quantityElement.value
+        total = total + (price*quantity)
+    }
+    total = (Math.round(total * 100) / 100)
+    var totalTag = document.getElementById("total-price-tag")
+    totalTag.innerText = `$${total.toFixed(2)}`
+}
+
+
+var NumberOfOrders = 0;
+var Object_of_all_orders = new Object
+function checkoutClicked(event)//when you click the purchase button even listener
+{
+    if(confirm("Confirm Purchase"))
+    {
+
+    }
+    else
+    {
+        return;
+    }
+    
+    const order = new Object
+    var cart_items = document.getElementsByClassName('cart-item')
+    for(let i=0; i<cart_items.length;i++)
+    {
+        const item = new Object
+        item.item_name = document.getElementsByClassName('cart-item-name')[i].innerText
+        item.item_name = document.getElementsByClassName('cart-item-name')[i].innerText
+        let price_per_item = document.getElementsByClassName('item-price-tag')[i].innerText
+        price_per_item = Number(price_per_item.substring(1))
+        item.price_per_item = price_per_item
+        let item_quantity = Number(document.getElementsByClassName('cart-quantity-input')[i].value)
+        item.item_quantity = item_quantity;
+        item.item_total = price_per_item*item_quantity
+        order[`Item${i + 1}`] = item;
+    }
+    let cart_total = document.getElementById('total-price-tag').innerText;
+    cart_total = Number(cart_total.substring(1));
+    order.cart_total = cart_total;
+    
+    console.log(order)
+    console.log(localStorage.getItem("Number Of Orders"), NumberOfOrders)
+    
+    var TempSendOrder = order
+    //send to local storage
+
+    location.replace("Checkout.hmtl")
+}
+    
+
+
+//update number of orders after the user checks out
+    updateNumOfOrders()
+function updateNumOfOrders()
+{
+    if(NumberOfOrders === 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+    {
+        if(localStorage.getItem("Number Of Orders") == null)
+        {
+            localStorage.setItem("Number Of Orders", NumberOfOrders)
+        }
+        else if(localStorage.getItem("Number Of Orders") !== 0)//if the local storage number of users is not 0
+        {
+            NumberOfOrders = Number(localStorage.getItem("Number Of Orders"))//updates the variable number of users
+        }
+    }
+    else if(NumberOfOrders !== 0)//updates the local storage number when the number of users variable gets updated
+    {
+        localStorage.setItem("Number Of Orders", NumberOfOrders)
+    }
+}
+
+const data = [1, 2, 3];
+    for (const [value, index] of data.entries()) {
+  console.log(`Value: ${value}, Index: ${index}`);
+    }
+
+
+
+
+
+
+
+///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
+////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
+// IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
+//THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
+
+
+
+//////for the receipt add column titles above the Quantities saying (QTY) and Items saying (ITEM)
+///for example look here    https://s3-media1.fl.yelpcdn.com/bphoto/y5ESqyhd0WNdM0QxyMDqBQ/o.jpg
+
+
+///number of orders need to be done
+
+///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
+//update the nav bar to be able to go to the menu without having to click continue as guest
