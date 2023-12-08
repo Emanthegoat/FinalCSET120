@@ -549,7 +549,12 @@ function CheckoutReady()
     }
     console.log(retreiveOrder)
     var Send_To_Manager = retreiveOrder
-    Send_To_Manager['OrderName'] = localStorage.getItem('CurrentLoginName')
+    Send_To_Manager['OrderName'] 
+    let name = prompt("Please Enter A Name For This Order")
+    while(isNaN(name))
+    {
+        name = prompt("Please Enter A Name For This Order")
+    }
     addOrderToLocalStorage()
     //localStorage.setItem("Send To Checkout Info", '')
 }
