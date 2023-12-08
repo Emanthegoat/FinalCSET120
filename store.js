@@ -1,4 +1,5 @@
 var NumberOfUsers = 0;
+var NumberOfOrders = 0
 //all the login info for the manager
 localStorage.setItem("ManagerUser", 'manager')
 localStorage.setItem("ManagerEmail", 'manager@sugarsoiree.yummy')
@@ -279,8 +280,12 @@ function ready()
     {
         MenuReady()
     }
+    if(WhereAmI == '/Checkout.html')
+    {
+        CheckoutReady()
+    }
     updateNumOfUsers()
-    // updateNumOfOrders()
+    updateNumOfOrders()
 }
 
 function updateNumOfUsers()
@@ -300,6 +305,31 @@ function updateNumOfUsers()
         else if(NumberOfUsers !== 0)//updates the local storage number when the number of users variable gets updated
         {
             localStorage.setItem("Number Of Users", NumberOfUsers)
+        }
+}
+
+function updateNumOfOrders()
+{
+    console.log('here')
+    //updates the number of users
+        if(NumberOfOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            console.log('here1')
+            if(localStorage.getItem("Number Of Orders") == null)
+            {
+                console.log('here1.1')
+                localStorage.setItem("Number Of Orders", NumberOfOrders)
+            }
+            else if(localStorage.getItem("Number Of Orders") !== 0)//if the local storage number of users is not 0
+            {
+                console.log('here1.2')
+                NumberOfOrders = Number(localStorage.getItem("Number Of Orders"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfOrders !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            console.log('here2')
+            localStorage.setItem("Number Of Orders", NumberOfOrders)
         }
 }
 
@@ -417,8 +447,8 @@ function addItemToCart(title, price, imageSrc)//adds item to cart after button i
     cartItems.append(cartRow)
     cartRow.getElementsByClassName("btn-remove")[0].addEventListener("click", removeCartItem)
     cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
-    }
-    function updateCartTotal()//updates the cart total
+}
+function updateCartTotal()//updates the cart total
 {
     var cartItemContainer = document.getElementsByClassName("cart-items")[0]
     var cartRows = cartItemContainer.getElementsByClassName("cart-item")
@@ -437,12 +467,10 @@ function addItemToCart(title, price, imageSrc)//adds item to cart after button i
     totalTag.innerText = `$${total.toFixed(2)}`
 }
 
-
-var NumberOfOrders = 0;
 var Object_of_all_orders = new Object
 function checkoutClicked(event)//when you click the purchase button even listener
 {
-    if(confirm("Confirm Purchase"))
+    if(confirm("Confirm Checkout"))
     {
 
     }
@@ -470,44 +498,98 @@ function checkoutClicked(event)//when you click the purchase button even listene
     cart_total = Number(cart_total.substring(1));
     order.cart_total = cart_total;
     
-    console.log(order)
-    console.log(localStorage.getItem("Number Of Orders"), NumberOfOrders)
-    
-    var TempSendOrder = order
+    let TempSendOrder = order
+    localStorage.setItem('Send To Checkout Info', JSON.stringify(TempSendOrder))
     //send to local storage
-
-    location.replace("Checkout.hmtl")
+    updateNumOfOrders()
+    location.replace("Checkout.html")
 }
     
-
-
-//update number of orders after the user checks out
-    updateNumOfOrders()
-function updateNumOfOrders()
+function CheckoutReady()
 {
-    if(NumberOfOrders === 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+    let retreiveOrder = JSON.parse(localStorage.getItem("Send To Checkout Info"))
+    let subtotal = 0;
+    var total = 0
+    for(const key in retreiveOrder)
     {
-        if(localStorage.getItem("Number Of Orders") == null)
+        const item = retreiveOrder[key]
+        const item_name = item['item_name'];
+        const item_quantity = item['item_quantity'];
+        const item_total = item['item_total'];
+        if(key == 'cart_total')
         {
-            localStorage.setItem("Number Of Orders", NumberOfOrders)
+            subtotal = Number(subtotal.toFixed(2))
+            const subtotalLocation = document.getElementsByClassName('sum-subtotal-price')[0]
+            subtotalLocation.innerText = `$${subtotal}`
+            let tax = Number((subtotal*.06).toFixed(2))
+            const taxLocation = document.getElementsByClassName('sum-tax-price')[0]
+            taxLocation.innerText = `$${tax}`
+            total = Number((subtotal*1.06).toFixed(2))
+            const totalLocation = document.getElementsByClassName('sum-total-price')[0]
+            totalLocation.innerText = `$${total}`
         }
-        else if(localStorage.getItem("Number Of Orders") !== 0)//if the local storage number of users is not 0
+        else
         {
-            NumberOfOrders = Number(localStorage.getItem("Number Of Orders"))//updates the variable number of users
+            subtotal += item_total
+            const summaryItemsLocation = document.getElementsByClassName('order-summary-items')[0]
+            const itemHTML = `
+                <div class="item-left">
+                    <span class="item-quantity"><b>${item_quantity}</b></span>
+                    <span class="item-Name">${item_name}</span>
+                </div>
+                <div class="item-right">
+                    <span class="item-total">$${item_total.toFixed(2)}</span>
+                </div>
+            `
+            const item_row = document.createElement('div')
+            item_row.setAttribute('class', 'item-row')
+            item_row.innerHTML = itemHTML
+            summaryItemsLocation.appendChild(item_row)
         }
     }
-    else if(NumberOfOrders !== 0)//updates the local storage number when the number of users variable gets updated
+    console.log(retreiveOrder)
+    var Send_To_Manager = retreiveOrder
+    Send_To_Manager['OrderName'] = localStorage.getItem('CurrentLoginName')
+    addOrderToLocalStorage()
+    //localStorage.setItem("Send To Checkout Info", '')
+}
+
+
+
+function addOrderToLocalStorage()
+{
+    var ordersObject = new Object()
+    ordersObject[`Order${NumberOfOrders}`] = JSON.parse(localStorage.getItem('Send To Checkout Info'))
+    console.log(ordersObject)
+    localStorage.setItem('Incoming Orders', JSON.stringify(ordersObject))
+    NumberOfOrders++
+    
+}
+
+
+function SummaryConfirm()
+{
+    if(confirm('Are you sure?'))
     {
-        localStorage.setItem("Number Of Orders", NumberOfOrders)
+        addOrderToLocalStorage(Send_To_Manager)
+    }
+    else if(confirm("Go back to Menu?"))
+    {
+
     }
 }
 
-const data = [1, 2, 3];
-    for (const [value, index] of data.entries()) {
-  console.log(`Value: ${value}, Index: ${index}`);
+function SummaryCancel()
+{
+    if(confirm('Are you sure?'))
+    {
+        location.replace('menu.html')
     }
-
-
+    else if(confirm("Go back to Menu?"))
+    {
+        location.replace('menu.html')
+    }
+}
 
 
 
@@ -518,10 +600,6 @@ const data = [1, 2, 3];
 // IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
 //THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
 
-
-
-//////for the receipt add column titles above the Quantities saying (QTY) and Items saying (ITEM)
-///for example look here    https://s3-media1.fl.yelpcdn.com/bphoto/y5ESqyhd0WNdM0QxyMDqBQ/o.jpg
 
 
 ///number of orders need to be done
