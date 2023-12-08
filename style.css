@@ -842,3 +842,88 @@ width: fit-content;
     border-radius: 5%;
 }
 /* HOME PAGE END */
+
+
+/* CHECKOUT CSS */
+.order-summary
+    {
+        width: 400px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 0.5px ridge black;  
+    }
+    .order-summary-title
+    {
+        vertical-align: middle;
+        margin: 25px auto;
+        text-align: center;
+        text-decoration: underline;
+    }
+    .item-row, .summary-totals
+    {
+        display: grid;
+        grid-template-columns: 250px 125px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .item-right,.sum-totals-right
+    {
+        text-align: right;
+    }
+    .item-left,.sum-totals-left
+    {
+        margin: 0px 10px;
+    }
+    .sum-totals-left
+    {
+        margin: 0px 7px;
+    }
+    .item-total
+    {
+        font-weight: 600;
+    }
+    .item-Name
+    {
+        margin-left: 10px;
+        font-weight: 600;
+    }
+    .summary-totals
+    {
+        display: grid;
+        grid-template-columns: 250px 125px;
+        width: 400px;
+        margin: 10px 2px;
+    }
+    .sum-subtotal-text, .sum-tax-text, .sum-subtotal-price, .sum-tax-price
+    {
+        font-weight: 600;
+        opacity: 50%;
+        margin: 15px 0;
+    }
+    .sum-total-text,.sum-total-price
+    {
+        font-weight: 600;
+    }
+    .summary-buttons
+    {
+        width: 150px;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .sum-confirm-btn,.sum-cancel-btn
+    {
+        margin: auto;
+        width: 70px;
+        height: 30px;
+        font-weight: 600;
+        text-decoration: underline;
+        border-style: outset;
+        border-radius: 10px;
+    }
+    .sum-confirm-btn:hover,.sum-cancel-btn:hover
+    {
+        background-color: rgb(180, 180, 180);
+        border-radius: 10px;
+    }
+/* CHECKOUT CSS END */
