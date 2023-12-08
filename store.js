@@ -352,6 +352,7 @@ function IncomingOrdersReady()
 function accept(event)
 {
     //gets the div of the clicked button
+    let button = event.srcElement
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
@@ -547,27 +548,20 @@ function CheckoutReady()
             summaryItemsLocation.appendChild(item_row)
         }
     }
-    console.log(retreiveOrder)
-    var Send_To_Manager = retreiveOrder
-    Send_To_Manager['OrderName'] 
-    let name = prompt("Please Enter A Name For This Order")
-    while(isNaN(name))
-    {
-        name = prompt("Please Enter A Name For This Order")
-    }
-    addOrderToLocalStorage()
     //localStorage.setItem("Send To Checkout Info", '')
 }
 
 
 
-function addOrderToLocalStorage()
+function addOrderToLocalStorage(x)
 {
-    var ordersObject = new Object()
-    ordersObject[`Order${NumberOfOrders}`] = JSON.parse(localStorage.getItem('Send To Checkout Info'))
-    console.log(ordersObject)
-    localStorage.setItem('Incoming Orders', JSON.stringify(ordersObject))
-    NumberOfOrders++
+    let tempStorage =  JSON.parse(localStorage.getItem('Send To Checkout Info'))
+    tempStorage['CustomerName'] = x
+    tempStorage['OrderTotal']
+    console.log(tempStorage)
+    // ordersObject[`Order${NumberOfOrders}`] = temptStorage
+    // localStorage.setItem('Incoming Orders', JSON.stringify(ordersObject))
+    // NumberOfOrders++
     
 }
 
@@ -576,7 +570,15 @@ function SummaryConfirm()
 {
     if(confirm('Are you sure?'))
     {
-        addOrderToLocalStorage(Send_To_Manager)
+        let name = prompt("Please Enter A Name For This Order")
+        while(name=="")
+        {
+            name = prompt("Please Enter A Name For This Order")
+        }
+        let summary_div = document.getElementsByClassName('order-summary')[0]
+        summary_div.style.visibility='hidden'
+        summary_div.style.float='left'
+        ShowPayment(name)
     }
     else if(confirm("Go back to Menu?"))
     {
@@ -596,9 +598,10 @@ function SummaryCancel()
     }
 }
 
-
-
-
+function ShowPayment(name)
+{
+    
+}
 
 ///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
 ////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
