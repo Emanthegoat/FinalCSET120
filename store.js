@@ -570,15 +570,15 @@ function SummaryConfirm()
 {
     if(confirm('Are you sure?'))
     {
-        let name = prompt("Please Enter A Name For This Order")
+        var name = prompt("Please Enter A Name For This Order")
         while(name=="")
         {
             name = prompt("Please Enter A Name For This Order")
         }
         let summary_div = document.getElementsByClassName('order-summary')[0]
-        summary_div.style.visibility='hidden'
-        summary_div.style.float='left'
-        ShowPayment(name)
+        // summary_div.style.visibility='hidden'
+        // summary_div.style.float='left'
+        ShowPayment()
     }
     else if(confirm("Go back to Menu?"))
     {
@@ -598,19 +598,63 @@ function SummaryCancel()
     }
 }
 
-function ShowPayment(name)
+function ShowPayment()
 {
     
 }
 
+function PaymentType()
+{
+    const Pselect = document.getElementsByClassName('choose-type-options')[0].value
+    if(Pselect == 'Cash' || Pselect == '')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        DCdiv.innerHTML = ''
+    }
+    else if(Pselect=='D/C')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        let formStuff = `<label for="card-number" id="card-numberL">Card Number</label>
+        <input type="text" name="card-number" id="card-number" minlength="16" max="9999999999999999" maxlength="16" placeholder="1234 5678 9012 3456" required>
+        <label for="cardholder-name" id="cardholder-nameL">Cardholders Name</label>
+        <input type="text" name="cardholder-name" id="cardholder-name" placeholder="FirstName LastName" required>
+        <label for="Exp-date" id="Exp-dateL">Expiration Date</label>
+        <input type="text" name="Exp-date" id="Exp-date" placeholder="MM/YYYY">
+        <label for="Cvv" id="CvvL">Cvv</label>
+        <input type="number" name="Cvv" id="Cvv" minlength="3" max="999" maxlength="3" required>
+        `
+        DCdiv.innerHTML = formStuff;
+    }
+}
+
+function PorD()
+{
+    const PDselect = document.getElementsByClassName('PickUp-delivery-select')[0].value
+    if(PDselect == 'PickUp' || PDselect == '')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        AddressDiv.innerHTML=''
+    }
+    else if(PDselect == 'Delivery')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        let formStuff = `<label for="Address" id="AddressL">Address</label>
+        <input type="text" name="Address" id="Address" placeholder="Address, City, State, Zip Code">`
+        AddressDiv.innerHTML= formStuff;
+    }
+}
+
+
+function CheckPayment()
+{
+    
+}
 ///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
 ////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
 // IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
 //THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
 
 
-
-///number of orders need to be done
 
 ///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
 //update the nav bar to be able to go to the menu without having to click continue as guest

@@ -39,8 +39,30 @@
         </div>
     </div>
 
-    <h1>vjsdflkajlkfjdfldkd</h1>
-<br><br><br><br><br><br><br><br>
+    <h1>Payment</h1>
+    <div class="payment">
+        <h3>Choose Your Payment Type</h3>
+        <select class="choose-type-options" onchange="PaymentType()">
+            <option value=""></option>
+            <option value="Cash">Cash</option>
+            <option value="D/C">Debit/Credit</option>
+        </select>
+        <div class="D/C-form-div">
+        </div>
+        <button onclick="CheckPayment()">Submit Payment Info</button>
+    </div>
+    <br><br><br>
+    <div class="PickUp-delivery">
+        <h3>PickUp or Delivery</h3>
+        <select name="PickUp-delivery-select" class="PickUp-delivery-select" onchange="PorD()">
+            <option value=""></option>
+            <option value="PickUp">Pick Up</option>
+            <option value="Delivery">Delivery</option>
+        </select>
+        <div class="PickUp-delivery-form">
+            
+        </div>
+    </div>
     <a href="menu.html">MENU</a>
 </body>
 </html>
