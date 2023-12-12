@@ -9,6 +9,67 @@
     <link rel="shortcut icon" href="shortcake.jpg" type="image/x-icon">
 </head>
 <body>
+<style>
+    .Payment-section
+    {
+        visibility: hidden;
+        margin: 0 auto;
+        width: 230px;
+    }
+    .payment
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .payment-select-div,.PD-select-div
+    {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .DC-form-div
+    {
+        margin: 0px auto;
+        width: 175px;
+
+    }
+    .DC-form-div input
+    {
+        margin: 5px auto;
+    }
+    .Check-payment-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 130px;
+    }
+    .PickUp-delivery
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .PickUp-delivery h3
+    {
+        text-align: center;
+    }
+    .PickUp-delivery-form
+    {
+        margin: 0px auto;
+        width: 175px;
+    }
+    .PickUp-delivery-form input
+    {
+        margin: 0px auto;
+    }
+    .PD-check-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 100px;
+    }
+    .Submit-Order
+    {
+        width: 85px;
+        margin: auto;
+    }
+</style>
     <h1>Checkout</h1>
 
     <div class="order-summary">
@@ -38,30 +99,38 @@
             <button class="sum-cancel-btn" onclick="SummaryCancel()">Cancel</button>
         </div>
     </div>
-
-
-    <a href="menu.html">MENU</a>
+    <br>
+    <br>
+<div class="Payment-section">
+    <h1>Payment</h1>
+    <div class="payment">
+        <h3>Choose Your Payment Type</h3>
+        <div class="payment-select-div">
+        <select class="Payment-select" onchange="PaymentType()">
+            <option value=""></option>
+            <option value="Cash">Cash</option>
+            <option value="D/C">Debit/Credit</option>
+        </select>
+        </div>
+        <br>
+        <div class="DC-form-div D/C-form-div">
+        </div>
+    </div>
+    <br><br><br>
+    <div class="PickUp-delivery">
+        <h3>PickUp or Delivery</h3>
+        <div class="PD-select-div">
+        <select name="PickUp-delivery-select" class="PickUp-delivery-select" onchange="PorD()">
+            <option value=""></option>
+            <option value="PickUp">Pick Up</option>
+            <option value="Delivery">Delivery</option>
+        </select>
+        </div>
+        <div class="PickUp-delivery-form">
+        </div>
+    </div>
+    <br><br>
+    <div class="Submit-Order"><button class="btn-submit-order" onclick="SubmitOrder()">Submit Order</button></div>
+</div>
 </body>
 </html>
-
-
-
-
-<!-- <div class="item-row">
-                <div class="item-left">
-                    <span class="item-quantity"><b>5</b></span>
-                    <span class="item-Name">Chocolate peanut butter Cake</span>
-                </div>
-                <div class="item-right">
-                    <span class="item-total">$39.98</span>
-                </div>
-            </div>
-            <div class="item-row">
-                <div class="item-left">
-                    <span class="item-quantity"><b>5</b></span>
-                    <span class="item-Name">Chocolate peanut butter Cake</span>
-                </div>
-                <div class="item-right">
-                    <span class="item-total">$39.98</span>
-                </div>
-            </div> -->

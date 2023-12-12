@@ -1,5 +1,7 @@
 var NumberOfUsers = 0;
 var NumberOfOrders = 0
+var NumberOfAcceptedOrders= 0;
+var NumberOfCompletedOrders = 0
 //all the login info for the manager
 localStorage.setItem("ManagerUser", 'manager')
 localStorage.setItem("ManagerEmail", 'manager@sugarsoiree.yummy')
@@ -32,6 +34,8 @@ function registerCustomer()
     const pass = document.getElementById('password').value
     const email = document.getElementById('email').value.toLowerCase()
     const name = document.getElementById('Name').value
+
+    console.log(document.getElementsByName("Name")[0].value)
     //DETERMINES WHAT IS MISSING//  //all these determines what is missing and if so adds the error to the message variable and changes the backgroundColor of the missing input tag to red
     if(document.getElementsByName("Name")[0].value == "")
     {
@@ -144,6 +148,7 @@ function login()
             alert('Login Successful')
             localStorage.setItem("CurrentLogin", "customer")//sets the current person using the site to customer
             localStorage.setItem("CurrentLoginName", localStorage.getItem('ExistCustomerName'))//sets the current name of the user to the existing customers name for later use
+            localStorage.setItem("CurrentLoginUser", localStorage.getItem(`ExistCustomerUser`))
             return location.href = 'index.html'; //takes user to home page
         }
         else//if the password does not match
@@ -165,6 +170,7 @@ function login()
                     alert('Login Successful')
                     localStorage.setItem("CurrentLogin", "customer")//sets the current person logged in as customr
                     localStorage.setItem("CurrentLoginName", localStorage.getItem(`Customer${i}Name`))//sets the current users name to who ever has logged in
+                    localStorage.setItem("CurrentLoginUser", localStorage.getItem(`Customer${i}Username`))//sets the current users username to who ever has logged in
                     return location.href = 'index.html';//takes the user to the home page
                 }
                 else//if the password is incorrect
@@ -241,6 +247,7 @@ function SignOut()//sign out function
 {
     localStorage.setItem("CurrentLoginType", "")//clears the current login type
     localStorage.setItem("CurrentLoginName", "")//clears the current logged in users' name
+    localStorage.setItem("CurrentLoginName", "")//clears the current logged in username
     location.replace('login.html');//takes the user to the login page
 }   
 
@@ -283,9 +290,12 @@ function ready()
     if(WhereAmI == '/Checkout.html')
     {
         CheckoutReady()
+
     }
     updateNumOfUsers()
     updateNumOfOrders()
+    updateNumOfAcceptedOrders()
+    updateNumOfCompletedOrders()
 }
 
 function updateNumOfUsers()
@@ -310,26 +320,63 @@ function updateNumOfUsers()
 
 function updateNumOfOrders()
 {
-    console.log('here')
     //updates the number of users
         if(NumberOfOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
-            console.log('here1')
             if(localStorage.getItem("Number Of Orders") == null)
             {
-                console.log('here1.1')
                 localStorage.setItem("Number Of Orders", NumberOfOrders)
             }
             else if(localStorage.getItem("Number Of Orders") !== 0)//if the local storage number of users is not 0
             {
-                console.log('here1.2')
                 NumberOfOrders = Number(localStorage.getItem("Number Of Orders"))//updates the variable number of users
             }
         }
         else if(NumberOfOrders !== 0)//updates the local storage number when the number of users variable gets updated
         {
-            console.log('here2')
             localStorage.setItem("Number Of Orders", NumberOfOrders)
+        }
+}
+
+function updateNumOfAcceptedOrders()
+{
+    
+    //updates the number of users
+        if(NumberOfAcceptedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            if(localStorage.getItem("Number Of Accepted Orders") == null)
+            {
+                localStorage.setItem("Number Of Accepted Orders", NumberOfAcceptedOrders)
+            }
+            else if(localStorage.getItem("Number Of Accepted Orders") !== 0)//if the local storage number of users is not 0
+            {
+                NumberOfAcceptedOrders = Number(localStorage.getItem("Number Of Accepted Orders"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfAcceptedOrders !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            localStorage.setItem("Number Of Accepted Orders", NumberOfAcceptedOrders)
+        }
+}
+
+function updateNumOfCompletedOrders()
+{
+    
+    //updates the number of users
+        if(NumberOfCompletedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            if(localStorage.getItem("Number Of Completed Orders") == null)
+            {
+                localStorage.setItem("Number Of Completed Orders", NumberOfCompletedOrders)
+            }
+            else if(localStorage.getItem("Number Of Completed Orders") !== 0)//if the local storage number of users is not 0
+            {
+                NumberOfCompletedOrders = Number(localStorage.getItem("Number Of Completed Orders"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfCompletedOrders !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            localStorage.setItem("Number Of Completed Orders", NumberOfCompletedOrders)
         }
 }
 
@@ -352,6 +399,7 @@ function IncomingOrdersReady()
 function accept(event)
 {
     //gets the div of the clicked button
+    let button = event.srcElement
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
@@ -547,40 +595,33 @@ function CheckoutReady()
             summaryItemsLocation.appendChild(item_row)
         }
     }
-    console.log(retreiveOrder)
-    var Send_To_Manager = retreiveOrder
-    Send_To_Manager['OrderName'] 
-    let name = prompt("Please Enter A Name For This Order")
-    while(isNaN(name))
+    if(localStorage.getItem('Checkout Name') !== null)
     {
-        name = prompt("Please Enter A Name For This Order")
+        document.getElementsByClassName('Payment-section')[0].style.visibility = 'visible';
     }
-    addOrderToLocalStorage()
-    //localStorage.setItem("Send To Checkout Info", '')
 }
 
 
 
-function addOrderToLocalStorage()
-{
-    var ordersObject = new Object()
-    ordersObject[`Order${NumberOfOrders}`] = JSON.parse(localStorage.getItem('Send To Checkout Info'))
-    console.log(ordersObject)
-    localStorage.setItem('Incoming Orders', JSON.stringify(ordersObject))
-    NumberOfOrders++
-    
-}
+
 
 
 function SummaryConfirm()
 {
     if(confirm('Are you sure?'))
     {
-        addOrderToLocalStorage(Send_To_Manager)
+        var name = prompt("Please Enter A Name For This Order")
+        while(name=="")
+        {
+            name = prompt("Please Enter A Name For This Order")
+        }
+        document.getElementsByClassName('Payment-section')[0].style.visibility = 'visible';
+        localStorage.setItem('Checkout Name', name)
     }
     else if(confirm("Go back to Menu?"))
     {
-
+        CheckoutDelete()
+        location.replace("/menu.html")
     }
 }
 
@@ -588,15 +629,217 @@ function SummaryCancel()
 {
     if(confirm('Are you sure?'))
     {
+        CheckoutDelete()
         location.replace('menu.html')
     }
     else if(confirm("Go back to Menu?"))
     {
-        location.replace('menu.html')
+        CheckoutDelete()
+        location.replace('/menu.html')
     }
 }
 
 
+function PaymentType()
+{
+    document.getElementsByClassName('Payment-select')[0].style.backgroundColor = "";
+    const Pselect = document.getElementsByClassName('Payment-select')[0].value
+    if(Pselect == '')
+    {
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = "red";
+        alert('Please Select A Payment Option')
+    }
+    else if(Pselect == 'Cash')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = 'Green'
+        DCdiv.innerHTML = ''
+    }
+    else if(Pselect=='D/C')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        let formStuff = `<label for="card-number" id="card-numberL">Card Number</label>
+        <input type="text" name="card-number" id="card-number" minlength="16" max="9999999999999999" maxlength="16" placeholder="1234 5678 9012 3456" required>
+        <label for="cardholder-name" id="cardholder-nameL">Cardholders Name</label>
+        <input type="text" name="cardholder-name" id="cardholder-name" placeholder="FirstName LastName">
+        <label for="Exp-date" id="Exp-dateL">Expiration Date</label>
+        <input type="text" name="Exp-date" id="Exp-date" placeholder="MM/YYYY">
+        <label for="Cvv" id="CvvL">Cvv</label>
+        <input type="text" name="Cvv" id="Cvv" minlength="3" max="999" maxlength="3" required>
+        <div class="Check-payment-btn"><button onclick="CheckPayment()">Submit Payment Info</button></div>
+        `
+        DCdiv.innerHTML = formStuff;
+    }
+}
+
+function PorD()
+{
+    document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = ''
+    const PDselect = document.getElementsByClassName('PickUp-delivery-select')[0].value
+    if(PDselect == '')
+    {
+        document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'red';
+        alert('Please Select PickUp Or Delivery')
+    }
+    else if(PDselect == 'PickUp')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        AddressDiv.innerHTML=''
+        document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'Green'
+    }
+    else if(PDselect == 'Delivery')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        let formStuff = `<label for="Address" id="AddressL">Address</label>
+        <input type="text" name="Address" id="Address" placeholder="Address, City, State Abv., Zip Code">
+        <div class="PD-check-btn"><button class="address-submit" onclick="AddressSubmit()">Submit Address</button></div>
+        `
+        AddressDiv.innerHTML= formStuff;
+    }
+}
+
+
+function CheckPayment()
+{
+    var message = ''
+
+    document.getElementsByName('card-number')[0].style.backgroundColor=''
+    document.getElementsByName('cardholder-name')[0].style.backgroundColor=''
+    document.getElementsByName('Exp-date')[0].style.backgroundColor=''
+    document.getElementsByName('Cvv')[0].style.backgroundColor=''
+
+   
+    const card_number = document.getElementsByName('card-number')[0].value
+
+    
+    // check credit card number
+    var re16digit = /^\d{16}$/
+    if (card_number.search(re16digit) == -1)
+    {
+        message += "Please Enter A Valid Credit Card Number \n";
+        document.getElementsByName('card-number')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('cardholder-name')[0].value == "")
+    {
+        message += 'Please Enter The Card Holders Name \n'
+        document.getElementsByName('cardholder-name')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('Exp-date')[0].value == "" || document.getElementsByName('Exp-date')[0].value[2] !== "/")
+    {
+        message += 'Please Enter The Expiration Date \n'
+        document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('Exp-date')[0].value[2] == "/" || document.getElementsByName('Exp-date')[0].value[1] == "/")
+    {
+        let exp = document.getElementsByName('Exp-date')[0].value
+        let month =  Number(exp.slice(0,2))
+        let year = Number(exp.slice(3))
+        if(month >= 1 && month <= 12)
+        {
+            if(year >=2024)
+            {
+
+            }
+            else
+            {
+                message += 'Please Enter A Valid Expiration Date \n'
+                document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+            }
+        }
+        else
+        {
+            message += 'Please Enter A Valid Expiration Date \n'
+            document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+        }
+    }
+    
+    if(document.getElementsByName('Cvv')[0].value == "")
+    {
+        message += 'Please Enter The Cvv \n'
+        document.getElementsByName('Cvv')[0].style.backgroundColor='red'
+    }
+    
+    if(document.getElementsByName('Cvv')[0].value.length == 3)
+    {
+        let Cvv = Number(document.getElementsByName('Cvv')[0].value)
+        if(isNaN(Cvv))
+        {
+            message += 'Please Enter A Valid Cvv \n'
+        document.getElementsByName('Cvv')[0].style.backgroundColor='red'
+        }
+    }
+    
+    if(message != "")
+    {
+        return alert(message);
+    }
+    else if(message == "")
+    {
+        document.getElementsByClassName('PickUp-delivery-select')[0].focus()
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = 'Green'
+        alert('Payment Submitted')
+    }
+}
+
+function AddressSubmit()
+{
+    let addressInput = document.getElementById('Address');
+    const addressRegex = /^(?<street>.*?),\s+(?<city>\w+(?:\s+\w+)*),\s+(?<state>[A-Z]{2}),\s+(?<zip>\d{5})(-\d{4})?$/;
+    const match = addressRegex.exec(addressInput.value);
+    
+    if (!match) {
+      // Address format invalid
+      alert('Please enter the address in the correct format: Address, City, State Abv., Zip Code');
+    } else {
+      // Address format valid
+      localStorage.setItem('Checkout Address', addressInput.value)
+      document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'Green'
+      alert('Address Submitted')
+    }
+}
+
+function SubmitOrder()
+{
+    console.log()
+    if(document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor === 'green' && document.getElementsByClassName('Payment-select')[0].style.backgroundColor == 'green')
+    {
+        let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
+        let name = localStorage.getItem('Checkout Name')
+        let address = localStorage.getItem('Checkout Address')
+        let currentLogin = localStorage.getItem('CurrentLoginUser')
+        let numberOfOrders = localStorage.getItem('Number Of Orders')
+        let FullOrder = {
+            WhoOrdered:{Name:name,User:currentLogin},
+            Items:items,
+            Address:address,
+            OrderNumber:numberOfOrders
+            }
+        console.log(FullOrder)
+        localStorage.setItem(`Incoming Order #${numberOfOrders}`, FullOrder)
+        NumberOfOrders++
+        CheckoutDelete()
+        location.replace('Customer_Profile.html')
+    }
+    else
+    {
+        alert("Please Complete The Sections Above. The Select Will Turn Green When Completed")
+    }
+    
+}
+
+
+function CheckoutDelete()///when leaving the checkout page delete stuff from the local storage
+{
+    localStorage.removeItem('Send To Checkout Info')
+    localStorage.removeItem('Checkout Address')
+    localStorage.removeItem('Checkout Name')
+}
+
+
+///////////NEED TO DO!!!!!!!///////////////
 
 
 
@@ -606,8 +849,6 @@ function SummaryCancel()
 //THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
 
 
-
-///number of orders need to be done
 
 ///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
 //update the nav bar to be able to go to the menu without having to click continue as guest
