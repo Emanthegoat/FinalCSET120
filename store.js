@@ -278,6 +278,18 @@ function ready()
         navBarLinks.appendChild(ManDirLi)//appends the li to the nav bar
         ManDirLi.appendChild(ManDirAlink)//appends the a link to the li appened to the nav bar
     }
+    if(localStorage.getItem('CurrentLogin') == null)
+    {
+        localStorage.setItem('CurrentLogin', "guest")
+    }
+    if(localStorage.getItem('CurrentLogin') != null)
+    {
+        // document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
+    }
+    if(localStorage.getItem('CurrentLogin') == 'guest')
+    {
+        // document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
+    }
    var WhereAmI = window.location.pathname//gets the url of what page the user is on
     if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
     {
@@ -487,7 +499,7 @@ function addItemToCart(title, price, imageSrc)//adds item to cart after button i
         }
     }
     var cartRowContents = `
-        <div class="cart-item-desc"><img class="cart-item-image" src="${imageSrc}"><span class="cart-item-name">${title}</span></div>
+        <div class="cart-item-desc"><img class="cart-item-image" src="${imageSrc}"><p class="cart-item-name">${title}</p></div>
         <div class="cart-item-price"><span class="item-price-tag">${price}</span></div>
         <div class="cart-item-quantity"><input type="number" class="cart-quantity-input" value="1"><button class="btn-remove">Remove</button></div>
     `
@@ -818,7 +830,7 @@ function SubmitOrder()
             OrderNumber:numberOfOrders
             }
         console.log(FullOrder)
-        localStorage.setItem(`Incoming Order #${numberOfOrders}`, FullOrder)
+        localStorage.setItem(`Incoming Order #${numberOfOrders}`, JSON.stringify(FullOrder))
         NumberOfOrders++
         CheckoutDelete()
         location.replace('Customer_Profile.html')
