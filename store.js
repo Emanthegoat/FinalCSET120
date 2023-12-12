@@ -32,6 +32,8 @@ function registerCustomer()
     const pass = document.getElementById('password').value
     const email = document.getElementById('email').value.toLowerCase()
     const name = document.getElementById('Name').value
+
+    console.log(document.getElementsByName("Name")[0].value)
     //DETERMINES WHAT IS MISSING//  //all these determines what is missing and if so adds the error to the message variable and changes the backgroundColor of the missing input tag to red
     if(document.getElementsByName("Name")[0].value == "")
     {
@@ -283,6 +285,7 @@ function ready()
     if(WhereAmI == '/Checkout.html')
     {
         CheckoutReady()
+
     }
     updateNumOfUsers()
     updateNumOfOrders()
@@ -548,10 +551,214 @@ function CheckoutReady()
             summaryItemsLocation.appendChild(item_row)
         }
     }
-    //localStorage.setItem("Send To Checkout Info", '')
+    if(localStorage.getItem('Checkout Name') !== null)
+    {
+        document.getElementsByClassName('Payment-section')[0].style.visibility = 'visible';
+    }
 }
 
 
+
+
+
+
+function SummaryConfirm()
+{
+    if(confirm('Are you sure?'))
+    {
+        var name = prompt("Please Enter A Name For This Order")
+        while(name=="")
+        {
+            name = prompt("Please Enter A Name For This Order")
+        }
+        document.getElementsByClassName('Payment-section')[0].style.visibility = 'visible';
+        localStorage.setItem('Checkout Name', name)
+    }
+    else if(confirm("Go back to Menu?"))
+    {
+        CheckoutDelete()
+        location.replace("/menu.html")
+    }
+}
+
+function SummaryCancel()
+{
+    if(confirm('Are you sure?'))
+    {
+        CheckoutDelete()
+        location.replace('menu.html')
+    }
+    else if(confirm("Go back to Menu?"))
+    {
+        CheckoutDelete()
+        location.replace('/menu.html')
+    }
+}
+
+
+function PaymentType()
+{
+    document.getElementsByClassName('choose-type-options')[0].style.backgroundColor = "";
+    const Pselect = document.getElementsByClassName('choose-type-options')[0].value
+    if(Pselect == '')
+    {
+        document.getElementsByClassName('choose-type-options')[0].style.backgroundColor = "red";
+        alert('Please Select A Payment Option')
+    }
+    else if(Pselect == 'Cash')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        DCdiv.innerHTML = ''
+    }
+    else if(Pselect=='D/C')
+    {
+        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        let formStuff = `<label for="card-number" id="card-numberL">Card Number</label>
+        <input type="text" name="card-number" id="card-number" minlength="16" max="9999999999999999" maxlength="16" placeholder="1234 5678 9012 3456" required>
+        <label for="cardholder-name" id="cardholder-nameL">Cardholders Name</label>
+        <input type="text" name="cardholder-name" id="cardholder-name" placeholder="FirstName LastName">
+        <label for="Exp-date" id="Exp-dateL">Expiration Date</label>
+        <input type="text" name="Exp-date" id="Exp-date" placeholder="MM/YYYY">
+        <label for="Cvv" id="CvvL">Cvv</label>
+        <input type="text" name="Cvv" id="Cvv" minlength="3" max="999" maxlength="3" required>
+        <button onclick="CheckPayment()">Submit Payment Info</button>
+        `
+        DCdiv.innerHTML = formStuff;
+    }
+}
+
+function PorD()
+{
+    document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = ''
+    const PDselect = document.getElementsByClassName('PickUp-delivery-select')[0].value
+    if(PDselect == '')
+    {
+        document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'red';
+        alert('Please Select PickUp Or Delivery')
+    }
+    else if(PDselect == 'PickUp')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        AddressDiv.innerHTML=''
+    }
+    else if(PDselect == 'Delivery')
+    {
+        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
+        let formStuff = `<label for="Address" id="AddressL">Address</label>
+        <input type="text" name="Address" id="Address" placeholder="Address, City, State Abv., Zip Code">
+        <button class="address-submit" onclick="AddressSubmit()">Submit Address</button>
+        `
+        AddressDiv.innerHTML= formStuff;
+    }
+}
+
+
+function CheckPayment()
+{
+    var message = ''
+
+    document.getElementsByName('card-number')[0].style.backgroundColor=''
+    document.getElementsByName('cardholder-name')[0].style.backgroundColor=''
+    document.getElementsByName('Exp-date')[0].style.backgroundColor=''
+    document.getElementsByName('Cvv')[0].style.backgroundColor=''
+
+   
+    const card_number = document.getElementsByName('card-number')[0].value
+
+    
+    // check credit card number
+    var re16digit = /^\d{16}$/
+    if (card_number.search(re16digit) == -1)
+    {
+        message += "Please Enter A Valid Credit Card Number \n";
+        document.getElementsByName('card-number')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('cardholder-name')[0].value == "")
+    {
+        message += 'Please Enter The Card Holders Name \n'
+        document.getElementsByName('cardholder-name')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('Exp-date')[0].value == "" || document.getElementsByName('Exp-date')[0].value[2] !== "/")
+    {
+        message += 'Please Enter The Expiration Date \n'
+        document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+    }
+
+    if(document.getElementsByName('Exp-date')[0].value[2] == "/" || document.getElementsByName('Exp-date')[0].value[1] == "/")
+    {
+        let exp = document.getElementsByName('Exp-date')[0].value
+        let month =  Number(exp.slice(0,2))
+        let year = Number(exp.slice(3))
+        if(month >= 1 && month <= 12)
+        {
+            if(year >=2024)
+            {
+
+            }
+            else
+            {
+                message += 'Please Enter A Valid Expiration Date \n'
+                document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+            }
+        }
+        else
+        {
+            message += 'Please Enter A Valid Expiration Date \n'
+            document.getElementsByName('Exp-date')[0].style.backgroundColor='red'
+        }
+    }
+    
+    if(document.getElementsByName('Cvv')[0].value == "")
+    {
+        message += 'Please Enter The Cvv \n'
+        document.getElementsByName('Cvv')[0].style.backgroundColor='red'
+    }
+    
+    if(document.getElementsByName('Cvv')[0].value.length == 3)
+    {
+        let Cvv = Number(document.getElementsByName('Cvv')[0].value)
+        if(isNaN(Cvv))
+        {
+            message += 'Please Enter A Valid Cvv \n'
+        document.getElementsByName('Cvv')[0].style.backgroundColor='red'
+        }
+    }
+    
+    if(message != "")
+    {
+        return alert(message);
+    }
+    else if(message == "")
+    {
+        document.getElementsByClassName('PickUp-delivery-select')[0].focus()
+        alert('Payment Submitted')
+    }
+}
+
+function AddressSubmit()
+{
+    let addressInput = document.getElementById('Address');
+    const addressRegex = /^(?<street>.*?),\s+(?<city>\w+(?:\s+\w+)*),\s+(?<state>[A-Z]{2}),\s+(?<zip>\d{5})(-\d{4})?$/;
+    const match = addressRegex.exec(addressInput.value);
+    
+    if (!match) {
+      // Address format invalid
+      alert('Please enter the address in the correct format: Address, City, State Abv., Zip Code');
+    } else {
+      // Address format valid
+      localStorage.setItem('Checkout Address', addressInput.value)
+      alert('Address Submitted')
+    }
+}
+
+function SubmitOrder()
+{
+    let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
+    let name = localStorage.getItem('Checkout Name')
+    let address = localStorage.getItem('Checkout Address')
+}
 
 function addOrderToLocalStorage(x)
 {
@@ -566,90 +773,15 @@ function addOrderToLocalStorage(x)
 }
 
 
-function SummaryConfirm()
-{
-    if(confirm('Are you sure?'))
-    {
-        var name = prompt("Please Enter A Name For This Order")
-        while(name=="")
-        {
-            name = prompt("Please Enter A Name For This Order")
-        }
-        let summary_div = document.getElementsByClassName('order-summary')[0]
-        // summary_div.style.visibility='hidden'
-        // summary_div.style.float='left'
-        ShowPayment()
-    }
-    else if(confirm("Go back to Menu?"))
-    {
+///////////NEED TO DO!!!!!!!///////////////
 
-    }
-}
-
-function SummaryCancel()
+function CheckoutDelete()///when leaving the checkout page delete stuff from the local storage
 {
-    if(confirm('Are you sure?'))
-    {
-        location.replace('menu.html')
-    }
-    else if(confirm("Go back to Menu?"))
-    {
-        location.replace('menu.html')
-    }
-}
 
-function ShowPayment()
-{
-    
-}
-
-function PaymentType()
-{
-    const Pselect = document.getElementsByClassName('choose-type-options')[0].value
-    if(Pselect == 'Cash' || Pselect == '')
-    {
-        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
-        DCdiv.innerHTML = ''
-    }
-    else if(Pselect=='D/C')
-    {
-        let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
-        let formStuff = `<label for="card-number" id="card-numberL">Card Number</label>
-        <input type="text" name="card-number" id="card-number" minlength="16" max="9999999999999999" maxlength="16" placeholder="1234 5678 9012 3456" required>
-        <label for="cardholder-name" id="cardholder-nameL">Cardholders Name</label>
-        <input type="text" name="cardholder-name" id="cardholder-name" placeholder="FirstName LastName" required>
-        <label for="Exp-date" id="Exp-dateL">Expiration Date</label>
-        <input type="text" name="Exp-date" id="Exp-date" placeholder="MM/YYYY">
-        <label for="Cvv" id="CvvL">Cvv</label>
-        <input type="number" name="Cvv" id="Cvv" minlength="3" max="999" maxlength="3" required>
-        `
-        DCdiv.innerHTML = formStuff;
-    }
-}
-
-function PorD()
-{
-    const PDselect = document.getElementsByClassName('PickUp-delivery-select')[0].value
-    if(PDselect == 'PickUp' || PDselect == '')
-    {
-        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
-        AddressDiv.innerHTML=''
-    }
-    else if(PDselect == 'Delivery')
-    {
-        let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
-        let formStuff = `<label for="Address" id="AddressL">Address</label>
-        <input type="text" name="Address" id="Address" placeholder="Address, City, State, Zip Code">`
-        AddressDiv.innerHTML= formStuff;
-    }
 }
 
 
-function CheckPayment()
-{
-    
-}
-///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
+///////////MAKE IT SO WHEN THEPAGE IS LOADED IT MAKEcardS IT PROMPT THE USER TO CONTINUE AS GUEST.
 ////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
 // IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
 //THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST

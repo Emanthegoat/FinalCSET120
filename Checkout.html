@@ -9,6 +9,12 @@
     <link rel="shortcut icon" href="shortcake.jpg" type="image/x-icon">
 </head>
 <body>
+<style>
+    .Payment-section
+    {
+        visibility: hidden;
+    }
+</style>
     <h1>Checkout</h1>
 
     <div class="order-summary">
@@ -38,7 +44,7 @@
             <button class="sum-cancel-btn" onclick="SummaryCancel()">Cancel</button>
         </div>
     </div>
-
+<div class="Payment-section">
     <h1>Payment</h1>
     <div class="payment">
         <h3>Choose Your Payment Type</h3>
@@ -49,7 +55,6 @@
         </select>
         <div class="D/C-form-div">
         </div>
-        <button onclick="CheckPayment()">Submit Payment Info</button>
     </div>
     <br><br><br>
     <div class="PickUp-delivery">
@@ -60,12 +65,11 @@
             <option value="Delivery">Delivery</option>
         </select>
         <div class="PickUp-delivery-form">
-            
         </div>
     </div>
+    <br><br>
+    <div class="Submit-Order"><button class="btn-submit-order" onclick="SubmitOrder()">Submit Order</button></div>
+</div>
     <a href="menu.html">MENU</a>
 </body>
 </html>
-
-
-
