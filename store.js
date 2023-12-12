@@ -1,5 +1,7 @@
 var NumberOfUsers = 0;
 var NumberOfOrders = 0
+var NumberOfAcceptedOrders= 0;
+var NumberOfCompletedOrders = 0
 //all the login info for the manager
 localStorage.setItem("ManagerUser", 'manager')
 localStorage.setItem("ManagerEmail", 'manager@sugarsoiree.yummy')
@@ -146,6 +148,7 @@ function login()
             alert('Login Successful')
             localStorage.setItem("CurrentLogin", "customer")//sets the current person using the site to customer
             localStorage.setItem("CurrentLoginName", localStorage.getItem('ExistCustomerName'))//sets the current name of the user to the existing customers name for later use
+            localStorage.setItem("CurrentLoginUser", localStorage.getItem(`ExistCustomerUser`))
             return location.href = 'index.html'; //takes user to home page
         }
         else//if the password does not match
@@ -167,6 +170,7 @@ function login()
                     alert('Login Successful')
                     localStorage.setItem("CurrentLogin", "customer")//sets the current person logged in as customr
                     localStorage.setItem("CurrentLoginName", localStorage.getItem(`Customer${i}Name`))//sets the current users name to who ever has logged in
+                    localStorage.setItem("CurrentLoginUser", localStorage.getItem(`Customer${i}Username`))//sets the current users username to who ever has logged in
                     return location.href = 'index.html';//takes the user to the home page
                 }
                 else//if the password is incorrect
@@ -243,6 +247,7 @@ function SignOut()//sign out function
 {
     localStorage.setItem("CurrentLoginType", "")//clears the current login type
     localStorage.setItem("CurrentLoginName", "")//clears the current logged in users' name
+    localStorage.setItem("CurrentLoginName", "")//clears the current logged in username
     location.replace('login.html');//takes the user to the login page
 }   
 
@@ -289,6 +294,8 @@ function ready()
     }
     updateNumOfUsers()
     updateNumOfOrders()
+    updateNumOfAcceptedOrders()
+    updateNumOfCompletedOrders()
 }
 
 function updateNumOfUsers()
@@ -313,26 +320,63 @@ function updateNumOfUsers()
 
 function updateNumOfOrders()
 {
-    console.log('here')
     //updates the number of users
         if(NumberOfOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
-            console.log('here1')
             if(localStorage.getItem("Number Of Orders") == null)
             {
-                console.log('here1.1')
                 localStorage.setItem("Number Of Orders", NumberOfOrders)
             }
             else if(localStorage.getItem("Number Of Orders") !== 0)//if the local storage number of users is not 0
             {
-                console.log('here1.2')
                 NumberOfOrders = Number(localStorage.getItem("Number Of Orders"))//updates the variable number of users
             }
         }
         else if(NumberOfOrders !== 0)//updates the local storage number when the number of users variable gets updated
         {
-            console.log('here2')
             localStorage.setItem("Number Of Orders", NumberOfOrders)
+        }
+}
+
+function updateNumOfAcceptedOrders()
+{
+    
+    //updates the number of users
+        if(NumberOfAcceptedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            if(localStorage.getItem("Number Of Accepted Orders") == null)
+            {
+                localStorage.setItem("Number Of Accepted Orders", NumberOfAcceptedOrders)
+            }
+            else if(localStorage.getItem("Number Of Accepted Orders") !== 0)//if the local storage number of users is not 0
+            {
+                NumberOfAcceptedOrders = Number(localStorage.getItem("Number Of Accepted Orders"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfAcceptedOrders !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            localStorage.setItem("Number Of Accepted Orders", NumberOfAcceptedOrders)
+        }
+}
+
+function updateNumOfCompletedOrders()
+{
+    
+    //updates the number of users
+        if(NumberOfCompletedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
+        {
+            if(localStorage.getItem("Number Of Completed Orders") == null)
+            {
+                localStorage.setItem("Number Of Completed Orders", NumberOfCompletedOrders)
+            }
+            else if(localStorage.getItem("Number Of Completed Orders") !== 0)//if the local storage number of users is not 0
+            {
+                NumberOfCompletedOrders = Number(localStorage.getItem("Number Of Completed Orders"))//updates the variable number of users
+            }
+        }
+        else if(NumberOfCompletedOrders !== 0)//updates the local storage number when the number of users variable gets updated
+        {
+            localStorage.setItem("Number Of Completed Orders", NumberOfCompletedOrders)
         }
 }
 
@@ -598,16 +642,17 @@ function SummaryCancel()
 
 function PaymentType()
 {
-    document.getElementsByClassName('choose-type-options')[0].style.backgroundColor = "";
-    const Pselect = document.getElementsByClassName('choose-type-options')[0].value
+    document.getElementsByClassName('Payment-select')[0].style.backgroundColor = "";
+    const Pselect = document.getElementsByClassName('Payment-select')[0].value
     if(Pselect == '')
     {
-        document.getElementsByClassName('choose-type-options')[0].style.backgroundColor = "red";
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = "red";
         alert('Please Select A Payment Option')
     }
     else if(Pselect == 'Cash')
     {
         let DCdiv = document.getElementsByClassName('D/C-form-div')[0]
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = 'Green'
         DCdiv.innerHTML = ''
     }
     else if(Pselect=='D/C')
@@ -621,7 +666,7 @@ function PaymentType()
         <input type="text" name="Exp-date" id="Exp-date" placeholder="MM/YYYY">
         <label for="Cvv" id="CvvL">Cvv</label>
         <input type="text" name="Cvv" id="Cvv" minlength="3" max="999" maxlength="3" required>
-        <button onclick="CheckPayment()">Submit Payment Info</button>
+        <div class="Check-payment-btn"><button onclick="CheckPayment()">Submit Payment Info</button></div>
         `
         DCdiv.innerHTML = formStuff;
     }
@@ -640,13 +685,14 @@ function PorD()
     {
         let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
         AddressDiv.innerHTML=''
+        document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'Green'
     }
     else if(PDselect == 'Delivery')
     {
         let AddressDiv = document.getElementsByClassName('PickUp-delivery-form')[0]
         let formStuff = `<label for="Address" id="AddressL">Address</label>
         <input type="text" name="Address" id="Address" placeholder="Address, City, State Abv., Zip Code">
-        <button class="address-submit" onclick="AddressSubmit()">Submit Address</button>
+        <div class="PD-check-btn"><button class="address-submit" onclick="AddressSubmit()">Submit Address</button></div>
         `
         AddressDiv.innerHTML= formStuff;
     }
@@ -733,6 +779,7 @@ function CheckPayment()
     else if(message == "")
     {
         document.getElementsByClassName('PickUp-delivery-select')[0].focus()
+        document.getElementsByClassName('Payment-select')[0].style.backgroundColor = 'Green'
         alert('Payment Submitted')
     }
 }
@@ -749,39 +796,54 @@ function AddressSubmit()
     } else {
       // Address format valid
       localStorage.setItem('Checkout Address', addressInput.value)
+      document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor = 'Green'
       alert('Address Submitted')
     }
 }
 
 function SubmitOrder()
 {
-    let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
-    let name = localStorage.getItem('Checkout Name')
-    let address = localStorage.getItem('Checkout Address')
+    console.log()
+    if(document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor === 'green' && document.getElementsByClassName('Payment-select')[0].style.backgroundColor == 'green')
+    {
+        let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
+        let name = localStorage.getItem('Checkout Name')
+        let address = localStorage.getItem('Checkout Address')
+        let currentLogin = localStorage.getItem('CurrentLoginUser')
+        let numberOfOrders = localStorage.getItem('Number Of Orders')
+        let FullOrder = {
+            WhoOrdered:{Name:name,User:currentLogin},
+            Items:items,
+            Address:address,
+            OrderNumber:numberOfOrders
+            }
+        console.log(FullOrder)
+        localStorage.setItem(`Incoming Order #${numberOfOrders}`, FullOrder)
+        NumberOfOrders++
+        CheckoutDelete()
+        location.replace('Customer_Profile.html')
+    }
+    else
+    {
+        alert("Please Complete The Sections Above. The Select Will Turn Green When Completed")
+    }
+    
 }
 
-function addOrderToLocalStorage(x)
+
+function CheckoutDelete()///when leaving the checkout page delete stuff from the local storage
 {
-    let tempStorage =  JSON.parse(localStorage.getItem('Send To Checkout Info'))
-    tempStorage['CustomerName'] = x
-    tempStorage['OrderTotal']
-    console.log(tempStorage)
-    // ordersObject[`Order${NumberOfOrders}`] = temptStorage
-    // localStorage.setItem('Incoming Orders', JSON.stringify(ordersObject))
-    // NumberOfOrders++
-    
+    localStorage.removeItem('Send To Checkout Info')
+    localStorage.removeItem('Checkout Address')
+    localStorage.removeItem('Checkout Name')
 }
 
 
 ///////////NEED TO DO!!!!!!!///////////////
 
-function CheckoutDelete()///when leaving the checkout page delete stuff from the local storage
-{
-
-}
 
 
-///////////MAKE IT SO WHEN THEPAGE IS LOADED IT MAKEcardS IT PROMPT THE USER TO CONTINUE AS GUEST.
+///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
 ////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
 // IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
 //THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
