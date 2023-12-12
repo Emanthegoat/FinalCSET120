@@ -670,8 +670,6 @@ font-size: 70px;
 {
     font-size: 1.3em;
 }
-.cart-item-desc{}
-
 .cart-item-desc img, .cart-item-desc p
 {
     display: inline;
@@ -925,5 +923,64 @@ width: fit-content;
     {
         background-color: rgb(180, 180, 180);
         border-radius: 10px;
+    }
+    .Payment-section
+    {
+        visibility: hidden;
+        margin: 0 auto;
+        width: 230px;
+    }
+    .payment
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .payment-select-div,.PD-select-div
+    {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .DC-form-div
+    {
+        margin: 0px auto;
+        width: 175px;
+
+    }
+    .DC-form-div input
+    {
+        margin: 5px auto;
+    }
+    .Check-payment-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 130px;
+    }
+    .PickUp-delivery
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .PickUp-delivery h3
+    {
+        text-align: center;
+    }
+    .PickUp-delivery-form
+    {
+        margin: 0px auto;
+        width: 175px;
+    }
+    .PickUp-delivery-form input
+    {
+        margin: 0px auto;
+    }
+    .PD-check-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 100px;
+    }
+    .Submit-Order
+    {
+        width: 85px;
+        margin: auto;
     }
 /* CHECKOUT CSS END */
