@@ -263,8 +263,6 @@ else//if it is loaded calls the ready function
 }
 
 
-
-
 //when the page is loaded this function runs
 function ready()
 {
@@ -280,16 +278,17 @@ function ready()
     }
     if(localStorage.getItem('CurrentLogin') == null)
     {
-        localStorage.setItem('CurrentLogin', "guest")
+        localStorage.setItem('CurrentLogin', "")
     }
-    if(localStorage.getItem('CurrentLogin') != null)
+    if(localStorage.getItem('CurrentLogin') != null || localStorage.getItem('CurrentLogin') != '')
     {
-        // document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
+        document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
     }
-    if(localStorage.getItem('CurrentLogin') == 'guest')
+    if(localStorage.getItem('CurrentLogin') == null || localStorage.getItem('CurrentLogin') == '')
     {
-        // document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
+        document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
     }
+    ContinueAsGuest()
    var WhereAmI = window.location.pathname//gets the url of what page the user is on
     if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
     {
@@ -308,6 +307,12 @@ function ready()
     updateNumOfOrders()
     updateNumOfAcceptedOrders()
     updateNumOfCompletedOrders()
+}
+
+function ContinueAsGuest()
+{
+    const menuNav = document.getElementsByClassName('menu-nav')[0]
+    menuNav.addEventListener('click', localStorage.setItem("CurrentLogin", 'guest'));
 }
 
 function updateNumOfUsers()
@@ -613,11 +618,6 @@ function CheckoutReady()
     }
 }
 
-
-
-
-
-
 function SummaryConfirm()
 {
     if(confirm('Are you sure?'))
@@ -815,7 +815,6 @@ function AddressSubmit()
 
 function SubmitOrder()
 {
-    console.log()
     if(document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor === 'green' && document.getElementsByClassName('Payment-select')[0].style.backgroundColor == 'green')
     {
         let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
@@ -823,13 +822,22 @@ function SubmitOrder()
         let address = localStorage.getItem('Checkout Address')
         let currentLogin = localStorage.getItem('CurrentLoginUser')
         let numberOfOrders = localStorage.getItem('Number Of Orders')
+        let paymentType = document.getElementsByClassName('Payment-select')[0].value
+        let PorD = document.getElementsByClassName('PickUp-delivery-select')[0].value
         let FullOrder = {
-            WhoOrdered:{Name:name,User:currentLogin},
+            CheckoutInfo:{PaymentType:paymentType,PickUpDelivery:PorD},
+            WhoOrdered:{Name:name},
             Items:items,
-            Address:address,
             OrderNumber:numberOfOrders
             }
-        console.log(FullOrder)
+        if(PorD == 'Delivery')
+        {
+            FullOrder['Address'] = address;
+        }
+        if(currentLogin != null || currentLogin != 'guest')
+        {
+            FullOrder.WhoOrdered['User'] = currentLogin;
+        }
         localStorage.setItem(`Incoming Order #${numberOfOrders}`, JSON.stringify(FullOrder))
         NumberOfOrders++
         CheckoutDelete()
