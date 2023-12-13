@@ -889,4 +889,3 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Address')
     localStorage.removeItem('Checkout Name')
 }
-
