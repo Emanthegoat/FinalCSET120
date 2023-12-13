@@ -266,6 +266,29 @@ else//if it is loaded calls the ready function
 //when the page is loaded this function runs
 function ready()
 {
+    var WhereAmI = window.location.pathname//gets the url of what page the user is on
+    CurrentLoginStuff()
+    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
+    {
+        IncomingOrdersReady()
+    }
+    if(WhereAmI == '/menu.html')
+    {
+        MenuReady()
+    }
+    if(WhereAmI == '/Checkout.html')
+    {
+        CheckoutReady()
+
+    }
+    updateNumOfUsers()
+    updateNumOfOrders()
+    updateNumOfAcceptedOrders()
+    updateNumOfCompletedOrders()
+}
+
+function CurrentLoginStuff()
+{
     if(localStorage.getItem('CurrentLogin') == 'Manager')//checks if the current person logged in is the manager
     {
         let navBarLinks = document.getElementsByClassName('links')[0];//gets the position of the nav bar
@@ -280,29 +303,38 @@ function ready()
     {
         localStorage.setItem('CurrentLogin', "")
     }
-    if(localStorage.getItem('CurrentLogin') != null || localStorage.getItem('CurrentLogin') != '')
+    if(localStorage.getItem('CurrentLogin') != null && localStorage.getItem('CurrentLogin') != '')
     {
         document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
     }
-    if(localStorage.getItem('CurrentLogin') == null || localStorage.getItem('CurrentLogin') == '')
+    if(localStorage.getItem('CurrentLogin') == null && localStorage.getItem('CurrentLogin') == '')
     {
         document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
     }
-    ContinueAsGuest()
-   var WhereAmI = window.location.pathname//gets the url of what page the user is on
-    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
+    if(localStorage.getItem('CurrentLogin') == '' && WhereAmI == "/menu.html")
     {
-        IncomingOrdersReady()
+        let ConfirmGuest = confirm("If you continue as a guest your orders will not be saved. \n Continue?")
+        if(ConfirmGuest !== true)
+        {
+            if(confirm('Would You Like To Sign Up?'))
+            {
+                location.replace('signUp.html')
+            }
+            else{localStorage.setItem('CurrentLogin', 'guest')}
+        }
+        else{localStorage.setItem('CurrentLogin', 'guest')}
     }
-    if(WhereAmI == '/menu.html')
+    if(localStorage.getItem('CurrentLogin') == 'customer')
     {
-        MenuReady()
+        let menu = document.getElementsByClassName('links')[0]
+        let li = document.createElement('li')
+        let aLink = document.createElement('a')
+        aLink.innerText = "Profile"
+        aLink.setAttribute('href', 'Customer_Profile.html')
+        menu.appendChild(li)
+        li.appendChild(aLink)
     }
-    if(WhereAmI == '/Checkout.html')
-    {
-        CheckoutReady()
 
-    }
     if(WhereAmI=="/Incoming_Orders.html"){
         ViewIncomingOrders()
     }
@@ -317,6 +349,7 @@ function ContinueAsGuest()
 {
     const menuNav = document.getElementsByClassName('menu-nav')[0]
     menuNav.addEventListener('click', localStorage.setItem("CurrentLogin", 'guest'));
+
 }
 
 function updateNumOfUsers()
@@ -587,13 +620,13 @@ function CheckoutReady()
         const item_total = item['item_total'];
         if(key == 'cart_total')
         {
-            subtotal = Number(subtotal.toFixed(2))
+            subtotal = Math.fround(Number((subtotal))).toFixed(2)
             const subtotalLocation = document.getElementsByClassName('sum-subtotal-price')[0]
             subtotalLocation.innerText = `$${subtotal}`
-            let tax = Number((subtotal*.06).toFixed(2))
+            let tax = Math.fround(Number((subtotal*.06))).toFixed(2)
             const taxLocation = document.getElementsByClassName('sum-tax-price')[0]
             taxLocation.innerText = `$${tax}`
-            total = Number((subtotal*1.06).toFixed(2))
+            total = Math.fround(Number((subtotal*1.06))).toFixed(2)
             const totalLocation = document.getElementsByClassName('sum-total-price')[0]
             totalLocation.innerText = `$${total}`
         }
@@ -845,7 +878,15 @@ function SubmitOrder()
         localStorage.setItem(`Incoming Order #${numberOfOrders}`, JSON.stringify(FullOrder))
         NumberOfOrders++
         CheckoutDelete()
-        location.replace('Customer_Profile.html')
+        if(currentLogin == 'guest')
+        {
+            if(confirm('You are not logged in would you like to sign up?'))
+            {
+                location.replace('signUp.html')
+            }
+            else{location.replace('index.html')}
+        }
+        else{location.replace('Customer_Profile.html')}
     }
     else
     {
@@ -861,6 +902,7 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Address')
     localStorage.removeItem('Checkout Name')
 }
+
 
 
 ///////////NEED TO DO!!!!!!!///////////////
