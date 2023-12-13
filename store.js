@@ -279,7 +279,10 @@ function ready()
     if(WhereAmI == '/Checkout.html')
     {
         CheckoutReady()
-
+    }
+    if(WhereAmI=="/Incoming_Orders.html")
+    {
+        ViewIncomingOrders()
     }
     updateNumOfUsers()
     updateNumOfOrders()
@@ -334,23 +337,12 @@ function CurrentLoginStuff()
         menu.appendChild(li)
         li.appendChild(aLink)
     }
-
-    if(WhereAmI=="/Incoming_Orders.html"){
-        ViewIncomingOrders()
-    }
-
     updateNumOfUsers()
     updateNumOfOrders()
     updateNumOfAcceptedOrders()
     updateNumOfCompletedOrders()
 }
 
-function ContinueAsGuest()
-{
-    const menuNav = document.getElementsByClassName('menu-nav')[0]
-    menuNav.addEventListener('click', localStorage.setItem("CurrentLogin", 'guest'));
-
-}
 
 function updateNumOfUsers()
 {
@@ -905,27 +897,6 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Address')
     localStorage.removeItem('Checkout Name')
 }
-
-
-
-
-///////////NEED TO DO!!!!!!!///////////////
-
-
-
-///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
-////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
-// IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
-//THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
-
-
-
-///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
-//update the nav bar to be able to go to the menu without having to click continue as guest
-
-
-//View Incoming orders for manager//
-
 
 function ViewIncomingOrders(){
 var keys = new Array()
