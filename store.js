@@ -268,10 +268,6 @@ function ready()
 {
     var WhereAmI = window.location.pathname//gets the url of what page the user is on
     CurrentLoginStuff()
-    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
-    {
-        IncomingOrdersReady()
-    }
     if(WhereAmI == '/menu.html')
     {
         MenuReady()
@@ -283,6 +279,10 @@ function ready()
     if(WhereAmI=="/Incoming_Orders.html")
     {
         ViewIncomingOrders()
+    }
+    if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
+    {
+        IncomingOrdersReady()
     }
     updateNumOfUsers()
     updateNumOfOrders()
@@ -898,114 +898,132 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Name')
 }
 
-function ViewIncomingOrders(){
-var keys = new Array()
-for(var key in localStorage){
-    keys.push(key)
-}
-const filterRegex= /\bIncoming+/i
-let filteredarray = keys.filter((key) => filterRegex.test(key)) 
-for(let i=0 ; i< filteredarray.length ; i++){
-    const order= JSON.parse(localStorage.getItem(filteredarray[i]))
-    let payType = order.CheckoutInfo.PaymentType
-    if(payType == 'Cash')
+function ViewIncomingOrders()
+{
+    var x = -1
+    console.log('test1', x)
+    var keys = new Array()
+    for(var key in localStorage)
     {
-        payType = `Cash Payment Upon Arrival`
+        keys.push(key)
     }
-    const address = order.Address
-    const PorD = order.CheckoutInfo.PickUpDelivery
-    let PorDHTML = ''
-    if(PorD == 'Delivery')
-    {
-        PorDHTML =`For Delivery to:<p class="incoming-order-name">${address}</p>`
-        
-    }
-    else if(PorD == 'PickUp')
-    {
-        PorDHTML = `For :<p class="incoming-order-name">PickUp</p>`
-        
-    }
-    const items =  order.Items
-    const OrderNum = order.OrderNumber
-    const name = order.WhoOrdered.Name
-    const subtotal = Math.fround(Number((order.Items.cart_total))).toFixed(2)
-    const tax = Math.fround(Number((subtotal*.06))).toFixed(2)
-    const total = Math.fround(Number((subtotal*1.06))).toFixed(2)
-    var incomingDiv = document.getElementsByClassName('incoming-orders-grid')[0]
-    var divElement = document.createElement('div');
-    divElement.setAttribute('class', 'incoming-order')
-    var divHTML = `
-    <h2 class="incoming-order-title">Order by:</h2>
-            <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">4:15pm</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
-            <hr>
-            <div class="order-items-section">
-               
+    const filterRegex= /\bIncoming+/i
+    let filteredarray = keys.filter((key) => filterRegex.test(key)) 
+    console.log(filteredarray)
+    for(let i = 0; i< filteredarray.length ; i++){
+        const order= JSON.parse(localStorage.getItem(filteredarray[i]))
+        let payType = order.CheckoutInfo.PaymentType
+        if(payType == 'Cash')
+        {
+            payType = `Cash Payment Upon Arrival`
+        }
+        else if(payType == 'D/C')
+        {
+            payType = `Paid`
+        }
+        const address = order.Address
+        const PorD = order.CheckoutInfo.PickUpDelivery
+        let PorDHTML = ''
+        if(PorD == 'Delivery')
+        {
+            PorDHTML =`For Delivery to:<p class="incoming-order-name">${address}</p>`
+
+        }
+        else if(PorD == 'PickUp')
+        {
+            PorDHTML = `For :<p class="incoming-order-name">PickUp</p>`
+
+        }
+       
+        const items =  order.Items
+        const OrderNum = order.OrderNumber
+        const name = order.WhoOrdered.Name
+        const subtotal = Math.fround(Number((order.Items.cart_total))).toFixed(2)
+        const tax = Math.fround(Number((subtotal*.06))).toFixed(2)
+        const total = Math.fround(Number((subtotal*1.06))).toFixed(2)
+        let incomingDiv = document.getElementsByClassName('incoming-orders-grid')[0]
+        let divElement = document.createElement('div');
+        divElement.setAttribute('class', 'incoming-order')
+        var divHTML = `
+        <h2 class="incoming-order-title">Order #${OrderNum} by:</h2>
+                <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">4:15pm</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
                 <hr>
-            </div>
-            <div class="order-total-div order-section">
-                <p class="order-total-title">Totals</p>
-                <div class="order-total-items">
-                    <div class="order-total-items-left">
-                       <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
-                       <p class="order-total-tax order-total-items-item">Tax:</p>
-                       <hr>
-                       <p class="order-total-text order-total-item-total">Total:</p>
+                <div class="order-items-section">
+
+    
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="order-total-div order-section">
+                    <p class="order-total-title">Totals</p>
+                    <div class="order-total-items">
+                        <div class="order-total-items-left">
+                           <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
+                           <p class="order-total-tax order-total-items-item">Tax:</p>
+                           <hr>
+                           <p class="order-total-text order-total-item-total">Total:</p>
+                        </div>
+                        <div class="order-total-items-right">
+                            <p class="order-total-subtotal-price order-total-items-item">$${subtotal}</p>
+                            <p class="order-total-tax-price order-total-items-item">$${tax}</p>
+                            <p class="order-total-price order-total-item-total">$${total}</p>
+                         </div>
                     </div>
-                    <div class="order-total-items-right">
-                        <p class="order-total-subtotal-price order-total-items-item">${subtotal}</p>
-                        <p class="order-total-tax-price order-total-items-item">${tax}</p>
-                        <p class="order-total-price order-total-item-total">${total}</p>
-                     </div>
+                </div>
+                <br>
+                <hr>
+                <div class="order-buttons-section">
+                    <button class="accept-order order-button" name="acceptOrder">Accept Order</button>
                 </div>
             </div>
-            <br>
-            <hr>
-            <div class="order-buttons-section">
-                <button class="accept-order order-button" name="acceptOrder">Accept Order</button>
-            </div>
-        </div>
-    `
-    
-    divElement.innerHTML = divHTML
-    incomingDiv.appendChild(divElement)
-    
-    incomingDiv = null
-    divElement = null
-    divHTML = null
-    itemsAppended = true
-    for(let i = 1;i<Object.keys(items).length;i++)
-    {
-    const itemname = items[`Item${i}`]["item_name"]
-    const itemquantity = items[`Item${i}`]["item_quantity"]
-    const itemtotal = items[`Item${i}`]["item_total"]
-    let itemDiv = document.createElement('div')
-    itemDiv.setAttribute('class', 'order-item')
-if(itemsAppended === false)
-{
-    itemsAppended = true
-    for(let i = 1;i<Object.keys(items).length;i++)
-    {
-    const itemname = items[`Item${i}`]["item_name"]
-    const itemquantity = items[`Item${i}`]["item_quantity"]
-    const itemtotal = items[`Item${i}`]["item_total"]
-    let itemDiv = document.createElement('div')
-    itemDiv.setAttribute('class', 'order-item')
-    const itemHTML =` 
-                <div class="order-item-left">
+        `
+        console.log('test2', x)
+        x++
+        console.log('test3', x)
+        divElement.innerHTML = divHTML
+        incomingDiv.appendChild(divElement)
+        // console.log(itemsAppended)
+        incomingDiv = null
+        divElement = null
+        divHTML = null
+        console.log("Before ITems appended", items)
+            for (var key in items) {
+                if(key=='cart_total')
+                {
+                    break;
+                }
+                const itemname = items[key]["item_name"]
+                const itemquantity = items[key]["item_quantity"]
+                const itemtotal = (Math.fround(Number(items[key]["item_total"]))).toFixed(2)
+                console.log(itemtotal)
+                let itemDiv = document.createElement('div')
+                itemDiv.setAttribute('class', 'order-item')
+                const itemHTML = `
+                    <div class="order-item-left">
                         <p class="order-item-quantity order-item-quantity-1">${itemquantity}&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <p class="order-item-name order-item-name-1">${itemname}</p>
-                </div>
-                <div class="order-item-right">
-                    <p class="order-item-price order-item-price-1">${itemtotal}</p>
-    
-    itemDiv.innerHTML = itemHTML
-    let itemsSection = document.getElementsByClassName('order-items-section')[0]
-    itemsSection.appendChild(itemDiv)
-    `
+                    </div>
+                    <div class="order-item-right">
+                        <p class="order-item-price order-item-price-1">$${itemtotal}</p>
+                    </div>
+                `
+                itemDiv.innerHTML = itemHTML
+                let itemsSection = document.getElementsByClassName('order-items-section')[x]
+                itemsSection.appendChild(itemDiv)
+            }
+
     }
-}
-    
-}
+    }
 
 
+//////////////////NEED TO DO!!!!!!!!!!!///////////
 
+//Make it so that it loads the accepted orders and when 
+///an incoming order is accepted it moves it to that in the local storage
+
+///Previous Orders needs to be done
+
+////manager menu editor needs to be done
+
+/////When checking out the time needs to be saved
