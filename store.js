@@ -854,18 +854,18 @@ function SubmitOrder()
 {
     if(document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor === 'green' && document.getElementsByClassName('Payment-select')[0].style.backgroundColor == 'green')
     {
+        updateNumOfOrders()
         let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
         let name = localStorage.getItem('Checkout Name')
         let address = localStorage.getItem('Checkout Address')
         let currentLogin = localStorage.getItem('CurrentLoginUser')
-        let numberOfOrders = localStorage.getItem('Number Of Orders')
         let paymentType = document.getElementsByClassName('Payment-select')[0].value
         let PorD = document.getElementsByClassName('PickUp-delivery-select')[0].value
         let FullOrder = {
             CheckoutInfo:{PaymentType:paymentType,PickUpDelivery:PorD},
             WhoOrdered:{Name:name},
             Items:items,
-            OrderNumber:numberOfOrders
+            OrderNumber:NumberOfOrders
             }
         if(PorD == 'Delivery')
         {
@@ -875,8 +875,11 @@ function SubmitOrder()
         {
             FullOrder.WhoOrdered['User'] = currentLogin;
         }
-        localStorage.setItem(`Incoming Order #${numberOfOrders}`, JSON.stringify(FullOrder))
+        localStorage.setItem(`Incoming Order #${NumberOfOrders}`, JSON.stringify(FullOrder))
+        console.log(NumberOfOrders)
         NumberOfOrders++
+        console.log(NumberOfOrders)
+        updateNumOfOrders()
         CheckoutDelete()
         if(currentLogin == 'guest')
         {
@@ -902,6 +905,7 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Address')
     localStorage.removeItem('Checkout Name')
 }
+
 
 
 
@@ -936,3 +940,5 @@ let order= JSON.parse(localStorage.getItem(filteredarray[i]))
 }
 
 }
+
+
