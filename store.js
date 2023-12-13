@@ -266,30 +266,8 @@ else//if it is loaded calls the ready function
 //when the page is loaded this function runs
 function ready()
 {
-    if(localStorage.getItem('CurrentLogin') == 'Manager')//checks if the current person logged in is the manager
-    {
-        let navBarLinks = document.getElementsByClassName('links')[0];//gets the position of the nav bar
-        let ManDirLi = document.createElement('li')//creates an li element
-        let ManDirAlink = document.createElement('a')//creates an a link element
-        ManDirAlink.setAttribute('href', 'Manager_Directory.html')//sets the link href to the manager directory page
-        ManDirAlink.innerText = "Manager Directory";//changes what the text of the a link displays
-        navBarLinks.appendChild(ManDirLi)//appends the li to the nav bar
-        ManDirLi.appendChild(ManDirAlink)//appends the a link to the li appened to the nav bar
-    }
-    if(localStorage.getItem('CurrentLogin') == null)
-    {
-        localStorage.setItem('CurrentLogin', "")
-    }
-    if(localStorage.getItem('CurrentLogin') != null || localStorage.getItem('CurrentLogin') != '')
-    {
-        document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
-    }
-    if(localStorage.getItem('CurrentLogin') == null || localStorage.getItem('CurrentLogin') == '')
-    {
-        document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
-    }
-    ContinueAsGuest()
-   var WhereAmI = window.location.pathname//gets the url of what page the user is on
+    var WhereAmI = window.location.pathname//gets the url of what page the user is on
+    CurrentLoginStuff()
     if(WhereAmI == "/Incoming_Orders.html")//if on the incoming orders page
     {
         IncomingOrdersReady()
@@ -309,10 +287,53 @@ function ready()
     updateNumOfCompletedOrders()
 }
 
-function ContinueAsGuest()
+function CurrentLoginStuff()
 {
-    const menuNav = document.getElementsByClassName('menu-nav')[0]
-    menuNav.addEventListener('click', localStorage.setItem("CurrentLogin", 'guest'));
+    if(localStorage.getItem('CurrentLogin') == 'Manager')//checks if the current person logged in is the manager
+    {
+        let navBarLinks = document.getElementsByClassName('links')[0];//gets the position of the nav bar
+        let ManDirLi = document.createElement('li')//creates an li element
+        let ManDirAlink = document.createElement('a')//creates an a link element
+        ManDirAlink.setAttribute('href', 'Manager_Directory.html')//sets the link href to the manager directory page
+        ManDirAlink.innerText = "Manager Directory";//changes what the text of the a link displays
+        navBarLinks.appendChild(ManDirLi)//appends the li to the nav bar
+        ManDirLi.appendChild(ManDirAlink)//appends the a link to the li appened to the nav bar
+    }
+    if(localStorage.getItem('CurrentLogin') == null)
+    {
+        localStorage.setItem('CurrentLogin', "")
+    }
+    if(localStorage.getItem('CurrentLogin') != null && localStorage.getItem('CurrentLogin') != '')
+    {
+        document.getElementsByClassName('menu-nav')[0].innerText = "Menu"
+    }
+    if(localStorage.getItem('CurrentLogin') == null && localStorage.getItem('CurrentLogin') == '')
+    {
+        document.getElementsByClassName('menu-nav')[0].innerText = "Continue As Guest"
+    }
+    if(localStorage.getItem('CurrentLogin') == '' && WhereAmI == "/menu.html")
+    {
+        let ConfirmGuest = confirm("If you continue as a guest your orders will not be saved. \n Continue?")
+        if(ConfirmGuest !== true)
+        {
+            if(confirm('Would You Like To Sign Up?'))
+            {
+                location.replace('signUp.html')
+            }
+            else{localStorage.setItem('CurrentLogin', 'guest')}
+        }
+        else{localStorage.setItem('CurrentLogin', 'guest')}
+    }
+    if(localStorage.getItem('CurrentLogin') == 'customer')
+    {
+        let menu = document.getElementsByClassName('links')[0]
+        let li = document.createElement('li')
+        let aLink = document.createElement('a')
+        aLink.innerText = "Profile"
+        aLink.setAttribute('href', 'Customer_Profile.html')
+        menu.appendChild(li)
+        li.appendChild(aLink)
+    }
 }
 
 function updateNumOfUsers()
@@ -583,13 +604,13 @@ function CheckoutReady()
         const item_total = item['item_total'];
         if(key == 'cart_total')
         {
-            subtotal = Number(subtotal.toFixed(2))
+            subtotal = Math.fround(Number((subtotal))).toFixed(2)
             const subtotalLocation = document.getElementsByClassName('sum-subtotal-price')[0]
             subtotalLocation.innerText = `$${subtotal}`
-            let tax = Number((subtotal*.06).toFixed(2))
+            let tax = Math.fround(Number((subtotal*.06))).toFixed(2)
             const taxLocation = document.getElementsByClassName('sum-tax-price')[0]
             taxLocation.innerText = `$${tax}`
-            total = Number((subtotal*1.06).toFixed(2))
+            total = Math.fround(Number((subtotal*1.06))).toFixed(2)
             const totalLocation = document.getElementsByClassName('sum-total-price')[0]
             totalLocation.innerText = `$${total}`
         }
@@ -841,7 +862,15 @@ function SubmitOrder()
         localStorage.setItem(`Incoming Order #${numberOfOrders}`, JSON.stringify(FullOrder))
         NumberOfOrders++
         CheckoutDelete()
-        location.replace('Customer_Profile.html')
+        if(currentLogin == 'guest')
+        {
+            if(confirm('You are not logged in would you like to sign up?'))
+            {
+                location.replace('signUp.html')
+            }
+            else{location.replace('index.html')}
+        }
+        else{location.replace('Customer_Profile.html')}
     }
     else
     {
@@ -858,17 +887,3 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
     localStorage.removeItem('Checkout Name')
 }
 
-
-///////////NEED TO DO!!!!!!!///////////////
-
-
-
-///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
-////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
-// IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
-//THAT WOULD ALSO SET THE ///CURRENT_USER///CURRENT_LOGIN///CURREN_LOGIN_NAME/// TO GUEST
-
-
-
-///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
-//update the nav bar to be able to go to the menu without having to click continue as guest
