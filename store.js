@@ -899,17 +899,15 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
 }
 
 function ViewIncomingOrders(){
-var keys = new Array()
-for(var key in localStorage){
-    keys.push(key)
-}
-const filterRegex= /\bIncoming+/i
-let filteredarray = keys.filter((key) => filterRegex.test(key)) 
-for(let i=0 ; i< filteredarray.length ; i++){
-
-let order= JSON.parse(localStorage.getItem(filteredarray[i]))
-}
-
-}
-
-
+    var keys = new Array()
+    for(var key in localStorage){
+        keys.push(key)
+    }
+    const filterRegex= /\bIncoming+/i
+    let filteredarray = keys.filter((key) => filterRegex.test(key)) 
+    for(let i=0 ; i< filteredarray.length ; i++){
+    
+    let order= JSON.parse(localStorage.getItem(filteredarray[i]))
+    }
+    
+    }
