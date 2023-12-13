@@ -906,10 +906,106 @@ for(var key in localStorage){
 const filterRegex= /\bIncoming+/i
 let filteredarray = keys.filter((key) => filterRegex.test(key)) 
 for(let i=0 ; i< filteredarray.length ; i++){
-
-let order= JSON.parse(localStorage.getItem(filteredarray[i]))
+    const order= JSON.parse(localStorage.getItem(filteredarray[i]))
+    let payType = order.CheckoutInfo.PaymentType
+    if(payType == 'Cash')
+    {
+        payType = `Cash Payment Upon Arrival`
+    }
+    const address = order.Address
+    const PorD = order.CheckoutInfo.PickUpDelivery
+    let PorDHTML = ''
+    if(PorD == 'Delivery')
+    {
+        PorDHTML =`For Delivery to:<p class="incoming-order-name">${address}</p>`
+        
+    }
+    else if(PorD == 'PickUp')
+    {
+        PorDHTML = `For :<p class="incoming-order-name">PickUp</p>`
+        
+    }
+    const items =  order.Items
+    const OrderNum = order.OrderNumber
+    const name = order.WhoOrdered.Name
+    const subtotal = Math.fround(Number((order.Items.cart_total))).toFixed(2)
+    const tax = Math.fround(Number((subtotal*.06))).toFixed(2)
+    const total = Math.fround(Number((subtotal*1.06))).toFixed(2)
+    var incomingDiv = document.getElementsByClassName('incoming-orders-grid')[0]
+    var divElement = document.createElement('div');
+    divElement.setAttribute('class', 'incoming-order')
+    var divHTML = `
+    <h2 class="incoming-order-title">Order by:</h2>
+            <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">4:15pm</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
+            <hr>
+            <div class="order-items-section">
+               
+                <hr>
+            </div>
+            <div class="order-total-div order-section">
+                <p class="order-total-title">Totals</p>
+                <div class="order-total-items">
+                    <div class="order-total-items-left">
+                       <p class="order-total-subtotal order-total-items-item">Subtotal:</p>
+                       <p class="order-total-tax order-total-items-item">Tax:</p>
+                       <hr>
+                       <p class="order-total-text order-total-item-total">Total:</p>
+                    </div>
+                    <div class="order-total-items-right">
+                        <p class="order-total-subtotal-price order-total-items-item">${subtotal}</p>
+                        <p class="order-total-tax-price order-total-items-item">${tax}</p>
+                        <p class="order-total-price order-total-item-total">${total}</p>
+                     </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="order-buttons-section">
+                <button class="accept-order order-button" name="acceptOrder">Accept Order</button>
+            </div>
+        </div>
+    `
+    
+    divElement.innerHTML = divHTML
+    incomingDiv.appendChild(divElement)
+    
+    incomingDiv = null
+    divElement = null
+    divHTML = null
+    itemsAppended = true
+    for(let i = 1;i<Object.keys(items).length;i++)
+    {
+    const itemname = items[`Item${i}`]["item_name"]
+    const itemquantity = items[`Item${i}`]["item_quantity"]
+    const itemtotal = items[`Item${i}`]["item_total"]
+    let itemDiv = document.createElement('div')
+    itemDiv.setAttribute('class', 'order-item')
+if(itemsAppended === false)
+{
+    itemsAppended = true
+    for(let i = 1;i<Object.keys(items).length;i++)
+    {
+    const itemname = items[`Item${i}`]["item_name"]
+    const itemquantity = items[`Item${i}`]["item_quantity"]
+    const itemtotal = items[`Item${i}`]["item_total"]
+    let itemDiv = document.createElement('div')
+    itemDiv.setAttribute('class', 'order-item')
+    const itemHTML =` 
+                <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">${itemquantity}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">${itemname}</p>
+                </div>
+                <div class="order-item-right">
+                    <p class="order-item-price order-item-price-1">${itemtotal}</p>
+    
+    itemDiv.innerHTML = itemHTML
+    let itemsSection = document.getElementsByClassName('order-items-section')[0]
+    itemsSection.appendChild(itemDiv)
+    `
+    }
+}
+    
 }
 
-}
 
 
