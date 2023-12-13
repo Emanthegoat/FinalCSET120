@@ -303,6 +303,10 @@ function ready()
         CheckoutReady()
 
     }
+    if(WhereAmI=="/Incoming_Orders.html"){
+        ViewIncomingOrders()
+    }
+
     updateNumOfUsers()
     updateNumOfOrders()
     updateNumOfAcceptedOrders()
@@ -872,3 +876,21 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
 
 ///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
 //update the nav bar to be able to go to the menu without having to click continue as guest
+
+
+//View Incoming orders for manager//
+
+
+function ViewIncomingOrders(){
+var keys = new Array()
+for(var key in localStorage){
+    keys.push(key)
+}
+const filterRegex= /\bIncoming+/i
+let filteredarray = keys.filter((key) => filterRegex.test(key)) 
+for(let i=0 ; i< filteredarray.length ; i++){
+
+let order= JSON.parse(localStorage.getItem(filteredarray[i]))
+}
+
+}
