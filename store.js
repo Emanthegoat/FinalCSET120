@@ -347,6 +347,7 @@ function CurrentLoginStuff()
     updateNumOfCompletedOrders()
 }
 
+
 function updateNumOfUsers()
 {
     //updates the number of users
@@ -389,6 +390,7 @@ function updateNumOfOrders()
 
 function updateNumOfAcceptedOrders()
 {
+    
     //updates the number of users
         if(NumberOfAcceptedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
@@ -409,6 +411,7 @@ function updateNumOfAcceptedOrders()
 
 function updateNumOfCompletedOrders()
 {
+    
     //updates the number of users
         if(NumberOfCompletedOrders == 0)//when the page is reloaded the variable will be 0 and if so it pulls whatever number has been stored in the local storage
         {
@@ -447,6 +450,7 @@ function accept(event)
 {
     //gets the div of the clicked button
     let button = event.srcElement
+    let button = event.srcElement
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
@@ -454,6 +458,13 @@ function accept(event)
     button.setAttribute("name", "markAsComplete")//changes the button on the bottom of the clicked div to marked as complete
     button.innerText = "Mark As Complete"
     IncomingOrdersReady()//calls the incoming orders ready to resets the onclick attribute
+    let name = clickedButtonParent.getAttribute('name')
+    let order = JSON.parse(localStorage.getItem(`${name}`))
+    let newName = name.replace(/Incoming/i, 'Accepted')
+    localStorage.setItem(`${newName}`, JSON.stringify(order))
+    localStorage.removeItem(`${name}`)
+    NumberOfAcceptedOrders++
+    updateNumOfAcceptedOrders()
     let name = clickedButtonParent.getAttribute('name')
     let order = JSON.parse(localStorage.getItem(`${name}`))
     let newName = name.replace(/Incoming/i, 'Accepted')
@@ -483,6 +494,7 @@ function completedOrder(event)
     updateNumOfAcceptedOrders()
     updateNumOfCompletedOrders()
 }
+
 
 function MenuReady()
 {
@@ -579,6 +591,7 @@ function updateCartTotal()//updates the cart total
 var Object_of_all_orders = new Object
 function checkoutClicked(event)//when you click the purchase button even listener
 {
+    if(confirm("Confirm Checkout"))
     if(confirm("Confirm Checkout"))
     {
 
@@ -695,6 +708,7 @@ function SummaryCancel()
     }
 }
 
+
 function PaymentType()
 {
     document.getElementsByClassName('Payment-select')[0].style.backgroundColor = "";
@@ -753,14 +767,20 @@ function PorD()
     }
 }
 
+
 function CheckPayment()
 {
     var message = ''
+
     document.getElementsByName('card-number')[0].style.backgroundColor=''
     document.getElementsByName('cardholder-name')[0].style.backgroundColor=''
     document.getElementsByName('Exp-date')[0].style.backgroundColor=''
     document.getElementsByName('Cvv')[0].style.backgroundColor=''
+
+   
     const card_number = document.getElementsByName('card-number')[0].value
+
+    
     // check credit card number
     var re16digit = /^\d{16}$/
     if (card_number.search(re16digit) == -1)
@@ -903,6 +923,7 @@ function SubmitOrder()
     
 }
 
+
 function CheckoutDelete()///when leaving the checkout page delete stuff from the local storage
 {
     localStorage.removeItem('Send To Checkout Info')
@@ -941,11 +962,14 @@ function ViewIncomingOrders()
         if(PorD == 'Delivery')
         {
             PorDHTML =`For Delivery to:<p class="incoming-order-name">${address}</p>`
+
         }
         else if(PorD == 'PickUp')
         {
             PorDHTML = `For :<p class="incoming-order-name">PickUp</p>`
+
         }
+       
         const items =  order.Items
         const name = order.WhoOrdered.Name
         const time = order.Time
@@ -981,6 +1005,8 @@ function ViewIncomingOrders()
                 <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">${time}</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
                 <hr>
                 <div class="order-items-section">
+
+    
                 </div>
                 <br>
                 <hr>
@@ -1039,6 +1065,8 @@ function ViewIncomingOrders()
         IncomingOrdersReady()
     }
     }
+
+
 //////////////////NEED TO DO!!!!!!!!!!!///////////
 
 ///Previous Orders needs to be done
@@ -1049,6 +1077,7 @@ function ViewIncomingOrders()
 // {
 //     localStorage.setItem(`Incoming Order #${i}`, '{"CheckoutInfo":{"PaymentType":"Cash","PickUpDelivery":"PickUp"},"WhoOrdered":{"Name":"John Doe","User":"johndoe!!"},"Items":{"Item1":{"item_name":"Special- Tres Leche Cake","price_per_item":29.99,"item_quantity":1,"item_total":29.99},"Item2":{"item_name":"Special- Cookie dough Brownies(10 pack)","price_per_item":6.99,"item_quantity":1,"item_total":6.99},"Item3":{"item_name":"Pumpkin Pie","price_per_item":8,"item_quantity":1,"item_total":8},"Item4":{"item_name":"Lemon Pound Cake Muffins (12 pack)","price_per_item":6.25,"item_quantity":1,"item_total":6.25},"cart_total":51.23},"OrderNumber":0,"Time":"Time: 21:16"}')
 // }
+
 
 function CutomerProfileReady()
 {
@@ -1109,6 +1138,7 @@ function CutomerProfileReady()
             `
             receiptDiv.innerHTML = receiptHTML
             receiptGrid.appendChild(receiptDiv)
+
             for (var key in items) {
                 if(key=='cart_total')
                 {
@@ -1136,4 +1166,4 @@ function CutomerProfileReady()
 }
 // add item function - Vee
 const addingItems = document.getElementById('adding-items');
-addingItems.addEventListener('submit')
+// addingItems.addEventListener('submit')
