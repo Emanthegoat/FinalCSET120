@@ -1,3 +1,5 @@
+// import { sortBy } from 'lodash';
+// npm install lodash
 var NumberOfUsers = 0;
 var NumberOfOrders = 0
 var NumberOfAcceptedOrders= 0;
@@ -284,6 +286,10 @@ function ready()
     {
         IncomingOrdersReady()
     }
+    if(WhereAmI =='/Customer_Profile.html')
+    {
+        CutomerProfileReady()
+    }
     updateNumOfUsers()
     updateNumOfOrders()
     updateNumOfAcceptedOrders()
@@ -453,6 +459,13 @@ function accept(event)
     button.setAttribute("name", "markAsComplete")//changes the button on the bottom of the clicked div to marked as complete
     button.innerText = "Mark As Complete"
     IncomingOrdersReady()//calls the incoming orders ready to resets the onclick attribute
+    let name = clickedButtonParent.getAttribute('name')
+    let order = JSON.parse(localStorage.getItem(`${name}`))
+    let newName = name.replace(/Incoming/i, 'Accepted')
+    localStorage.setItem(`${newName}`, JSON.stringify(order))
+    localStorage.removeItem(`${name}`)
+    NumberOfAcceptedOrders++
+    updateNumOfAcceptedOrders()
 }
 // completed order button
 function completedOrder(event)
@@ -465,6 +478,15 @@ function completedOrder(event)
     let button = event.srcElement //gets the button source
     button.setAttribute("name", "markedAsComplete")//changes the name attribute of the button
     button.innerText = "Order Completed"//changes the text of the button 
+    let name = clickedButtonParent.getAttribute('name')
+    let order = JSON.parse(localStorage.getItem(`${name}`))
+    let newName = name.replace(/Accepted/i, 'Completed')
+    localStorage.setItem(`${newName}`, JSON.stringify(order))
+    localStorage.removeItem(`${name}`)
+    NumberOfAcceptedOrders--
+    updateNumOfCompletedOrders()
+    updateNumOfAcceptedOrders()
+    updateNumOfCompletedOrders()
 }
 
 
@@ -847,6 +869,10 @@ function SubmitOrder()
     if(document.getElementsByClassName('PickUp-delivery-select')[0].style.backgroundColor === 'green' && document.getElementsByClassName('Payment-select')[0].style.backgroundColor == 'green')
     {
         updateNumOfOrders()
+        const date = new Date();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        console.log(`Current time: ${hours}:${minutes}`);
         let items = JSON.parse(localStorage.getItem("Send To Checkout Info"))
         let name = localStorage.getItem('Checkout Name')
         let address = localStorage.getItem('Checkout Address')
@@ -857,7 +883,8 @@ function SubmitOrder()
             CheckoutInfo:{PaymentType:paymentType,PickUpDelivery:PorD},
             WhoOrdered:{Name:name},
             Items:items,
-            OrderNumber:NumberOfOrders
+            OrderNumber:NumberOfOrders,
+            Time:`Time: ${hours}:${minutes}`
             }
         if(PorD == 'Delivery')
         {
@@ -901,18 +928,18 @@ function CheckoutDelete()///when leaving the checkout page delete stuff from the
 function ViewIncomingOrders()
 {
     var x = -1
-    console.log('test1', x)
     var keys = new Array()
     for(var key in localStorage)
     {
         keys.push(key)
     }
-    const filterRegex= /\bIncoming+/i
-    let filteredarray = keys.filter((key) => filterRegex.test(key)) 
-    console.log(filteredarray)
-    for(let i = 0; i< filteredarray.length ; i++){
+    const filterRegex= /\b(Incoming|Accepted|Completed)+(?!\sOrders\b)/i
+    let filtered = keys.filter((key) => filterRegex.test(key)) 
+    const filteredarray = _.sortBy(filtered, array => Number(array.match(/\d+/)[0]));
+    for(let i = 0; i< filteredarray.length ; i++)
+    {
         const order= JSON.parse(localStorage.getItem(filteredarray[i]))
-        let payType = order.CheckoutInfo.PaymentType
+        let payType = order.CheckoutInfo['PaymentType']
         if(payType == 'Cash')
         {
             payType = `Cash Payment Upon Arrival`
@@ -936,17 +963,38 @@ function ViewIncomingOrders()
         }
        
         const items =  order.Items
-        const OrderNum = order.OrderNumber
         const name = order.WhoOrdered.Name
+        const time = order.Time
         const subtotal = Math.fround(Number((order.Items.cart_total))).toFixed(2)
         const tax = Math.fround(Number((subtotal*.06))).toFixed(2)
         const total = Math.fround(Number((subtotal*1.06))).toFixed(2)
-        let incomingDiv = document.getElementsByClassName('incoming-orders-grid')[0]
         let divElement = document.createElement('div');
+        divElement.setAttribute('name', filteredarray[i])
         divElement.setAttribute('class', 'incoming-order')
+        let AppendDiv;
+        let btnName;
+        let buttonTXT;
+        if(/\bIncoming/i.test(filteredarray[i]))
+        {
+            AppendDiv = document.getElementsByClassName('incoming-orders-grid')[0]
+            btnName = 'acceptOrder';
+            buttonTXT = "Accept Order"
+        }
+        else if(/\bAccepted/i.test(filteredarray[i]))
+        {
+            AppendDiv = document.getElementsByClassName('accepted-orders-grid')[0]
+            btnName = 'markAsComplete';
+            buttonTXT = "Mark As Complete"
+        }
+        else if(/\bCompleted/i.test(filteredarray[i]))
+        {
+            AppendDiv = document.getElementsByClassName('completed-orders-grid')[0]
+            btnName = 'markedAsComplete';
+            buttonTXT = "Order Completed"
+        }
         var divHTML = `
-        <h2 class="incoming-order-title">Order #${OrderNum} by:</h2>
-                <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">4:15pm</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
+        <h2 class="incoming-order-title">Order #${i} by:</h2>
+                <div class="incoming-order-info"><p class="incoming-order-name">${name} </p> at <p class="incoming-order-time">${time}</p><br>${PorDHTML}<br><p class="incoming-order-time">${payType}</p></div>
                 <hr>
                 <div class="order-items-section">
 
@@ -974,20 +1022,13 @@ function ViewIncomingOrders()
                 <br>
                 <hr>
                 <div class="order-buttons-section">
-                    <button class="accept-order order-button" name="acceptOrder">Accept Order</button>
+                    <button class="accept-order order-button" name="${btnName}">${buttonTXT}</button>
                 </div>
             </div>
         `
-        console.log('test2', x)
         x++
-        console.log('test3', x)
         divElement.innerHTML = divHTML
-        incomingDiv.appendChild(divElement)
-        // console.log(itemsAppended)
-        incomingDiv = null
-        divElement = null
-        divHTML = null
-        console.log("Before ITems appended", items)
+        AppendDiv.appendChild(divElement)
             for (var key in items) {
                 if(key=='cart_total')
                 {
@@ -996,7 +1037,6 @@ function ViewIncomingOrders()
                 const itemname = items[key]["item_name"]
                 const itemquantity = items[key]["item_quantity"]
                 const itemtotal = (Math.fround(Number(items[key]["item_total"]))).toFixed(2)
-                console.log(itemtotal)
                 let itemDiv = document.createElement('div')
                 itemDiv.setAttribute('class', 'order-item')
                 const itemHTML = `
@@ -1009,21 +1049,23 @@ function ViewIncomingOrders()
                     </div>
                 `
                 itemDiv.innerHTML = itemHTML
-                let itemsSection = document.getElementsByClassName('order-items-section')[x]
-                itemsSection.appendChild(itemDiv)
+                divElement.querySelector('.order-items-section').appendChild(itemDiv)
             }
-
+        AppendDiv = null
+        divElement = null
+        divHTML = null
+        IncomingOrdersReady()
     }
     }
 
 
 //////////////////NEED TO DO!!!!!!!!!!!///////////
 
-//Make it so that it loads the accepted orders and when 
-///an incoming order is accepted it moves it to that in the local storage
-
 ///Previous Orders needs to be done
 
 ////manager menu editor needs to be done
 
-/////When checking out the time needs to be saved
+// for(let i = 10; i<20;i++)
+// {
+//     localStorage.setItem(`Incoming Order #${i}`, '{"CheckoutInfo":{"PaymentType":"Cash","PickUpDelivery":"PickUp"},"WhoOrdered":{"Name":"John Doe","User":"johndoe!!"},"Items":{"Item1":{"item_name":"Special- Tres Leche Cake","price_per_item":29.99,"item_quantity":1,"item_total":29.99},"Item2":{"item_name":"Special- Cookie dough Brownies(10 pack)","price_per_item":6.99,"item_quantity":1,"item_total":6.99},"Item3":{"item_name":"Pumpkin Pie","price_per_item":8,"item_quantity":1,"item_total":8},"Item4":{"item_name":"Lemon Pound Cake Muffins (12 pack)","price_per_item":6.25,"item_quantity":1,"item_total":6.25},"cart_total":51.23},"OrderNumber":0,"Time":"Time: 21:16"}')
+// }
