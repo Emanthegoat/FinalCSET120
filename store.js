@@ -936,6 +936,8 @@ function ViewIncomingOrders()
     const filterRegex= /\b(Incoming|Accepted|Completed)+(?!\sOrders\b)/i
     let filtered = keys.filter((key) => filterRegex.test(key)) 
     const filteredarray = _.sortBy(filtered, array => Number(array.match(/\d+/)[0]));
+    console.log(filteredarray)
+    localStorage.setItem('filteredarray',JSON.stringify(filteredarray))
     for(let i = 0; i< filteredarray.length ; i++)
     {
         const order= JSON.parse(localStorage.getItem(filteredarray[i]))
@@ -1069,3 +1071,103 @@ function ViewIncomingOrders()
 // {
 //     localStorage.setItem(`Incoming Order #${i}`, '{"CheckoutInfo":{"PaymentType":"Cash","PickUpDelivery":"PickUp"},"WhoOrdered":{"Name":"John Doe","User":"johndoe!!"},"Items":{"Item1":{"item_name":"Special- Tres Leche Cake","price_per_item":29.99,"item_quantity":1,"item_total":29.99},"Item2":{"item_name":"Special- Cookie dough Brownies(10 pack)","price_per_item":6.99,"item_quantity":1,"item_total":6.99},"Item3":{"item_name":"Pumpkin Pie","price_per_item":8,"item_quantity":1,"item_total":8},"Item4":{"item_name":"Lemon Pound Cake Muffins (12 pack)","price_per_item":6.25,"item_quantity":1,"item_total":6.25},"cart_total":51.23},"OrderNumber":0,"Time":"Time: 21:16"}')
 // }
+
+
+function CutomerProfileReady()
+{
+    let array = JSON.parse(localStorage.getItem('filteredarray'))
+    for(let i = 0; i<array.length;i++)
+    {
+        let order = JSON.parse(localStorage.getItem(array[i]))
+        let user = localStorage.getItem('CurrentLoginUser')
+        let orderUser = order['WhoOrdered']['User']
+        if(user == orderUser)
+        {
+            const items =  order.Items
+            const name = order.WhoOrdered.Name
+            const time = order.Time
+            const subtotal = Math.fround(Number((order.Items.cart_total))).toFixed(2)
+            const tax = Math.fround(Number((subtotal*.06))).toFixed(2)
+            const total = Math.fround(Number((subtotal*1.06))).toFixed(2)
+            console.log(items)
+            let receiptGrid = document.getElementsByClassName('receipts-grid')[0]
+            let receiptDiv = document.createElement('div')
+            receiptDiv.setAttribute('class', 'receipt')
+            receiptHTML = `
+                <h2>Receipt</h2>
+                <hr>
+                <div class="customer-name receipt-section">
+                    <p class="receipt-section-title">Customer Name</p>
+                    <p class="customer-name-text">${name}</p>
+                </div>
+                <hr>
+                <div class="receipt-date receipt-section"> 
+                    <p class="receipt-date-title receipt-section-title">Time</p>
+                    <p class="receipt-date-heading">Pickup/Delivery Time:</p>
+                    <p class="receipt-date-text">${time}</p>
+                </div>
+                <hr>
+                <div class="receipt-item-div receipt-section">
+                    <p class="receipt-section-title">Items</p>
+                    <div class="receipt-items">
+                    </div>
+                </div>
+                <hr>
+            <div class="receipt-total-div receipt-section">
+                <p class="receipt-total receipt-section-title">Totals</p>
+                <div class="receipt-total-items">
+                    <div class="receipt-total-items-left">
+                       <p class="receipt-total-subtotal receipt-total-items-item">Subtotal:</p>
+                       <p class="receipt-total-tax receipt-total-items-item">Tax:</p>
+                       <p class="receipt-total-text receipt-total-item-total">Total:</p>
+                    </div>
+                    <div class="receipt-total-items-right">
+                        <p class="receipt-total-subtotal-price receipt-total-items-item">$${subtotal}</p>
+                        <p class="receipt-total-tax-price receipt-total-items-item">$${tax}</p>
+                        <p class="receipt-total-price receipt-total-item-total">$${total}</p>
+                     </div>
+                </div>
+            </div>
+            </div>
+            `
+            receiptDiv.innerHTML = receiptHTML
+            receiptGrid.appendChild(receiptDiv)
+
+            for (var key in items) {
+                if(key=='cart_total')
+                {
+                    break;
+                }
+                const itemname = items[key]["item_name"]
+                const itemquantity = items[key]["item_quantity"]
+                const itemtotal = (Math.fround(Number(items[key]["item_total"]))).toFixed(2)
+                let itemDiv = document.createElement('div')
+                itemDiv.setAttribute('class', 'receipt-item')
+                const itemHTML = `
+                    <div class="order-item-left">
+                        <p class="order-item-quantity order-item-quantity-1">${itemquantity}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="order-item-name order-item-name-1">${itemname}</p>
+                    </div>
+                    <div class="order-item-right">
+                        <p class="order-item-price order-item-price-1">$${itemtotal}</p>
+                    </div>
+                `
+                itemDiv.innerHTML = itemHTML
+                receiptDiv.querySelector('.receipt-items').appendChild(itemDiv)
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    }
+}
