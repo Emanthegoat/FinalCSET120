@@ -18,12 +18,10 @@ localStorage.setItem("ExistCustomerPassword", 'IWantYummyFood123')
 localStorage.setItem("ExistCustomerRecoverPin", "5288")
 localStorage.setItem("ExistCustomerName", "John Doe")
 
-
 // Customer sign up function
 function registerCustomer()
 {
     var message = ""; //defines the message that will pop up saying what information is missing
-
     //resets the styles for the input tags
     document.getElementsByName("Name")[0].style.backgroundColor="";
     document.getElementsByName("Email")[0].style.backgroundColor="";
@@ -452,6 +450,7 @@ function accept(event)
 {
     //gets the div of the clicked button
     let button = event.srcElement
+    let button = event.srcElement
     let clickedButton = event.target.parentNode
     let clickedButtonParent = clickedButton.parentNode
     let acceptedOrdersDiv = document.getElementsByClassName('accepted-orders-grid')[0]//gets the accepted orders div
@@ -459,6 +458,13 @@ function accept(event)
     button.setAttribute("name", "markAsComplete")//changes the button on the bottom of the clicked div to marked as complete
     button.innerText = "Mark As Complete"
     IncomingOrdersReady()//calls the incoming orders ready to resets the onclick attribute
+    let name = clickedButtonParent.getAttribute('name')
+    let order = JSON.parse(localStorage.getItem(`${name}`))
+    let newName = name.replace(/Incoming/i, 'Accepted')
+    localStorage.setItem(`${newName}`, JSON.stringify(order))
+    localStorage.removeItem(`${name}`)
+    NumberOfAcceptedOrders++
+    updateNumOfAcceptedOrders()
     let name = clickedButtonParent.getAttribute('name')
     let order = JSON.parse(localStorage.getItem(`${name}`))
     let newName = name.replace(/Incoming/i, 'Accepted')
@@ -557,8 +563,7 @@ function addItemToCart(title, price, imageSrc)//adds item to cart after button i
     var cartRowContents = `
         <div class="cart-item-desc"><img class="cart-item-image" src="${imageSrc}"><p class="cart-item-name">${title}</p></div>
         <div class="cart-item-price"><span class="item-price-tag">${price}</span></div>
-        <div class="cart-item-quantity"><input type="number" class="cart-quantity-input" value="1"><button class="btn-remove">Remove</button></div>
-    `
+        <div class="cart-item-quantity"><input type="number" class="cart-quantity-input" value="1"><button class="btn-remove">Remove</button></div>`
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName("btn-remove")[0].addEventListener("click", removeCartItem)
@@ -586,6 +591,7 @@ function updateCartTotal()//updates the cart total
 var Object_of_all_orders = new Object
 function checkoutClicked(event)//when you click the purchase button even listener
 {
+    if(confirm("Confirm Checkout"))
     if(confirm("Confirm Checkout"))
     {
 
@@ -1155,19 +1161,9 @@ function CutomerProfileReady()
                 itemDiv.innerHTML = itemHTML
                 receiptDiv.querySelector('.receipt-items').appendChild(itemDiv)
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 }
+// add item function - Vee
+const addingItems = document.getElementById('adding-items');
+// addingItems.addEventListener('submit')

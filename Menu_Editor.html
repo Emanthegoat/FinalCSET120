@@ -9,20 +9,48 @@
     <script src="store.js" async></script>
 </head>
 <body>
-        <!-- nav bar -->
-<div class="NavBackground">
-    <nav class="option-bar">
-        <div class="Navimage">
-            <img src="/Images/SugarSoiree.jpg" alt="Sugar Soiree">
-        </div>
-        <menu class="links">
-            <li><a href="signUp.html">Sign Up</a></li>
-            <li><a href="login.html">Log in</a></li>
-            <li><a class="menu-nav" href="menu.html">Continue as a guest</a></li>
-            <li><a href="index.html">Home page</a></li>
+    <div class="NavBackground">
+        <nav class="option-bar">
+            <div class="Navimage">
+                <img src="/Images/SugarSoiree.jpg" alt="Sugar Soiree">
+            </div>
+            <menu class="links">
+                <li><a href="signUp.html">Sign Up</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="menu.html">Continue as a guest</a></li>
+                <li><a href="index.html">Home page</a></li>
+            </menu>
+        </nav>
+    </div>
+<!-- when the edit button is clicked, a form will appear that allows the Manager to edit the contents of the menu, and then sends that information back to the menu for the customer and manager. -->
+<div class="Nav2Background">
+    <nav class="option-bar2">
+        <menu class="links2">
+            <li><a href="#edit-form">Edit Menu</a><hr></li>
+            <li><a href="login.html">Manager Log in</a><hr></li>
+            <li><a href="menu.html">View Menu</a><hr></li>
+            <li><a href="Manager_Directory.html">View Dashboard</a></li>
         </menu>
     </nav>
 </div>
- 
+    <div id="edit-container">
+        <h1>Menu Editor</h1>
+        <form id="adding-items">
+            <label for="item-name">Item Name:</label>
+            <input type="text" name="itemName" id="item-name" placeholder="Enter Item Name Here">
+
+            <label for="item-price">Item Price:</label>
+            <input type="number" name="itemPrice" step="0.01" id="item-price" placeholder="Enter Item Price Here">
+
+            <label for="item-photo">Select a Photo:</label>
+            <input type="file" name="itemPhoto" id="item-photo">
+
+            <label for="item-description">Add a Description:</label>
+            <input type="text" name="itemDescription" id="item-description" placeholder="Describe Your Item Here" cols="30" rows="10">
+            <input type="submit" name="addItemBtn" id="submit-btn">
+        </form>
+    </div>
+
+
 </body>
 </html>
