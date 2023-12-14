@@ -525,4 +525,4 @@ const data = [1, 2, 3];
 
 // add item function - Vee
 const addingItems = document.getElementById('adding-items');
-addingItems.addEventListener('submit', )
+addingItems.addEventListener('submit')
