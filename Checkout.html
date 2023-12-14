@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="store.js"></script>
+    <link rel="shortcut icon" href="shortcake.jpg" type="image/x-icon">
+</head>
+<body>
+        <!-- nav bar -->
+<div class="NavBackground">
+    <nav class="option-bar">
+        <div class="Navimage">
+            <img src="/Images/SugarSoiree.jpg" alt="Sugar Soiree">
+        </div>
+        <menu class="links">
+            <li><a href="signUp.html">Sign Up</a></li>
+            <li><a href="login.html">Log in</a></li>
+            <li><a class="menu-nav" href="menu.html">Continue as a guest</a></li>
+            <li><a href="index.html">Home page</a></li>
+        </menu>
+    </nav>
+</div>
+    <h1>Checkout</h1>
+
+    <div class="order-summary">
+        <h2 class="order-summary-title">Order Summary</h2>
+        <hr>
+        <div class="order-summary-items">
+        </div>
+        <hr>
+        <div class="summary-totals">
+            <div class="sum-totals-left">
+            <p class="sum-subtotal-text">Subtotal:</p>
+            <p class="sum-tax-text">Tax:</p>
+            <hr><hr>
+            <p class="sum-total-text">Total:</p>
+            </div>
+            
+            <div class="sum-totals-right">
+                <p class="sum-subtotal-price">$19.99</p>
+                <p class="sum-tax-price">$4.05</p>
+                <hr><hr>
+                <p class="sum-total-price">$23.03</p>
+            </div>
+        </div>
+        <hr>
+        <div class="summary-buttons">
+            <button class="sum-confirm-btn" onclick="SummaryConfirm()">Confirm</button>
+            <button class="sum-cancel-btn" onclick="SummaryCancel()">Cancel</button>
+        </div>
+    </div>
+    <br>
+    <br>
+<div class="Payment-section">
+    <h1>Payment</h1>
+    <div class="payment">
+        <h3>Choose Your Payment Type</h3>
+        <div class="payment-select-div">
+        <select class="Payment-select" onchange="PaymentType()">
+            <option value=""></option>
+            <option value="Cash">Cash</option>
+            <option value="D/C">Debit/Credit</option>
+        </select>
+        </div>
+        <br>
+        <div class="DC-form-div D/C-form-div">
+        </div>
+    </div>
+    <br><br><br>
+    <div class="PickUp-delivery">
+        <h3>PickUp or Delivery</h3>
+        <div class="PD-select-div">
+        <select name="PickUp-delivery-select" class="PickUp-delivery-select" onchange="PorD()">
+            <option value=""></option>
+            <option value="PickUp">Pick Up</option>
+            <option value="Delivery">Delivery</option>
+        </select>
+        </div>
+        <div class="PickUp-delivery-form">
+        </div>
+    </div>
+    <br><br>
+    <div class="Submit-Order"><button class="btn-submit-order" onclick="SubmitOrder()">Submit Order</button></div>
+</div>
+</body>
+</html>

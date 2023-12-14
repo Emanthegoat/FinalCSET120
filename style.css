@@ -879,6 +879,335 @@ width: fit-content;
 }
 /* HOME PAGE END */
 
+
+/* CHECKOUT CSS */
+.order-summary
+    {
+        width: 400px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 0.5px ridge black;  
+    }
+    .order-summary-title
+    {
+        vertical-align: middle;
+        margin: 25px auto;
+        text-align: center;
+        text-decoration: underline;
+    }
+    .item-row, .summary-totals
+    {
+        display: grid;
+        grid-template-columns: 250px 125px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .item-right,.sum-totals-right
+    {
+        text-align: right;
+    }
+    .item-left,.sum-totals-left
+    {
+        margin: 0px 10px;
+    }
+    .sum-totals-left
+    {
+        margin: 0px 7px;
+    }
+    .item-total
+    {
+        font-weight: 600;
+    }
+    .item-Name
+    {
+        margin-left: 10px;
+        font-weight: 600;
+    }
+    .summary-totals
+    {
+        display: grid;
+        grid-template-columns: 250px 125px;
+        width: 400px;
+        margin: 10px 2px;
+    }
+    .sum-subtotal-text, .sum-tax-text, .sum-subtotal-price, .sum-tax-price
+    {
+        font-weight: 600;
+        opacity: 50%;
+        margin: 15px 0;
+    }
+    .sum-total-text,.sum-total-price
+    {
+        font-weight: 600;
+    }
+    .summary-buttons
+    {
+        width: 150px;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .sum-confirm-btn,.sum-cancel-btn
+    {
+        margin: auto;
+        width: 70px;
+        height: 30px;
+        font-weight: 600;
+        text-decoration: underline;
+        border-style: outset;
+        border-radius: 10px;
+    }
+    .sum-confirm-btn:hover,.sum-cancel-btn:hover
+    {
+        background-color: rgb(180, 180, 180);
+        border-radius: 10px;
+    }
+    .Payment-section
+    {
+        visibility: hidden;
+        margin: 0 auto;
+        width: 230px;
+    }
+    .payment
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .payment-select-div,.PD-select-div
+    {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .DC-form-div
+    {
+        margin: 0px auto;
+        width: 175px;
+
+    }
+    .DC-form-div input
+    {
+        margin: 5px auto;
+    }
+    .Check-payment-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 130px;
+    }
+    .PickUp-delivery
+    {
+        border: 3px outset rgb(97, 97, 97);
+    }
+    .PickUp-delivery h3
+    {
+        text-align: center;
+    }
+    .PickUp-delivery-form
+    {
+        margin: 0px auto;
+        width: 175px;
+    }
+    .PickUp-delivery-form input
+    {
+        margin: 0px auto;
+    }
+    .PD-check-btn
+    {
+        margin: 10px auto;
+        margin-top: 20px;
+        width: 100px;
+    }
+    .Submit-Order
+    {
+        width: 85px;
+        margin: auto;
+    }
+/* CHECKOUT CSS END */
+
+
+ /* MENU PAGE START */
+ .content-section
+ {
+     border-bottom: 1px solid black;
+     width: 100vw;
+     display: grid;
+     grid-template-columns: auto auto auto auto;
+ }
+ @media(max-width:1340px)
+ {
+     .content-section
+     {  
+         grid-template-columns: auto auto auto;
+     } 
+ }
+ @media(max-width:1005px)
+ {
+     .content-section
+     {  
+         grid-template-columns: auto auto;
+     } 
+ }
+ @media(max-width:660px)
+ {
+     .content-section
+     {  
+         grid-template-columns: auto;
+     } 
+ }
+ .shop-item-details{
+     text-align: center;
+ }
+ 
+ .shop-item-button{
+ 
+     background-color: pink;
+ }
+ 
+ li 
+ {
+    display: inline;
+    text-align: center;
+    padding: 20px ;
+     max-width: 200px;
+     font-size: 70px;
+ }
+ 
+ .section-title
+ {
+     text-align: center;
+     font-size: 3em;
+     margin: 50px auto;
+ }
+ 
+ .shop-item-image
+ {
+     width: 300px;
+     height: 200px;
+ }
+ 
+ .shop-item
+ {
+     width: 310px;
+     margin: 10px;
+     text-align: center;
+     text-decoration: underline;
+     font-size: 1.15em;
+ }
+ 
+ /* CART CSS */
+ .cart-bold
+ {
+     font-size: 2.2em;
+ }
+ #cart
+ {
+     width: 80vw;
+     margin:0 auto;
+     padding:0 10vw;
+ }
+ .cart-titles, .cart-item
+ {
+     margin: 30px auto;
+     display: grid;
+     grid-template-columns: 40vw 15vw 30vw;
+ }
+ .cart-item-price
+ {
+     border-bottom: 1px solid black;
+     margin: auto 5px;
+     display: flex;
+     flex-direction: column;
+     height: 80px;
+     margin-top: 30px;
+ }
+ .cart-item-quantity
+ {
+     border-bottom: 1px solid black;
+     margin: auto 5px;
+     height: 80px;
+     margin-top: 30px;
+ }
+ .cart-item-desc
+ {
+     border-bottom: 1px solid black;
+     margin: auto 5px;
+     height: 110px;
+     display: flex;
+     align-items: center;
+ }
+ .cart-item-title, .cart-price-title, .cart-quantity-title
+ {
+     border-bottom: 1px solid black;
+     margin: 0 10px;
+ }
+ .cart-item-title h4, .cart-price-title h4, .cart-quantity-title h4
+ {
+     font-size: 1.3em;
+ }
+ .cart-item-desc img, .cart-item-desc p
+ {
+     display: inline;
+     vertical-align: middle;
+     font-weight: 600;
+ }
+ .cart-item-image
+ {
+     height: 100px;
+     width: 100px;
+ }
+ .cart-item-price
+ {
+     display: inline;
+ }
+ .cart-quantity-input,.btn-remove
+ {
+     display: inline;
+     width: 60px;
+     text-align: center;
+     margin: auto 10px;
+ }
+ .btn-remove
+ {
+     background-color: rgb(253, 140, 140);
+     border-radius: 3px;
+ }
+ .btn-remove:hover
+ {
+     background-color: rgb(254, 92, 92);
+ }
+ .cart-total
+ {
+     width: 100px;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-end;
+     margin: auto;
+ }
+ .cart-total h3, .cart-total span
+ {
+     display: inline;
+     margin: 20px auto;
+     padding: auto 10px;
+ }
+ 
+ .Checkout-btn-div
+ {
+     width: 150px;
+     margin: auto;
+ }
+ .btn-checkout
+ {
+     width: 150px;
+     height: 50px;
+     font-size: 1.2em;
+     font-weight: bold;
+     background-color: rgb(108, 247, 108);
+     border-radius: 10px;
+ }
+ .btn-checkout:hover
+ {
+     background-color: rgb(88, 196, 88);
+ }
+ /* MENU PAGE END */
 /* MANAGER DIRECTORY PAGE START */
         /*the nav bar is the same as the rest of the pages */
 .Nav2Background{
