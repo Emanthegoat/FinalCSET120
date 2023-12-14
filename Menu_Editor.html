@@ -21,17 +21,56 @@
                 <li><a href="index.html">Home page</a></li>
             </menu>
         </nav>
-        </div>
-    <div class="shop-item14 shop-item">
-        <span class="shop-item14 shop-item-title">Oreo Ice Cream bowl</span>
-        <img class="shop-item-image" src="https://bakerjo.co.uk/wp-content/uploads/2020/07/IMG_2793.jpg">
-        <div class="shop-item-details">
-            <span class="shop-item-price">$4.99</span>
-            <button class="shop-item-adjust" onclick="managerAdjust()" type="button">Adjust price</button>
-            <button class="shop-item-remove" onclick="managerRemove()">Remove Item from menu</button>
-        </div>
-        <div>
-            <button class="shp-item-add" onclick="managerAdd()">Add a new menu item</button>
-        </div>
+    </div>
+<!-- when the edit button is clicked, the html will change to a form that allows the Manager to edit the contents of the menu, and then sends that information back to the menu. -->
+<div class="Nav2Background">
+    <nav class="option-bar2">
+        <menu class="links2">
+            <li><a href="#edit-form">Edit Menu</a></li>
+            <li><a href="login.html">Manager Log in</a></li>
+            <li><a href="menu.html">View Menu</a></li>
+            <li><a href="Manager_Directory.html">View Dashboard</a></li>
+        </menu>
+    </nav>
+</div>
+    <div>
+        <form name="edit-form" action="menu.html" method="get">
+            
+        </form>
+    </div>
+    <!-- <div id="list-container">
+        <table class="list-table">
+            <tr>
+                <th>Item ID</th>
+                <th>Category</th>
+                <th>Item Name</th>
+                <th>Item Price</th>
+            </tr>
+
+            <tr class="editing-list">
+                <td>1233</td>
+                <td>Pie</td>
+                <td>Pumpkin Pie</td>
+                <td>$12.00</td>
+            </tr>
+
+            <tr>
+                <td>0110</td>
+                <td>Cake</td>
+                <td>Lemon Cake</td>
+                <td>$9.00</td>
+            </tr>
+
+            <tr>
+                <td>0110</td>
+                <td>Cake</td>
+                <td>Lemon Cake</td>
+                <td>$9.00</td>
+            </tr>
+        </table>
+    </div> -->
+
+
+
 </body>
 </html>
