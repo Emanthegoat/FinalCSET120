@@ -26,49 +26,31 @@
 <div class="Nav2Background">
     <nav class="option-bar2">
         <menu class="links2">
-            <li><a href="#edit-form">Edit Menu</a></li>
-            <li><a href="login.html">Manager Log in</a></li>
-            <li><a href="menu.html">View Menu</a></li>
+            <li><a href="#edit-form">Edit Menu</a><hr></li>
+            <li><a href="login.html">Manager Log in</a><hr></li>
+            <li><a href="menu.html">View Menu</a><hr></li>
             <li><a href="Manager_Directory.html">View Dashboard</a></li>
         </menu>
     </nav>
 </div>
-    <div>
-        <form name="edit-form" action="menu.html" method="get">
-            
+    <div id="edit-container">
+        <h1>Menu Editor</h1>
+        <form id="adding-items">
+            <label for="item-name">Item Name:</label>
+            <input type="text" name="itemName" id="item-name" placeholder="Enter Item Name Here">
+
+            <label for="item-price">Item Price:</label>
+            <input type="number" name="itemPrice" step="0.01" id="item-price" placeholder="Enter Item Price Here">
+
+            <label for="item-photo">Select a Photo:</label>
+            <input type="file" name="itemPhoto" id="item-photo">
+
+            <label for="item-description">Add a Description:</label>
+            <input type="text" name="itemDescription" id="item-description" placeholder="Describe Your Item Here" cols="30" rows="10">
+            <input type="submit" name="addItemBtn" id="submit-btn">
         </form>
     </div>
-    <!-- <div id="list-container">
-        <table class="list-table">
-            <tr>
-                <th>Item ID</th>
-                <th>Category</th>
-                <th>Item Name</th>
-                <th>Item Price</th>
-            </tr>
 
-            <tr class="editing-list">
-                <td>1233</td>
-                <td>Pie</td>
-                <td>Pumpkin Pie</td>
-                <td>$12.00</td>
-            </tr>
-
-            <tr>
-                <td>0110</td>
-                <td>Cake</td>
-                <td>Lemon Cake</td>
-                <td>$9.00</td>
-            </tr>
-
-            <tr>
-                <td>0110</td>
-                <td>Cake</td>
-                <td>Lemon Cake</td>
-                <td>$9.00</td>
-            </tr>
-        </table>
-    </div> -->
 
 
 

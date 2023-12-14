@@ -507,12 +507,6 @@ const data = [1, 2, 3];
   console.log(`Value: ${value}, Index: ${index}`);
     }
 
-
-
-
-
-
-
 ///////////MAKE IT SO WHEN THE PAGE IS LOADED IT MAKES IT PROMPT THE USER TO CONTINUE AS GUEST.
 ////AND IF THEY START ON A PAGE THAT ISNT LOGIN/SIGNUP/INDEX// AND THE "CURRENT" LOCAL STORAGE ITEMS ARE EMPTY...
 // IT WILL ASK THEM IF THEY WANT TO LOGIN AND IF NOT COUNTIUE AS GUEST. 
@@ -528,3 +522,7 @@ const data = [1, 2, 3];
 
 ///update the nav bar to be able to go to the customer profile if the user is customer is currently logged in
 //update the nav bar to be able to go to the menu without having to click continue as guest
+
+// add item function - Vee
+const addingItems = document.getElementById('adding-items');
+addingItems.addEventListener('submit', )

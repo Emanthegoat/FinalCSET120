@@ -884,21 +884,41 @@ width: fit-content;
 .Nav2Background{
     background-color: rgba(128, 245, 245, 0.753);
 }
-.option-bar2{
-    display: grid;
-    grid-template-columns: 85vw;
-    justify-content: center;
-    padding-top: 15px;
-}
-.links2{
-    margin: auto;
-}
-.links2 li{
-    font-size: 3em;
+@media screen (min-width: 300px) {
+    .option-bar2{
+        display: grid;
+        grid-template-columns: 85vw;
+        justify-content: center;
+        padding-top: 15px;
+    }
+    .links2{
+        margin: auto;
+    }
+    .links2 li{
+        font-size: 2em;
+    }
+
 }
 .links2 a:link{
     text-decoration: none;
     color: black;
+} 
+#edit-container{
+    background-color: rgba(255, 192, 203, 0.699);
+}
+#edit-container h1{
+    font-size: 4em;
+}
+@media screen (max-width: 1250px) {
+    #adding-items{
+        gap: 6px; 
+    }
+    label{
+        font-weight: bold;
+    }     
+}
+#adding-items{
+    background-color: beige;
 }
 
 
